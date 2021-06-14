@@ -10,11 +10,11 @@ public class Tester {
 	public static void main(String[] args) {
 		
 		WhatsAppDTO wDTO = new WhatsAppDTO();
-		wDTO.setWhatsApp_id(6);
-		wDTO.setWhatsApp_privacy(StatusPrivacy.MY_CONTACTS);
-		wDTO.setContactNo(343343346L);
-		wDTO.setChat("Bye  .....");
-		wDTO.setWhatsApp_status("sad");
+		wDTO.setWhatsApp_id(11);
+		wDTO.setWhatsApp_privacy(StatusPrivacy.ONLY_SHARE_WITH);
+		wDTO.setContactNo(843343346L);
+		wDTO.setChat("busy");
+		wDTO.setWhatsApp_status("video");
 		
 		WhatsAppService whatsAppService = new WhatsAppServiceImpl();
 		whatsAppService.validateAndCreateWhatsApp(wDTO);

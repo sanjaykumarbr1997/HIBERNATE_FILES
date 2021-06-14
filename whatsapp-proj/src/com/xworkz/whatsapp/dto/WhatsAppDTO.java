@@ -1,21 +1,19 @@
 package com.xworkz.whatsapp.dto;
 
 import java.io.Serializable;
-
-
-//Hybernate uses DTO to perform CRUD
-
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
+//Hybernate uses DTO to perform CRUD
 
 import com.xworkz.whatsapp.constants.StatusPrivacy;
 
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "whats_app_table")
-
-
 
 
 public class WhatsAppDTO implements Serializable {
@@ -24,6 +22,7 @@ public class WhatsAppDTO implements Serializable {
 	@Id
 	private int whatsApp_id;
 	private String whatsApp_status;
+	@Enumerated(EnumType.STRING)
 	private StatusPrivacy whatsApp_privacy;
 	private String chat;
 	private Long contactNo;
