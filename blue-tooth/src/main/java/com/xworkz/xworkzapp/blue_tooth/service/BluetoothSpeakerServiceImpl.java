@@ -1,5 +1,7 @@
 package com.xworkz.xworkzapp.blue_tooth.service;
 
+import java.util.List;
+
 import com.xworkz.xworkzapp.blue_tooth.dao.BluetoothSpeakerDAO;
 import com.xworkz.xworkzapp.blue_tooth.dao.BluetoothSpeakerDAOImpl;
 import com.xworkz.xworkzapp.blue_tooth.dto.BluetoothSpeakerDTO;
@@ -27,6 +29,42 @@ public class BluetoothSpeakerServiceImpl implements BluetoothSpeakerService {
 		
 		
 		
+	}
+
+
+	public BluetoothSpeakerDTO validateAndGetBrandById(int id) {
+		if(id>0) {
+			return bluetoothSpeakerDAO.getBrandById(id);
+			
+		}
+		return null;
+				
+		
+	}
+
+
+	public List<BluetoothSpeakerDTO> validateAndGetAllDetails() {
+		return bluetoothSpeakerDAO.getAllDetails();
+	}
+
+
+	public void validateAndDeleteById(int id) {
+		if(id>0) {
+			 bluetoothSpeakerDAO.deleteById(id);
+			
+		}
+		
+	}
+
+
+	public void validateAndUpdateRangeByName(int id,String range) {
+		if(id!=0) {
+			
+			bluetoothSpeakerDAO.updateRangeByName(id,range);
+		}
+		else {
+			System.out.println("id cant be empty");
+		}
 	}
 
 }

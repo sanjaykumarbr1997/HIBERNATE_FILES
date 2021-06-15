@@ -14,7 +14,8 @@ public class Tester {
 		wDTO.setWhatsApp_privacy(StatusPrivacy.ONLY_SHARE_WITH);
 		wDTO.setContactNo(843343346L);
 		wDTO.setChat("busy");
-		wDTO.setWhatsApp_status("video");
+		wDTO.setWhatsApp_status("video"
+				+ "");
 		
 		WhatsAppService whatsAppService = new WhatsAppServiceImpl();
 		whatsAppService.validateAndCreateWhatsApp(wDTO);

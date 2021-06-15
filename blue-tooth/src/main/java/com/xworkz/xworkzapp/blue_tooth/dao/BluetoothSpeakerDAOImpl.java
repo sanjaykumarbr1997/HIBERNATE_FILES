@@ -1,5 +1,7 @@
 package com.xworkz.xworkzapp.blue_tooth.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -24,5 +26,67 @@ public class BluetoothSpeakerDAOImpl implements BluetoothSpeakerDAO {
 		
 		
 	}
+
+	public BluetoothSpeakerDTO getBrandById(int id) {
+		
+		Configuration config = new Configuration();
+		config.configure();
+		config.addAnnotatedClass(BluetoothSpeakerDTO.class);
+		SessionFactory factory = config.buildSessionFactory();
+		Session session = factory.openSession();
+		BluetoothSpeakerDTO bDTO = session.get(BluetoothSpeakerDTO.class,id);
+		session.close();
+		factory.close();
+		
+		return bDTO;
+	}
+
+	public List<BluetoothSpeakerDTO> getAllDetails() {
+		Configuration conf = new Configuration();
+		conf.configure();
+		conf.addAnnotatedClass(BluetoothSpeakerDTO.class);
+		SessionFactory factory = conf.buildSessionFactory();
+		Session session = factory.openSession();
+		//session.get
+		//BluetoothSpeakerDTO bDTO = session.get(BluetoothSpeakerDTO.class);
+		
+		//session.close();
+		factory.close();
+	
+		
+		return null;
+	}
+
+	public void deleteById(int id) {
+		Configuration config = new Configuration();
+		config.configure();
+		config.addAnnotatedClass(BluetoothSpeakerDTO.class);
+		SessionFactory factory = config.buildSessionFactory();
+		Session session = factory.openSession();
+		BluetoothSpeakerDTO bDTO1 = session.get(BluetoothSpeakerDTO.class,id);
+		Transaction transaction = session.beginTransaction();
+		session.delete(bDTO1);
+		transaction.commit();
+		session.close();
+		factory.close();
+		
+	}
+
+	public void updateRangeByName(int id,String range) {
+		Configuration confi = new Configuration();
+		confi.configure();
+		confi.addAnnotatedClass(BluetoothSpeakerDTO.class);
+		SessionFactory factory = confi.buildSessionFactory();
+		Session session = factory.openSession();
+		BluetoothSpeakerDTO blueeDTO = session.get(BluetoothSpeakerDTO.class,id);
+		blueeDTO.setRange(range);
+		Transaction transaction = session.beginTransaction();
+		session.update(blueeDTO);
+		transaction.commit();
+		session.close();
+		factory.close();
+		
+	}
+	
 
 }
