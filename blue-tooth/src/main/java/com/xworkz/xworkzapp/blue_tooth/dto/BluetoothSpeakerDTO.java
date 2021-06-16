@@ -12,7 +12,6 @@ import javax.persistence.Table;
 @Table(name ="bluetooth_speaker")
 public class BluetoothSpeakerDTO implements Serializable{
 	
-	
 	@Id
 	@Column(name = "bluetooth_id")
 	private int bluetoothId;
