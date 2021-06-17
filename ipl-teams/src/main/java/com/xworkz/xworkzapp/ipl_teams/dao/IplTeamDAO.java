@@ -12,6 +12,6 @@ public interface IplTeamDAO {
 
 	public void updateDetails(String name, int id, int players);
 	
-	public void a();
+	
 
 }

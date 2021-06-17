@@ -7,7 +7,7 @@ import com.xworkz.sweets_app.sweets.dto.SweetsDTO;
 import com.xworkz.sweets_app.sweets.service.SweetsService;
 import com.xworkz.sweets_app.sweets.service.SweetsServiceImpl;
 
-public class Tester {
+public class Testerr {
 	
 	public static void main(String[] args) {
 		Scanner scanner= new Scanner(System.in);
@@ -29,7 +29,7 @@ public class Tester {
 		sDTO.setShape(scanner.next());
 		sweetsService.valideAndSave(sDTO);
 		
-		}
+		} 
 		
 		System.out.println("Enter no of records you need to fetch by name");
 		int input1 = scanner.nextInt();
@@ -40,7 +40,7 @@ public class Tester {
 		SweetsDTO sDTO =sweetsService.validateAndGetDetailsByName(scanner.nextInt(),scanner.next());
 		System.out.println(sDTO);
 		
-		}
+		} 
 		
 		System.out.println("Enter no of records you need to update color by name");
 		int input2 = scanner.nextInt();

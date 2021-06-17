@@ -5,6 +5,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
 
 import com.xworkz.singleton.HibernateUtil;
 import com.xworkz.sweets_app.sweets.dto.SweetsDTO;
@@ -18,8 +19,9 @@ public class SweetsDAOImpl implements SweetsDAO {
 		
 		Transaction transaction =null;
 		try {
+			
 		 sessionFactory=HibernateUtil.getSessionFactory();
-		System.out.println((sessionFactory));
+		//System.out.println((sessionFactory));
 		session = sessionFactory.openSession();
 		transaction= session.beginTransaction();
 		session.save(sDTO);
@@ -68,10 +70,12 @@ public class SweetsDAOImpl implements SweetsDAO {
 	public void updateColorByName(int id, String name, String color) {
 		Transaction transaction =null;
 		try {
+			
 		sessionFactory=HibernateUtil.getSessionFactory();
 		System.out.println((sessionFactory));
 		session = sessionFactory.openSession();
 		transaction =session.beginTransaction();
+		
 		SweetsDTO swtDTO = session.get(SweetsDTO.class, id);
 		if(swtDTO.getName().equalsIgnoreCase(name)) {
 			swtDTO.setColor(color);
@@ -101,7 +105,7 @@ public class SweetsDAOImpl implements SweetsDAO {
 		Transaction transaction =null;
 		try {
 		sessionFactory=HibernateUtil.getSessionFactory();
-		System.out.println((sessionFactory));
+		//System.out.println((sessionFactory));
 		session = sessionFactory.openSession();
 		transaction =session.beginTransaction();
 		SweetsDTO swtDTO = session.get(SweetsDTO.class, id);
