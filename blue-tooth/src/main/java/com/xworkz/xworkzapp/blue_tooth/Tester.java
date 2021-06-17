@@ -41,10 +41,10 @@ public class Tester {
 		int up = sc.nextInt();
 		
 		for(int j=0;j<up;j++) {
-			
+			int id4 = sc.nextInt();
 		BluetoothSpeakerService bluetootSpeakerService = new BluetoothSpeakerServiceImpl();
-
-		BluetoothSpeakerDTO bD = bluetootSpeakerService.validateAndGetBrandById(1);
+		System.out.println("Enter id");
+		BluetoothSpeakerDTO bD = bluetootSpeakerService.validateAndGetBrandById(id4);
 		System.out.println(bD);
 		}
 		
