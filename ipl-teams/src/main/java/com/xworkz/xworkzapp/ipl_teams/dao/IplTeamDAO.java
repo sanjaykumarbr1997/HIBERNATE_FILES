@@ -11,5 +11,7 @@ public interface IplTeamDAO {
 	public void deleteDetails(int idd);
 
 	public void updateDetails(String name, int id, int players);
+	
+	public void a();
 
 }

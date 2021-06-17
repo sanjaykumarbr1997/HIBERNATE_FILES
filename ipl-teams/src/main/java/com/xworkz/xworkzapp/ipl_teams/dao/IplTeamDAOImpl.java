@@ -93,4 +93,9 @@ public class IplTeamDAOImpl implements IplTeamDAO {
 		
 	}
 
+	public void a() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
