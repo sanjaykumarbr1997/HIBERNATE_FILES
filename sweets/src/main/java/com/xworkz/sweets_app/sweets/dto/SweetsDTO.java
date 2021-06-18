@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -13,6 +15,10 @@ public class SweetsDTO implements Serializable {
 	
 	@Id
 	@Column(name="sweet_id")
+	
+	//@GenericGenerator(name="ref" , strategy="increment")
+	//@GeneratedValue(generator ="ref")
+	@GeneratedValue(strategy= GenerationType.AUTO) //whenever auto is used there is some changes in hib.cfg.file
 	private int sweet_id;
 	@Column(name="sweet_name")
 	private String name;

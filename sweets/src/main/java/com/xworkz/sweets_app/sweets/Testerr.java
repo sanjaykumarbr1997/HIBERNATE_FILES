@@ -17,8 +17,6 @@ public class Testerr {
 		int input = scanner.nextInt();
 		for(int i=0;i<input;i++) {
 		SweetsDTO sDTO = new SweetsDTO() ;
-		System.out.println("Enter id");
-		sDTO.setSweet_id(scanner.nextInt());
 		System.out.println("Enter sweet name");
 		sDTO.setName(scanner.next());
 		System.out.println("Enter sweet color");
