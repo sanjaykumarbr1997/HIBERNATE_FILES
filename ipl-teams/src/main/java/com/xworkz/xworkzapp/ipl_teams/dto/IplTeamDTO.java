@@ -4,16 +4,19 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 
 @Entity
-@Table(name ="Ipl_team_table")
+@Table(name ="ipl_team_table")
 public class IplTeamDTO implements Serializable{
 	
 	@Id
 	@Column(name ="team_id")
+	@GeneratedValue(strategy= GenerationType.AUTO)
 	private int teamId;
 	
 	@Column(name ="team_name")

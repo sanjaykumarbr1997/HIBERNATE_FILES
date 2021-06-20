@@ -1,6 +1,14 @@
 package com.xworkz.xworkzapp.ipl_teams;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Scanner;
+
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.xworkz.xworkzapp.ipl_teams.dto.IplTeamDTO;
 import com.xworkz.xworkzapp.ipl_teams.service.IplTeamService;
@@ -9,17 +17,19 @@ import com.xworkz.xworkzapp.ipl_teams.service.IplTeamServiceImpl;
 
 public class Tester {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 		System.out.println("Ipl data ");
 		Scanner sc = new Scanner(System.in);
+		System.out.println("How do you prefer adding data:");
+		System.out.println("Press \"D\" to enter dynamically or press \" E \"to import from Excel ");
+		if(sc.next().equalsIgnoreCase("D")) {
 		
 		
 		System.out.println("Enter no of new records to store");
 		int rec = sc.nextInt();
 		for(int i=0;i<rec;i++) {
-			System.out.println("enter team id");
-			int id1 = sc.nextInt();
+			
 			System.out.println("enter team  name");
 			String s1 = sc.next();
 			System.out.println("enter  no of players in team");
@@ -28,7 +38,6 @@ public class Tester {
 			String s3 = sc.next();
 			
 		IplTeamDTO iplDTO = new IplTeamDTO();
-		iplDTO.setTeamId(id1);
 		iplDTO.setTeamName(s1);
 		iplDTO.setNoOfPlayers(p1);
 		iplDTO.setLocation(s3);
@@ -37,10 +46,14 @@ public class Tester {
 		iplService.validateAndSave(iplDTO);
 		
 		}
+		}
+		else {
+			readXLSXFile("E:\\excel-poi\\Ipl.xlsx");
+			
+		}
 		
 		System.out.println("Enter no of details to get by Name:");
 		int up = sc.nextInt();
-		
 		for(int j=0;j<up;j++) {
 			
 			System.out.println("Enter team name");
@@ -51,12 +64,14 @@ public class Tester {
 
 		IplTeamDTO iDTO = iplService.validateAndGetDetailsByName(name,id1);
 		System.out.println(iDTO);
+		
+		writeXLSXFile("E:\\excel-poi\\Ipl.xlsx",iDTO);
+		
+		
+		
+		
 		}
-		
-		
-		
-		
-		
+
 		System.out.println("Enter number of records to delete");
 		int del = sc.nextInt();
 		
@@ -88,6 +103,62 @@ public class Tester {
 			
 		
 		sc.close();
+	}
+
+	
+
+		private static void writeXLSXFile( String file1, IplTeamDTO iDTO) throws IOException  {
+			XSSFWorkbook wrk = new XSSFWorkbook();
+			XSSFSheet sht = wrk.createSheet("Sheet2");
+			
+			sht.createRow(iDTO.getTeamId());
+			sht.getRow((iDTO.getTeamId())).createCell(0).setCellValue(iDTO.getTeamId());
+			sht.getRow((iDTO.getTeamId())).createCell(1).setCellValue(iDTO.getTeamName());
+			sht.getRow((iDTO.getTeamId())).createCell(2).setCellValue(iDTO.getNoOfPlayers());
+			sht.getRow((iDTO.getTeamId())).createCell(3).setCellValue(iDTO.getLocation());
+			
+			FileOutputStream osfile = null;
+			try {
+				osfile = new FileOutputStream(file1);
+				wrk.write(osfile);
+			} catch (IOException e) {
+				e.printStackTrace();
+			} 
+			
+			wrk.close();
+		}
+	
+
+	private static void readXLSXFile(String file) {
+		
+		try {
+			XSSFWorkbook work = new XSSFWorkbook(new FileInputStream(file));
+			XSSFSheet sheet = work.getSheet("Sheet1");
+			XSSFRow row = null  ;
+			
+			
+		int i =1;
+		while((row=sheet.getRow(i))!=null) {
+		
+			IplTeamDTO ipDTO = new IplTeamDTO();
+			ipDTO.setTeamName(row.getCell(1).getStringCellValue());
+			int np = (int)row.getCell(2).getNumericCellValue();
+			ipDTO.setNoOfPlayers(np);
+			ipDTO.setLocation(row.getCell(3).getStringCellValue());
+			i++;
+			
+			
+			IplTeamService iplService = new IplTeamServiceImpl();
+			iplService.validateAndSave(ipDTO);
+		}
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 
 }
