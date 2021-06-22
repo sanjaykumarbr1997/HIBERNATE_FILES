@@ -103,10 +103,8 @@ public class Tester {
 			
 		
 		sc.close();
+		
 	}
-
-	
-
 		private static void writeXLSXFile( String file1, IplTeamDTO iDTO) throws IOException  {
 			XSSFWorkbook wrk = new XSSFWorkbook();
 			XSSFSheet sht = wrk.createSheet("Sheet2");
@@ -124,7 +122,7 @@ public class Tester {
 			} catch (IOException e) {
 				e.printStackTrace();
 			} 
-			
+			osfile.close();
 			wrk.close();
 		}
 	
@@ -141,6 +139,7 @@ public class Tester {
 		while((row=sheet.getRow(i))!=null) {
 		
 			IplTeamDTO ipDTO = new IplTeamDTO();
+			
 			ipDTO.setTeamName(row.getCell(1).getStringCellValue());
 			int np = (int)row.getCell(2).getNumericCellValue();
 			ipDTO.setNoOfPlayers(np);
