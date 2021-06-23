@@ -1,5 +1,7 @@
 package com.xworkz.xworkzapp.ipl_teams.dao;
 
+import java.util.List;
+
 import com.xworkz.xworkzapp.ipl_teams.dto.IplTeamDTO;
 
 public interface IplTeamDAO {
@@ -11,6 +13,8 @@ public interface IplTeamDAO {
 	public void deleteDetails(int idd);
 
 	public void updateDetails(String name, int id, int players);
+
+	public List<IplTeamDTO> getAllDetails();
 	
 	
 

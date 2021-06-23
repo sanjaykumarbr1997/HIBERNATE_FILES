@@ -1,5 +1,7 @@
 package com.xworkz.sweets_app.sweets.service;
 
+import java.util.List;
+
 import com.xworkz.sweets_app.sweets.dao.SweetsDAO;
 import com.xworkz.sweets_app.sweets.dao.SweetsDAOImpl;
 import com.xworkz.sweets_app.sweets.dto.SweetsDTO;
@@ -52,6 +54,10 @@ public class SweetsServiceImpl implements SweetsService {
 		}
 		
 		
+	}
+
+	public List<SweetsDTO> validateAndGetAllDetails() {
+		return sDAO.getAllDetails();
 	}
 
 }

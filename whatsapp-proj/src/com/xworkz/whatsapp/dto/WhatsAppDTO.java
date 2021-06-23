@@ -1,6 +1,8 @@
 package com.xworkz.whatsapp.dto;
 
 import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -23,6 +25,7 @@ public class WhatsAppDTO implements Serializable {
 	private int whatsApp_id;
 	private String whatsApp_status;
 	@Enumerated(EnumType.STRING)
+	@Column(name="whatsApp_privacy") 
 	private StatusPrivacy whatsApp_privacy;
 	private String chat;
 	private Long contactNo;

@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import com.xworkz.singleton.HibernateUtil;
 import com.xworkz.xworkzapp.blue_tooth.dto.BluetoothSpeakerDTO;
 
 public class BluetoothSpeakerDAOImpl implements BluetoothSpeakerDAO {
@@ -42,19 +43,25 @@ public class BluetoothSpeakerDAOImpl implements BluetoothSpeakerDAO {
 	}
 
 	public List<BluetoothSpeakerDTO> getAllDetails() {
-		Configuration conf = new Configuration();
-		conf.configure();
-		conf.addAnnotatedClass(BluetoothSpeakerDTO.class);
-		SessionFactory factory = conf.buildSessionFactory();
-		Session session = factory.openSession();
-		//session.get
-		//BluetoothSpeakerDTO bDTO = session.get(BluetoothSpeakerDTO.class);
+		Session session = null;
 		
-		//session.close();
-		factory.close();
-	
+		try {
+			
+			 return HibernateUtil.getSessionFactory().openSession().createQuery("from BluetoothSpeakerDTO bDTO").list();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				if(HibernateUtil.getSessionFactory()!=null) {
+					HibernateUtil.getSessionFactory().close();
+				}
+			}
+			return null;
 		
-		return null;
+		
 	}
 
 	public void deleteById(int id) {

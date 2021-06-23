@@ -1,5 +1,7 @@
 package com.xworkz.sweets_app.sweets.dao;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 
 import org.hibernate.Session;
@@ -133,6 +135,26 @@ public class SweetsDAOImpl implements SweetsDAO {
 			
 		}
 		
+	}
+
+	@Override
+	public List<SweetsDTO> getAllDetails() {
+		
+		try {
+			
+			return HibernateUtil.getSessionFactory().openSession().createQuery("from SweetsDTO sDTO").list();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				if(HibernateUtil.getSessionFactory()!=null) {
+					HibernateUtil.getSessionFactory().close();
+				}
+			}
+			return null;
 	}
 	
 	

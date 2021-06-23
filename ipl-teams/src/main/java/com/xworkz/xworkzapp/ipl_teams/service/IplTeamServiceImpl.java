@@ -1,5 +1,7 @@
 package com.xworkz.xworkzapp.ipl_teams.service;
 
+import java.util.List;
+
 import com.xworkz.xworkzapp.ipl_teams.dao.IplTeamDAO;
 import com.xworkz.xworkzapp.ipl_teams.dao.IplTeamDAOImpl;
 import com.xworkz.xworkzapp.ipl_teams.dto.IplTeamDTO;
@@ -57,6 +59,13 @@ public class IplTeamServiceImpl implements IplTeamService {
 			iplDAO.updateDetails(name,id,players);
 		}
 		
+	}
+
+
+
+	@Override
+	public List<IplTeamDTO> validateAndGetAllDetails() {
+		return iplDAO.getAllDetails();
 	}
 
 }

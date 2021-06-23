@@ -1,5 +1,7 @@
 package com.xworkz.xworkzapp.ipl_teams.dao;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -128,6 +130,25 @@ public class IplTeamDAOImpl implements IplTeamDAO {
 			
 	}
 
+	}
+
+	@Override
+	public List<IplTeamDTO> getAllDetails() {
+		try {
+			
+			 return HibernateUtil.getSessionFactory().openSession().createQuery("from IplTeamDTO iDTO").list();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				if(HibernateUtil.getSessionFactory()!=null) {
+					HibernateUtil.getSessionFactory().close();
+				}
+			}
+			return null;
 	}
 
 }

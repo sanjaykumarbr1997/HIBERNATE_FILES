@@ -1,5 +1,7 @@
 package com.xworkz.whatsapp.service;
 
+import java.util.List;
+
 import com.xworkz.whatsapp.dao.WhatsAppDAO;
 import com.xworkz.whatsapp.dao.WhatsAppDAOImpl;
 import com.xworkz.whatsapp.dto.WhatsAppDTO;
@@ -25,6 +27,12 @@ public class WhatsAppServiceImpl implements WhatsAppService {
 		
 		
 
+	}
+
+
+	@Override
+	public List<WhatsAppDTO> validateAndGetAllDetails() {
+		return wDAO.getAllDetails();
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.xworkz.perfume.perfume.service;
 
+import java.util.List;
+
 import com.xworkz.perfume.perfume.dto.PerfumeDTO;
 
 public interface PerfumeService {
@@ -11,6 +13,8 @@ public interface PerfumeService {
 	void validateAndUpdateColorByName(int id, String name, String color);
 
 	void validateAndDeleteDetailsByName(int id, String name);
+
+	List<PerfumeDTO> validateAndGetAllDetails();
 	
 	
 }

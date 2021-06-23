@@ -3,6 +3,7 @@ package com.xworkz.xworkzapp.blue_tooth;
 import java.util.List;
 import java.util.Scanner;
 
+
 import com.xworkz.xworkzapp.blue_tooth.dto.BluetoothSpeakerDTO;
 import com.xworkz.xworkzapp.blue_tooth.service.BluetoothSpeakerService;
 import com.xworkz.xworkzapp.blue_tooth.service.BluetoothSpeakerServiceImpl;
@@ -51,11 +52,7 @@ public class Tester {
 		
 		
 		
-		//BluetoothSpeakerService bluetoothSService = new BluetoothSpeakerServiceImpl();
-		//List<BluetoothSpeakerDTO> bDTOs = bluetoothSService.validateAndGetAllDetails();
-		/*for(BluetoothSpeakerDTO bs:bDTOs) {
-			System.out.println(bs);
-		} */
+		
 		
 		System.out.println("Enter number of records to delete");
 		int del = sc.nextInt();
@@ -78,6 +75,13 @@ public class Tester {
 		BluetoothSpeakerService bluToothSService = new BluetoothSpeakerServiceImpl();
 		System.out.println("updating details by range");
 		bluToothSService.validateAndUpdateRangeByName(iddd,rang);
+		}
+		
+		System.out.println("Press \"Y\" to read all data ,if not  press \"N\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			BluetoothSpeakerService bsService = new BluetoothSpeakerServiceImpl();
+			List<BluetoothSpeakerDTO> buDTOs = bsService.validateAndGetAllDetails();
+			buDTOs.forEach(System.out::println);
 		}
 		
 

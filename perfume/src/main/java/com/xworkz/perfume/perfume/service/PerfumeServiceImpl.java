@@ -1,5 +1,7 @@
 package com.xworkz.perfume.perfume.service;
 
+import java.util.List;
+
 import com.xworkz.perfume.perfume.dao.PerfumeDAO;
 import com.xworkz.perfume.perfume.dao.PerfumeDAOImpl;
 import com.xworkz.perfume.perfume.dto.PerfumeDTO;
@@ -51,6 +53,11 @@ public class PerfumeServiceImpl implements PerfumeService {
 		else {
 			System.out.println("name cant be empty");
 		}
+	}
+
+	@Override
+	public List<PerfumeDTO> validateAndGetAllDetails() {
+		return pDAO.getAllDetails();
 	}
 
 }

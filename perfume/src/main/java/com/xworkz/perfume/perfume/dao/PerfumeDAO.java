@@ -1,5 +1,7 @@
 package com.xworkz.perfume.perfume.dao;
 
+import java.util.List;
+
 import com.xworkz.perfume.perfume.dto.PerfumeDTO;
 
 public interface PerfumeDAO {
@@ -11,5 +13,7 @@ public interface PerfumeDAO {
 	public void updateColorByName(int id, String name, String color);
 
 	public void deleteDetailsByName(int id, String name);
+
+	List<PerfumeDTO> getAllDetails();
 
 }

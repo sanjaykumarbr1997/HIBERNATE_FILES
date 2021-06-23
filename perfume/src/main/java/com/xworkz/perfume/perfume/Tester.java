@@ -1,6 +1,7 @@
 package com.xworkz.perfume.perfume;
 
 
+import java.util.List;
 import java.util.Scanner;
 
 import com.xworkz.perfume.perfume.dto.PerfumeDTO;
@@ -43,6 +44,13 @@ public class Tester {
 		System.out.println("Enter id ,perfume name to delete");
 		perfumeService.validateAndDeleteDetailsByName(sc.nextInt(),sc.next());
 		System.out.println("details deleted");
+		
+		System.out.println("Press \"Y\" to read all data ,if not  press \"N\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			PerfumeService psService = new PerfumeServiceImpl();
+			List<PerfumeDTO> pssDTOs = psService.validateAndGetAllDetails();
+			pssDTOs.forEach(System.out::println);
+		}
 
 		sc.close();
 	}

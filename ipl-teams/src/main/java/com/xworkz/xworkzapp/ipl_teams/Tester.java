@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -102,8 +103,15 @@ public class Tester {
 		
 			
 		
-		sc.close();
 		
+		System.out.println("Press \"Y\" to read all data ,if not  press \"N\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			IplTeamService ipService = new IplTeamServiceImpl();
+			List<IplTeamDTO> buDTOs = ipService.validateAndGetAllDetails();
+			buDTOs.forEach(System.out::println);
+		}
+		sc.close();
+
 	}
 		private static void writeXLSXFile( String file1, IplTeamDTO iDTO) throws IOException  {
 			XSSFWorkbook wrk = new XSSFWorkbook();

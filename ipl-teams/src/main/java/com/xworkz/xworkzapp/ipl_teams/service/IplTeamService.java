@@ -1,5 +1,7 @@
 package com.xworkz.xworkzapp.ipl_teams.service;
 
+import java.util.List;
+
 import com.xworkz.xworkzapp.ipl_teams.dto.IplTeamDTO;
 
 public interface IplTeamService {
@@ -11,5 +13,7 @@ public interface IplTeamService {
 	public void validateAndDeleteById(int idd);
 
 	public void validateAndUpdateRangeByName(String name,int id, int players);
+
+	public List<IplTeamDTO> validateAndGetAllDetails();
 
 }

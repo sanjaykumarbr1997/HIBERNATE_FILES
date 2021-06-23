@@ -1,6 +1,8 @@
 package com.xworkz.perfume.perfume.dao;
 
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -117,6 +119,25 @@ public class PerfumeDAOImpl implements PerfumeDAO {
 		}
 		
 		
+	}
+
+	@Override
+	public List<PerfumeDTO> getAllDetails() {
+		try {
+			
+			return HibernateUtil.getSessionFactory().openSession().createQuery("from PerfumeDTO prDTO").list();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				if(HibernateUtil.getSessionFactory()!=null) {
+					HibernateUtil.getSessionFactory().close();
+				}
+			}
+			return null;
 	}
 
 }

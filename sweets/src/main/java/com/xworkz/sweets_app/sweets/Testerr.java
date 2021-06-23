@@ -1,7 +1,7 @@
 package com.xworkz.sweets_app.sweets;
 
+import java.util.List;
 import java.util.Scanner;
-
 
 import com.xworkz.sweets_app.sweets.dto.SweetsDTO;
 import com.xworkz.sweets_app.sweets.service.SweetsService;
@@ -61,6 +61,14 @@ public class Testerr {
 			sweetsService.validateAndDelete(scanner.nextInt(),scanner.next());
 			System.out.println("Details deleted");
 			
+		}
+		
+		
+		System.out.println("Press \"Y\" to read all data ,if not  press \"N\"  ");
+		if(scanner.next().equalsIgnoreCase("Y")) {
+			SweetsService sweeService = new SweetsServiceImpl();
+			List<SweetsDTO> suDTOs = sweeService.validateAndGetAllDetails();
+			suDTOs.forEach(System.out::println);
 		}
 		
 		
