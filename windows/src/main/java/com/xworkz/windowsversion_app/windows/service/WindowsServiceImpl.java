@@ -23,13 +23,11 @@ public class WindowsServiceImpl implements WindowsService {
 
 	}
 
-	@Override
 	public List<WindowsDTO> validateAndGetAllDetails() {
 		return wDAO.getAllDetails();
 	}
 
-	@Override
-	public void validateAndUpdateColorByName(String name, int id, String year) {
+	public void validateAndUpdateYearByName(String name, int id, int year) {
 		if(name!=null) {
 			wDAO.updateColorByName(name,id,year);
 		}
@@ -39,10 +37,9 @@ public class WindowsServiceImpl implements WindowsService {
 		
 	}
 
-	@Override
-	public void validateAndDeleteColorByName(String name, int id) {
+	public void validateAndDeleteByName(String name, int id) {
 		if(name!=null) {
-			wDAO.deleteColorByName(name,id);
+			wDAO.deleteByName(name,id);
 		}
 		else {
 			System.out.println("Name cant be null");

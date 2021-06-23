@@ -10,8 +10,8 @@ public interface WindowsService {
 
 	public List<WindowsDTO> validateAndGetAllDetails();
 
-	public void validateAndUpdateColorByName(String next, int nextInt, String next2);
+	public void validateAndUpdateYearByName(String name, int id, int year);
 
-	public void validateAndDeleteColorByName(String next, int nextInt);
+	public void validateAndDeleteByName(String next, int nextInt);
 
 }

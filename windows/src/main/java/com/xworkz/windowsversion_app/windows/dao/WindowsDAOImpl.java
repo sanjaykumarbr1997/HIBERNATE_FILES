@@ -9,10 +9,9 @@ import com.xworkz.singleton.HibernateUtil;
 import com.xworkz.windowsversion_app.windows.dto.WindowsDTO;
 
 public class WindowsDAOImpl implements WindowsDAO {
-	Session session =null;
-	@Override
+	
 	public void save(WindowsDTO wnDTO) {
-		
+		Session session =null;
 		Transaction transaction = null;
 		try {
 		session =HibernateUtil.getSessionFactory().openSession();
@@ -31,8 +30,8 @@ public class WindowsDAOImpl implements WindowsDAO {
 		}
 	}
 
-	@Override
 	public List<WindowsDTO> getAllDetails() {
+		Session session =null;
 		try {
 			
 			 return HibernateUtil.getSessionFactory().openSession().createQuery("from WindowsDTO wwDTO").list();
@@ -50,21 +49,21 @@ public class WindowsDAOImpl implements WindowsDAO {
 			return null;
 	}
 
-	@Override
-	public void updateColorByName(String name, int id, String year) {
+	public void updateColorByName(String name, int id, int year) {
+		Session session =null;
 		Transaction trans= null;
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			trans = session.beginTransaction();
 			WindowsDTO ctDTO = session.get(WindowsDTO.class, id);
 			if(ctDTO.getName().equalsIgnoreCase(name)) {
-				ctDTO.setYear(year);
+				ctDTO.setReleaseYear(year);
 				session.update(ctDTO);
 				trans.commit();
 				
 			}
 			else {
-				System.out.println("Please enter correct id of suitcase");
+				System.out.println("Please enter correct id of windows");
 			}
 			
 		}catch (Exception e) {
@@ -84,8 +83,8 @@ public class WindowsDAOImpl implements WindowsDAO {
 		
 	}
 
-	@Override
-	public void deleteColorByName(String name, int id) {
+	public void deleteByName(String name, int id) {
+		Session session =null;
 		Transaction trans= null;
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();

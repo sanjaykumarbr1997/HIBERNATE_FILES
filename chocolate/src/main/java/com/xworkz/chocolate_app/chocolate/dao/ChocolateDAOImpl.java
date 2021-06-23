@@ -1,11 +1,8 @@
 package com.xworkz.chocolate_app.chocolate.dao;
-
 import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-
 import com.xworkz.chocolate_app.chocolate.dto.ChocoloateDTO;
 import com.xworkz.singleton.HibernateUtil;
 

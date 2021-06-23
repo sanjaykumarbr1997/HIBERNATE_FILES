@@ -17,15 +17,16 @@ Scanner scanner = new Scanner(System.in);
 		if(scanner.next().equalsIgnoreCase("Y")) {
 			WindowsDTO wiDTO = new WindowsDTO(); 
 			System.out.println("Enter the details:");
+			
 			System.out.println("Enter windows name");
 			wiDTO.setName(scanner.next());
 			System.out.println("Enter windows release year");
-			wiDTO.setYear(scanner.next());
+			wiDTO.setReleaseYear(scanner.nextInt());
 			System.out.println("Enter windows new features");
-			wiDTO.setNewFeatures(scanner.next());
+			wiDTO.setNew_features(scanner.next());
 			
-			WindowsService suService = new WindowsServiceImpl();
-			suService.validateAndSave(wiDTO);
+			WindowsService wssService = new WindowsServiceImpl();
+			wssService.validateAndSave(wiDTO);
 			
 		}
 		
@@ -43,7 +44,7 @@ Scanner scanner = new Scanner(System.in);
 			System.out.println("Enter correct id of windows");
 			System.out.println("Enter new year");
 			WindowsService windowService = new WindowsServiceImpl();
-			windowService.validateAndUpdateColorByName(scanner.next(),scanner.nextInt(),scanner.next());	
+			windowService.validateAndUpdateYearByName(scanner.next(),scanner.nextInt(),scanner.nextInt());	
 		}
 		
 		System.out.println("Press \"Y\" to delete data ,if not  press \"N\"  ");
@@ -51,10 +52,11 @@ Scanner scanner = new Scanner(System.in);
 			System.out.println("Enter name of windows to delete");
 			System.out.println("Enter correct id of windows");
 			WindowsService windooService = new WindowsServiceImpl();
-			windooService.validateAndDeleteColorByName(scanner.next(),scanner.nextInt());	
+			windooService.validateAndDeleteByName(scanner.next(),scanner.nextInt());	
 		}
 
 
+		scanner.close();
 	}
 
 }

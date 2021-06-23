@@ -10,8 +10,8 @@ public interface WindowsDAO {
 
 	List<WindowsDTO> getAllDetails();
 
-	void updateColorByName(String name, int id, String year);
+	void updateColorByName(String name, int id, int year);
 
-	void deleteColorByName(String name, int id);
+	void deleteByName(String name, int id);
 
 }
