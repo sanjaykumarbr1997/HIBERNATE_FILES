@@ -53,6 +53,36 @@ public class Tester {
 			SuitcaseService suiService = new SuitcaseServiceImpl();
 			suiService.validateAndDeleteColorByName(scanner.next(),scanner.nextInt());	
 		}
+		
+		System.out.println("Press \"Y\" to get suitcase color by suitcase  name,if not  press \"N\"  ");
+		if(scanner.next().equalsIgnoreCase("Y")) {
+			System.out.println("Enter suitcase  name");
+			SuitcaseService suuuitService= new SuitcaseServiceImpl();
+			String colu = suuuitService.validateAndGetSuitcaseColorBySuitcaseName(scanner.next());
+			System.out.println(colu);
+		}
+		System.out.println("Press \"Y\" to get details of  suitcase by suitcase  name ,if not  press \"N\"  ");
+		if(scanner.next().equalsIgnoreCase("Y")) {
+			System.out.println("Enter suitcase  name");
+			SuitcaseService siuitcaseService= new SuitcaseServiceImpl();
+			SuitcaseDTO  sfDTO  = siuitcaseService.validateAndGetDetailsBySuitcaseName(scanner.next());
+			System.out.println(sfDTO );
+			
+			
+		}
+		
+		System.out.println("Press \"Y\" to get  suitcase size & color by suitcase name ,if not  press \"N\"  ");
+		if(scanner.next().equalsIgnoreCase("Y")) {
+			System.out.println("Enter suitcase  name");
+			SuitcaseService  stcsService= new SuitcaseServiceImpl();
+			Object obj[] = stcsService.validateAndGetSuitcaseSizeAndColorBysuitcaseName(scanner.next());
+			for(Object o1 :obj) {
+				System.out.println(o1);
+			}
+		
+		}
+		
+		scanner.close();
 
 	}
 

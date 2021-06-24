@@ -1,5 +1,7 @@
 package com.xworkz.chocolate_app.chocolate.dao;
 import java.util.List;
+
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -29,7 +31,7 @@ public class ChocolateDAOImpl implements ChocolateDAO {
 				HibernateUtil.getSessionFactory().close();
 			}*/
 		}
-//		
+		
 		
 	}
 	@Override
@@ -80,9 +82,7 @@ public class ChocolateDAOImpl implements ChocolateDAO {
 			if(session!=null) {
 				session.close();
 			}
-			if(HibernateUtil.getSessionFactory()!=null) {
-				HibernateUtil.getSessionFactory().close();
-			}
+			
 		}
 	}
 	@Override
@@ -110,11 +110,62 @@ public class ChocolateDAOImpl implements ChocolateDAO {
 			if(session!=null) {
 				session.close();
 			}
+			
+		}
+		
+	}
+	@Override
+	public String getChocolateCompanyByChocolateName(String name) {
+		Session session = null;
+		String hql = "Select dto.company from ChocoloateDTO dto where dto.name='"+name+"' ";
+		try {
+			return (String) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+		}catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		finally {
+			if(session!=null) {
+				session.close();
+			}
+			
+		}
+		return null;
+	}
+	@Override
+	public ChocoloateDTO getDetailsByChocolatename(String name) {
+		Session session = null;
+		String hql = "Select dto from ChocoloateDTO dto where dto.name='"+name+"' ";
+		try {
+			return (ChocoloateDTO) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+		}catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		finally {
+			if(session!=null) {
+				session.close();
+			}
+			
+		}
+		return null;
+	}
+	@Override
+	public Object[] getChocolatePriceAndChocolateColorByChocolateName(String name) {
+		Session session = null;
+		String hql = "Select dto.price,dto.color from ChocoloateDTO dto where dto.name='"+name+"' ";
+		try {
+			return (Object[]) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+		}catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		finally {
+			if(session!=null) {
+				session.close();
+			}
 			if(HibernateUtil.getSessionFactory()!=null) {
 				HibernateUtil.getSessionFactory().close();
 			}
 		}
-		
+		return null;
 	}
 	
 

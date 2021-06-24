@@ -17,4 +17,11 @@ public interface BluetoothSpeakerDAO {
 
 	void updateRangeByName(int id,String range);
 
+	BluetoothSpeakerDTO getDetailsByBluetoothBrand(String brand);
+
+	String getBluetoothNameByBrand(String brand);
+
+	Object[] getBluetoothRangeAndbluetoothNameByBrand(String brand);
+
+
 }

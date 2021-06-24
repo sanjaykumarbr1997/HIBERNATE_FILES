@@ -118,6 +118,66 @@ public class SoftDrinksDAOImpl implements SoftDrinksDAO {
 		}
 		
 	}
+
+	@Override
+	public String getSoftdrinkColorBySoftdrinkName(String name) {
+		String hql = "select dto.color from SoftDrinksDTO dto where dto.name = '"+name+"' ";
+		try {
+			
+			 return (String) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				if(HibernateUtil.getSessionFactory()!=null) {
+					HibernateUtil.getSessionFactory().close();
+				}
+			}
+		return null;
+	}
+
+	@Override
+	public SoftDrinksDTO getDetailsBySoftdrinkName(String name) {
+		String hql = "select dto from SoftDrinksDTO dto where dto.name = '"+name+"' ";
+		try {
+			
+			 return (SoftDrinksDTO) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				if(HibernateUtil.getSessionFactory()!=null) {
+					HibernateUtil.getSessionFactory().close();
+				}
+			}
+		return null;
+	}
+
+	@Override
+	public Object[] getSoftdrinkManufactureYearAndPricesBySoftdrinkName(String name) {
+		String hql = "select dto.mfgYear,dto.price from SoftDrinksDTO dto where dto.name = '"+name+"' ";
+		try {
+			
+			 return (Object[]) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				if(HibernateUtil.getSessionFactory()!=null) {
+					HibernateUtil.getSessionFactory().close();
+				}
+			}
+		return null;
+	}
 		
 	
 

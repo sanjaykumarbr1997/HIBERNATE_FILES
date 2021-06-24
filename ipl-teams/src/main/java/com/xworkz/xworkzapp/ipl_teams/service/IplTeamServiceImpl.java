@@ -68,4 +68,43 @@ public class IplTeamServiceImpl implements IplTeamService {
 		return iplDAO.getAllDetails();
 	}
 
+
+
+	@Override
+	public String validateAndGetIplTeamLocationByIplTeamName(String name) {
+		if(name!=null) {
+			return iplDAO.getIplTeamLocationByIplTeamName(name);
+		}
+		else {
+			System.out.println("name cant be empty");
+		}
+		return null;
+	}
+
+
+
+	@Override
+	public IplTeamDTO validateAndGetDetailsByIplTeamName(String name) {
+		if(name!=null) {
+			return iplDAO.getDetailsByIplTeamName(name);
+		}
+		else {
+			System.out.println("name cant be empty");
+		}
+		return null;
+	}
+
+
+
+	@Override
+	public Object[] validateAndGetIplTeamLocationAndNoOfPlayersByIplTeamName(String name) {
+		if(name!=null) {
+			return iplDAO.getIplTeamLocationAndNoOfPlayersByIplTeamName(name);
+		}
+		else {
+			System.out.println("name cant be empty");
+		}
+		return null;
+	}
+
 }

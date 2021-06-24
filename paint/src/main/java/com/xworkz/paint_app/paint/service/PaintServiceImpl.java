@@ -54,4 +54,49 @@ public class PaintServiceImpl implements PaintService {
 		
 	}
 
+	@Override
+	public String validateAndGetPaintColorByPrice(double price) {
+		if(price!=0) {
+			return pDAO.getPintColorByPrice(price);
+		}
+		else {
+			System.out.println("Price cant be zero ");
+		}
+		return null;
+	}
+
+	@Override
+	public PaintDTO validateAndGetDetailsByName(String name) {
+		if(name!=null) {
+			return pDAO.getDetailsByName(name);
+		}
+		else {
+			System.out.println("Name cant be null ");
+		}
+		return null;
+	}
+
+	@Override
+	public Object[] validateAndGetPaintPriceAndPaintColorByName(String name) {
+		if(name!=null) {
+			return pDAO.getPaintPriceAndPaintColorByName(name);
+		}
+		else {
+			System.out.println("Name cant be null ");
+		}
+		return null;
+	}
+
+	@Override
+	public List<Object> validateAndGetPaintPriceAndPaintColorByExpiryYear(int year) {
+		if(year!=0) {
+		return pDAO.getPaintPriceAndPaintColorByExpiryYear(year);
+		}
+		else {
+			System.out.println("year cant be null");
+		}
+		return null;
+	}
+
+
 }

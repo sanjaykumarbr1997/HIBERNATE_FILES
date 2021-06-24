@@ -3,6 +3,7 @@ package com.xworkz.windowsversion_app.windows;
 import java.util.List;
 import java.util.Scanner;
 
+
 import com.xworkz.windowsversion_app.windows.dto.WindowsDTO;
 import com.xworkz.windowsversion_app.windows.service.WindowsService;
 import com.xworkz.windowsversion_app.windows.service.WindowsServiceImpl;
@@ -54,7 +55,35 @@ Scanner scanner = new Scanner(System.in);
 			WindowsService windooService = new WindowsServiceImpl();
 			windooService.validateAndDeleteByName(scanner.next(),scanner.nextInt());	
 		}
-
+		
+		System.out.println("Press \"Y\" to get windows new features by windows  name,if not  press \"N\"  ");
+		if(scanner.next().equalsIgnoreCase("Y")) {
+			System.out.println("Enter windows  name");
+			WindowsService wndwService= new WindowsServiceImpl();
+			String colu = wndwService.validateAndGetwindowsNewFeaturesByWindowsName(scanner.next());
+			System.out.println(colu);
+		}
+		System.out.println("Press \"Y\" to get details of  windows by windows  name ,if not  press \"N\"  ");
+		if(scanner.next().equalsIgnoreCase("Y")) {
+			System.out.println("Enter windows  name");
+			WindowsService wwwwiService= new WindowsServiceImpl();
+			WindowsDTO  stsDTO  = wwwwiService.validateAndGetDetailsByWindowsName(scanner.next());
+			System.out.println(stsDTO );
+			
+			
+		}
+		
+		System.out.println("Press \"Y\" to get  windows release year & features by windows price,if not  press \"N\"  ");
+		if(scanner.next().equalsIgnoreCase("Y")) {
+			System.out.println("Enter windows  name");
+			WindowsService  wndwsService= new WindowsServiceImpl();
+			Object obj[] = wndwsService.validateAndGetwindowsReleaseYearAndNewFeaturesByWindowsName(scanner.next());
+			for(Object o1 :obj) {
+				System.out.println(o1);
+			}
+		
+		}
+		
 
 		scanner.close();
 	}

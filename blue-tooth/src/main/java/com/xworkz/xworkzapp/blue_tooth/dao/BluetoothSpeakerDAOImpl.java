@@ -2,6 +2,7 @@ package com.xworkz.xworkzapp.blue_tooth.dao;
 
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -93,6 +94,81 @@ public class BluetoothSpeakerDAOImpl implements BluetoothSpeakerDAO {
 		session.close();
 		factory.close();
 		
+	}
+
+	@Override
+	public BluetoothSpeakerDTO getDetailsByBluetoothBrand(String brand) {
+		Session session = null;
+		String hql = "Select dto from BluetoothSpeakerDTO dto where dto.brand='"+brand+"'";
+		
+		try {
+			return (BluetoothSpeakerDTO) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+		}catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		finally {
+			
+			if(session!=null) {
+				session.close();
+			}
+			if(HibernateUtil.getSessionFactory()!=null) {
+				HibernateUtil.getSessionFactory().close();
+			}
+		
+			
+		}
+		
+		
+		
+		return null;
+	}
+
+	@Override
+	public String getBluetoothNameByBrand(String brand) {
+		Session session =null;
+		String hql = "Select dto.bluetoothName from BluetoothSpeakerDTO dto where dto.brand='"+brand+"'";
+
+		try {
+			return (String) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+		}catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		finally {
+			
+			if(session!=null) {
+				session.close();
+			}
+			if(HibernateUtil.getSessionFactory()!=null) {
+				HibernateUtil.getSessionFactory().close();
+			}
+		
+			
+		}
+		return null;
+	}
+
+	@Override
+	public Object[] getBluetoothRangeAndbluetoothNameByBrand(String brand) {
+		Session session =null;
+		String hql = "Select dto.range ,dto.bluetoothName from BluetoothSpeakerDTO dto where dto.brand='"+brand+"'";
+
+		try {
+			return (Object[]) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+		}catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		finally {
+			
+			if(session!=null) {
+				session.close();
+			}
+			if(HibernateUtil.getSessionFactory()!=null) {
+				HibernateUtil.getSessionFactory().close();
+			}
+		
+			
+		}
+		return null;
 	}
 	
 

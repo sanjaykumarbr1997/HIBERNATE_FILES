@@ -14,4 +14,10 @@ public interface SoftDrinksDAO {
 
 	public void deleteColorByName(String name, int id);
 
+	public String getSoftdrinkColorBySoftdrinkName(String name);
+
+	public SoftDrinksDTO getDetailsBySoftdrinkName(String name);
+
+	public Object[] getSoftdrinkManufactureYearAndPricesBySoftdrinkName(String name);
+
 }

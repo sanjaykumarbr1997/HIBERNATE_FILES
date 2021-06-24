@@ -3,6 +3,7 @@ package com.xworkz.softdrinks_app.softdrink;
 import java.util.List;
 import java.util.Scanner;
 
+
 import com.xworkz.softdrinks_app.softdrink.dto.SoftDrinksDTO;
 import com.xworkz.softdrinks_app.softdrink.service.SoftDrinksService;
 import com.xworkz.softdrinks_app.softdrink.service.SoftDrinksServiceImpl;
@@ -56,6 +57,35 @@ public class Tester {
 			SoftDrinksService softService = new SoftDrinksServiceImpl();
 			softService.validateAndDeleteColorByName(sc.next(),sc.nextInt());	
 		}
+		
+		System.out.println("Press \"Y\" to get softdrink color by softdrink  name,if not  press \"N\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			System.out.println("Enter softdrink  name");
+			SoftDrinksService sftDrnkService= new SoftDrinksServiceImpl();
+			String colu = sftDrnkService.validateAndGetSoftdrinkColorBySoftdrinkName(sc.next());
+			System.out.println(colu);
+		}
+		System.out.println("Press \"Y\" to get details of  softdrink by softdrink  name ,if not  press \"N\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			System.out.println("Enter softdrink  name");
+			SoftDrinksService ssoftDrinksService= new SoftDrinksServiceImpl();
+			SoftDrinksDTO  sfDTO  = ssoftDrinksService.validateAndGetDetailsBySoftdrinkName(sc.next());
+			System.out.println(sfDTO );
+			
+			
+		}
+		
+		System.out.println("Press \"Y\" to get  softdrink manufactur year & price by softdrink name ,if not  press \"N\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			System.out.println("Enter softdrink  name");
+			SoftDrinksService  sftDService= new SoftDrinksServiceImpl();
+			Object obj[] = sftDService.validateAndGetSoftdrinkManufactureYearAndPricesBySoftdrinkName(sc.next());
+			for(Object o1 :obj) {
+				System.out.println(o1);
+			}
+		
+		}
+		
 		
 		
 		sc.close();

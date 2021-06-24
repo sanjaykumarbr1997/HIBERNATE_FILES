@@ -14,4 +14,10 @@ public interface WindowsDAO {
 
 	void deleteByName(String name, int id);
 
+	String getwindowsNewFeaturesByWindowsName(String name);
+
+	WindowsDTO getDetailsByWindowsName(String name);
+
+	Object[] getwindowsReleaseYearAndNewFeaturesByWindowsName(String name);
+
 }

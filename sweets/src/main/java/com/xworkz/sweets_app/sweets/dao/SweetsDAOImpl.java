@@ -156,6 +156,62 @@ public class SweetsDAOImpl implements SweetsDAO {
 			}
 			return null;
 	}
+
+	@Override
+	public String getSweetsColorBySweetName(String name) {
+		String hql = "select dto.color from SweetsDTO dto where dto.name ='"+name+"'  ";
+		try {
+			
+			return (String) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+			}catch (HibernateException e) {
+				e.printStackTrace();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				
+			}
+		return null;
+	}
+
+	@Override
+	public SweetsDTO getDetailsBySweetName(String name) {
+		String hql = "select dto from SweetsDTO dto where dto.name ='"+name+"'  ";
+		try {
+			
+			return (SweetsDTO) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+			}catch (HibernateException e) {
+				e.printStackTrace();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				
+			}
+		return null;
+	}
+
+	@Override
+	public Object[] getsweetShapeAndColorBySweetName(String name) {
+		String hql = "select dto.shape,dto.color from SweetsDTO dto where dto.name ='"+name+"'  ";
+		try {
+			
+			return (Object[]) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+			}catch (HibernateException e) {
+				e.printStackTrace();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				if(HibernateUtil.getSessionFactory()!=null) {
+					HibernateUtil.getSessionFactory().close();
+				}
+			}
+		return null;
+	}
 	
 	
 

@@ -48,4 +48,37 @@ public class WindowsServiceImpl implements WindowsService {
 		
 	}
 
+	@Override
+	public String validateAndGetwindowsNewFeaturesByWindowsName(String name) {
+		if(name!=null) {
+			return wDAO.getwindowsNewFeaturesByWindowsName(name);
+		}
+		else {
+			System.out.println("Name cant be null");
+		}
+		return null;
+	}
+
+	@Override
+	public WindowsDTO validateAndGetDetailsByWindowsName(String name) {
+		if(name!=null) {
+			return wDAO.getDetailsByWindowsName(name);
+		}
+		else {
+			System.out.println("Name cant be null");
+		}
+		return null;
+	}
+
+	@Override
+	public Object[] validateAndGetwindowsReleaseYearAndNewFeaturesByWindowsName(String name) {
+		if(name!=null) {
+			return wDAO.getwindowsReleaseYearAndNewFeaturesByWindowsName(name);
+		}
+		else {
+			System.out.println("Name cant be null");
+		}
+		return null;
+	}
+
 }

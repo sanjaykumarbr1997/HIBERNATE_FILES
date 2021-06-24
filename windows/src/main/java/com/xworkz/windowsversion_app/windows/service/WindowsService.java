@@ -12,6 +12,12 @@ public interface WindowsService {
 
 	public void validateAndUpdateYearByName(String name, int id, int year);
 
-	public void validateAndDeleteByName(String next, int nextInt);
+	public void validateAndDeleteByName(String name, int nameInt);
+
+	public String validateAndGetwindowsNewFeaturesByWindowsName(String name);
+
+	public WindowsDTO validateAndGetDetailsByWindowsName(String name);
+
+	public Object[] validateAndGetwindowsReleaseYearAndNewFeaturesByWindowsName(String name);
 
 }

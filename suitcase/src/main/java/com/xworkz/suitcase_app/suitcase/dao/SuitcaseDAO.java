@@ -14,4 +14,10 @@ public interface SuitcaseDAO {
 
 	public void deleteColorByName(String name, int id);
 
+	public String getSuitcaseColorBySuitcaseName(String name);
+
+	public SuitcaseDTO getDetailsBySuitcaseName(String name);
+
+	public Object[] getSuitcaseSizeAndColorBysuitcaseName(String name);
+
 }

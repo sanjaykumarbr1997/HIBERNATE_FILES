@@ -7,6 +7,7 @@ import com.xworkz.sweets_app.sweets.dto.SweetsDTO;
 import com.xworkz.sweets_app.sweets.service.SweetsService;
 import com.xworkz.sweets_app.sweets.service.SweetsServiceImpl;
 
+
 public class Testerr {
 	
 	public static void main(String[] args) {
@@ -69,6 +70,34 @@ public class Testerr {
 			SweetsService sweeService = new SweetsServiceImpl();
 			List<SweetsDTO> suDTOs = sweeService.validateAndGetAllDetails();
 			suDTOs.forEach(System.out::println);
+		}
+		
+		System.out.println("Press \"Y\" to get sweets color by sweets  name,if not  press \"N\"  ");
+		if(scanner.next().equalsIgnoreCase("Y")) {
+			System.out.println("Enter sweets  name");
+			SweetsService swtssService= new SweetsServiceImpl();
+			String colu = swtssService.validateAndGetSweetsColorBySweetName(scanner.next());
+			System.out.println(colu);
+		}
+		System.out.println("Press \"Y\" to get details of  sweets by sweets  name ,if not  press \"N\"  ");
+		if(scanner.next().equalsIgnoreCase("Y")) {
+			System.out.println("Enter sweets  name");
+			SweetsService sweeeeService= new SweetsServiceImpl();
+			SweetsDTO  stsDTO  = sweeeeService.validateAndGetDetailsBySweetName(scanner.next());
+			System.out.println(stsDTO );
+			
+			
+		}
+		
+		System.out.println("Press \"Y\" to get  sweets shape & color by sweets price,if not  press \"N\"  ");
+		if(scanner.next().equalsIgnoreCase("Y")) {
+			System.out.println("Enter sweets  name");
+			SweetsService  swtsssService= new SweetsServiceImpl();
+			Object obj[] = swtsssService.validateAndGetsweetsShapeAndColorBySweetName(scanner.next());
+			for(Object o1 :obj) {
+				System.out.println(o1);
+			}
+		
 		}
 		
 		

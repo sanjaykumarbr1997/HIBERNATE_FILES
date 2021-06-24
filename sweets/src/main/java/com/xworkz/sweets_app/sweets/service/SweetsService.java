@@ -16,4 +16,10 @@ public interface SweetsService {
 
 	List<SweetsDTO> validateAndGetAllDetails();
 
+	String validateAndGetSweetsColorBySweetName(String name);
+
+	SweetsDTO validateAndGetDetailsBySweetName(String name);
+
+	Object[] validateAndGetsweetsShapeAndColorBySweetName(String name);
+
 }

@@ -57,7 +57,41 @@ public class PerfumeServiceImpl implements PerfumeService {
 
 	@Override
 	public List<PerfumeDTO> validateAndGetAllDetails() {
+		
 		return pDAO.getAllDetails();
+	}
+
+	@Override
+	public String validateAndGetPerfumeFragnanceByPerfumeName(String name) {
+		if(name!=null) {
+			return pDAO.getPerfumeFragnanceByPerfumeName(name);
+		}
+		else {
+			System.out.println("name cant be empty");
+		}
+		return null;
+	}
+
+	@Override
+	public PerfumeDTO validateAndGetDetailsByperfumeName(String name) {
+		if(name!=null) {
+			return pDAO.getDetailsByperfumeName(name);
+		}
+		else {
+			System.out.println("name cant be empty");
+		}
+		return null;
+	}
+
+	@Override
+	public Object[] validateAndGetperfumeColorAndPricesByPerfumeName(String name) {
+		if(name!=null) {
+			return pDAO.getperfumeColorAndPricesByPerfumeName(name);
+		}
+		else {
+			System.out.println("name cant be empty");
+		}
+		return null;
 	}
 
 }

@@ -118,4 +118,60 @@ public class SuitcaseDAOImpl implements SuitcaseDAO {
 		
 	}
 
+	@Override
+	public String getSuitcaseColorBySuitcaseName(String name) {
+		String hql = "select dto.color from SuitcaseDTO dto where dto.name = '"+name+"'";
+		try {
+			
+			 return (String) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				
+			}
+		return null;
+	}
+
+	@Override
+	public SuitcaseDTO getDetailsBySuitcaseName(String name) {
+		String hql = "select dto from SuitcaseDTO dto where dto.name = '"+name+"'";
+		try {
+			
+			 return (SuitcaseDTO) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				
+			}
+		return null;
+	}
+
+	@Override
+	public Object[] getSuitcaseSizeAndColorBysuitcaseName(String name) {
+		String hql = "select dto.size,dto.color from SuitcaseDTO dto where dto.name = '"+name+"'";
+		try {
+			
+			 return (Object[]) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				if(HibernateUtil.getSessionFactory()!=null) {
+					HibernateUtil.getSessionFactory().close();
+				}
+			}
+		return null;
+	}
+
 }

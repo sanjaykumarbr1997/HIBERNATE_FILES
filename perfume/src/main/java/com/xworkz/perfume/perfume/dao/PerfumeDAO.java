@@ -16,4 +16,10 @@ public interface PerfumeDAO {
 
 	List<PerfumeDTO> getAllDetails();
 
+	String getPerfumeFragnanceByPerfumeName(String name);
+
+	PerfumeDTO getDetailsByperfumeName(String name);
+
+	Object[] getperfumeColorAndPricesByPerfumeName(String name);
+
 }

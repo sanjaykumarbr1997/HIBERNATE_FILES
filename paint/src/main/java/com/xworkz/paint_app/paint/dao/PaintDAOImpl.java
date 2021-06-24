@@ -1,10 +1,12 @@
 package com.xworkz.paint_app.paint.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import com.xworkz.paint_app.paint.dto.PaintDTO;
 import com.xworkz.singleton.HibernateUtil;
@@ -74,6 +76,9 @@ public class PaintDAOImpl implements PaintDAO {
 			transc.rollback();
 		}
 		finally {
+			if(session!=null) {
+				session.close();
+			}
 			if(HibernateUtil.getSessionFactory()!=null) {
 				HibernateUtil.getSessionFactory().close();
 			}
@@ -101,6 +106,9 @@ public class PaintDAOImpl implements PaintDAO {
 			transc.rollback();
 		}
 		finally {
+			if(session!=null) {
+				session.close();
+			}
 			if(HibernateUtil.getSessionFactory()!=null) {
 				HibernateUtil.getSessionFactory().close();
 			}
@@ -108,5 +116,118 @@ public class PaintDAOImpl implements PaintDAO {
 		
 		
 	}
+
+	@Override
+	public String getPintColorByPrice(double price) {
+		Session session =null;
+		try {
+			session=HibernateUtil.getSessionFactory().openSession();
+			Query qry = session.createQuery("select dto.color from PaintDTO dto where dto.price = '"+price+"' ");
+			String s =(String) qry.uniqueResult();
+			
+			return s;
+			
+		
+		}catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		finally {
+			if(session!=null) {
+				session.close();
+			}
+			if(HibernateUtil.getSessionFactory()!=null) {
+				HibernateUtil.getSessionFactory().close();
+			}
+		}
+		
+		
+		return null;
+	}
+
+	public PaintDTO getDetailsByName(String name) {
+		PaintDTO pntDTO = new PaintDTO();
+		Session session =null;
+		try {
+			session=HibernateUtil.getSessionFactory().openSession();
+			Query qry = session.createQuery("select dto from PaintDTO dto where dto.name = '"+name+"' ");
+			pntDTO = (PaintDTO) qry.uniqueResult();
+			
+			return pntDTO;
+			
+		
+		}catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		finally {
+			if(session!=null) {
+				session.close();
+			}
+			if(HibernateUtil.getSessionFactory()!=null) {
+				HibernateUtil.getSessionFactory().close();
+			}
+		}
+		
+		
+		return null;
+	}
+
+	@Override
+	public Object[] getPaintPriceAndPaintColorByName(String name) {
+		Object[] ob =null;
+		Session session =null;
+		try {
+			session=HibernateUtil.getSessionFactory().openSession();
+			Query qry = session.createQuery("select dto.price,dto.color from PaintDTO dto where dto.name = '"+name+"' ");
+			ob = (Object[]) qry.uniqueResult();
+			
+			return ob;
+			
+		
+		}catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		finally {
+			if(session!=null) {
+				session.close();
+			}
+			if(HibernateUtil.getSessionFactory()!=null) {
+				HibernateUtil.getSessionFactory().close();
+			}
+		}
+		
+		
+		return null;
+	}
+
+	@Override
+	public List<Object> getPaintPriceAndPaintColorByExpiryYear(int year) {
+		Object ob =null;
+		Session session =null;
+		List<Object> obli = new ArrayList();
+		try {
+			session=HibernateUtil.getSessionFactory().openSession();
+			Query qry = session.createQuery("select dto.price,dto.color from PaintDTO dto where dto.name = '"+year+"' ");
+			obli = (List<Object>) qry.getResultList();
+			//System.out.println(obli[1]);
+			
+			return obli;
+			
+		
+		}catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		finally {
+			if(session!=null) {
+				session.close();
+			}
+			if(HibernateUtil.getSessionFactory()!=null) {
+				HibernateUtil.getSessionFactory().close();
+			}
+		}
+		
+		
+		return null;
+	} 
+
 
 }

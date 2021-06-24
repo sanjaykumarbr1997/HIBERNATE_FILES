@@ -53,6 +53,39 @@ public class ChocolateServiceImpl implements ChocolateService {
 		
 	}
 
+	@Override
+	public String validateAndGetChocolateCompanyByChocolateName(String name) {
+		if(name!=null) {
+			return cDAO.getChocolateCompanyByChocolateName(name);
+		}
+		else {
+			System.out.println("Name cant be null");
+		}
+		return null;
+	}
+
+	@Override
+	public ChocoloateDTO validateAndGetDetailsByChocolatename(String name) {
+		if(name!=null) {
+			return cDAO.getDetailsByChocolatename(name);
+		}
+		else {
+			System.out.println("Name cant be null");
+		}
+		return null;
+	}
+
+	@Override
+	public Object[] validateAndGetChocolatePriceAndChocolateColorByChocolateName(String name) {
+		if(name!=null) {
+			return cDAO.getChocolatePriceAndChocolateColorByChocolateName(name);
+		}
+		else {
+			System.out.println("Name cant be null");
+		}
+		return null;
+	}
+
 	
 	
 

@@ -14,4 +14,10 @@ public interface ChocolateService {
 
 	public void validateAndDeleteColorByName(String name, int id);
 
+	public String validateAndGetChocolateCompanyByChocolateName(String name);
+
+	public ChocoloateDTO validateAndGetDetailsByChocolatename(String name);
+
+	public Object[] validateAndGetChocolatePriceAndChocolateColorByChocolateName(String name);
+
 }

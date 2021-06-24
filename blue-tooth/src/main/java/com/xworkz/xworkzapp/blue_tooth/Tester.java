@@ -2,8 +2,6 @@ package com.xworkz.xworkzapp.blue_tooth;
 
 import java.util.List;
 import java.util.Scanner;
-
-
 import com.xworkz.xworkzapp.blue_tooth.dto.BluetoothSpeakerDTO;
 import com.xworkz.xworkzapp.blue_tooth.service.BluetoothSpeakerService;
 import com.xworkz.xworkzapp.blue_tooth.service.BluetoothSpeakerServiceImpl;
@@ -84,6 +82,34 @@ public class Tester {
 			buDTOs.forEach(System.out::println);
 		}
 		
+		System.out.println("Press \"Y\" to get bluetooth name by bluetooth brand ,if not  press \"N\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			System.out.println("Enter bluetooth brand");
+			BluetoothSpeakerService bluetoothSpeakerService = new BluetoothSpeakerServiceImpl();
+			String colu = bluetoothSpeakerService.validateAndGetBluetoothNameByBrand(sc.next());
+			System.out.println(colu);
+		}
+		System.out.println("Press \"Y\" to get details  by bluetooth brand ,if not  press \"N\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			System.out.println("Enter bluetooth  brand");
+			BluetoothSpeakerService bbluetoothSpeakerService = new BluetoothSpeakerServiceImpl();
+			BluetoothSpeakerDTO pnDTO  = bbluetoothSpeakerService.validateAndGetDetailsByBluetoothBrand(sc.next());
+			System.out.println(pnDTO);
+			
+			
+		}
+		
+		System.out.println("Press \"Y\" to get  bluetooth range & bluetooth name by bluetooth brand ,if not  press \"N\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			System.out.println("Enter bluetooth  brand");
+			BluetoothSpeakerService bluetoothSpeakerService = new BluetoothSpeakerServiceImpl();
+			Object obj[] = bluetoothSpeakerService.validateAndGetBluetoothRangeAndbluetoothNameByBrand(sc.next());
+			for(Object o1 :obj) {
+				System.out.println(o1);
+			}
+			
+			
+		}
 
 	}
 

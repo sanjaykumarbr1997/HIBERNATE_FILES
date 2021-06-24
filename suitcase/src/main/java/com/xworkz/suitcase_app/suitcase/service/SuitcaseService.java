@@ -14,4 +14,10 @@ public interface SuitcaseService {
 
 	public void validateAndDeleteColorByName(String name, int id);
 
+	public String validateAndGetSuitcaseColorBySuitcaseName(String name);
+
+	public SuitcaseDTO validateAndGetDetailsBySuitcaseName(String name);
+
+	public Object[] validateAndGetSuitcaseSizeAndColorBysuitcaseName(String name);
+
 }

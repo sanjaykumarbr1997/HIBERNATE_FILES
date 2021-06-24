@@ -16,4 +16,10 @@ public interface SweetsDAO {
 
 	public List<SweetsDTO> getAllDetails();
 
+	public String getSweetsColorBySweetName(String name);
+
+	public SweetsDTO getDetailsBySweetName(String name);
+
+	public Object[] getsweetShapeAndColorBySweetName(String name);
+
 }

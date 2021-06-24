@@ -15,6 +15,12 @@ public interface PerfumeService {
 	void validateAndDeleteDetailsByName(int id, String name);
 
 	List<PerfumeDTO> validateAndGetAllDetails();
+
+	String validateAndGetPerfumeFragnanceByPerfumeName(String name);
+
+	PerfumeDTO validateAndGetDetailsByperfumeName(String name);
+
+	Object[] validateAndGetperfumeColorAndPricesByPerfumeName(String name);
 	
 	
 }

@@ -60,4 +60,38 @@ public class SweetsServiceImpl implements SweetsService {
 		return sDAO.getAllDetails();
 	}
 
+	@Override
+	public String validateAndGetSweetsColorBySweetName(String name) {
+		if(name!=null) {
+			return sDAO.getSweetsColorBySweetName(name);
+		}
+		else {
+			System.out.println("Name cant be null");
+		}
+		
+		return null;
+	}
+
+	@Override
+	public SweetsDTO validateAndGetDetailsBySweetName(String name) {
+		if(name!=null) {
+			return sDAO.getDetailsBySweetName(name);
+		}
+		else {
+			System.out.println("Name cant be null");
+		}
+		return null;
+	}
+
+	@Override
+	public Object[] validateAndGetsweetsShapeAndColorBySweetName(String name) {
+		if(name!=null) {
+			return sDAO.getsweetShapeAndColorBySweetName(name);
+		}
+		else {
+			System.out.println("Name cant be null");
+		}
+		return null;
+	}
+
 }

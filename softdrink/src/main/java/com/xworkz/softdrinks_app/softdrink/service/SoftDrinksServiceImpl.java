@@ -53,6 +53,39 @@ public class SoftDrinksServiceImpl implements SoftDrinksService {
 		
 	}
 
+	@Override
+	public String validateAndGetSoftdrinkColorBySoftdrinkName(String name) {
+		if(name!=null) {
+			return sDAO.getSoftdrinkColorBySoftdrinkName(name);
+		}
+		else {
+			System.out.println("Name cant be null");
+		}
+		return null;
+	}
+
+	@Override
+	public SoftDrinksDTO validateAndGetDetailsBySoftdrinkName(String name) {
+		if(name!=null) {
+			return sDAO.getDetailsBySoftdrinkName(name);
+		}
+		else {
+			System.out.println("Name cant be null");
+		}
+		return null;
+	}
+
+	@Override
+	public Object[] validateAndGetSoftdrinkManufactureYearAndPricesBySoftdrinkName(String name) {
+		if(name!=null) {
+			return sDAO.getSoftdrinkManufactureYearAndPricesBySoftdrinkName(name);
+		}
+		else {
+			System.out.println("Name cant be null");
+		}
+		return null;
+	}
+
 
 	
 	

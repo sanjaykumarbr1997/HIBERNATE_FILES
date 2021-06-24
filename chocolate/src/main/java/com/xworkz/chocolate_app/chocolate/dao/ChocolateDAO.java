@@ -14,4 +14,10 @@ public interface ChocolateDAO {
 
 	public void deleteColorByName(String name, int id);
 
+	public String getChocolateCompanyByChocolateName(String name);
+
+	public ChocoloateDTO getDetailsByChocolatename(String name);
+
+	public Object[] getChocolatePriceAndChocolateColorByChocolateName(String name);
+
 }

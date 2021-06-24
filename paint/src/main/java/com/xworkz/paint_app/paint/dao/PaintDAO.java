@@ -14,4 +14,13 @@ public interface PaintDAO {
 
 	public void deleteDetailsByName(String name, int id);
 
+	public String getPintColorByPrice(double price);
+
+	public PaintDTO getDetailsByName(String name);
+
+	public Object[] getPaintPriceAndPaintColorByName(String name);
+
+	public List<Object> getPaintPriceAndPaintColorByExpiryYear(int year);
+
+
 }

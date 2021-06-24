@@ -116,4 +116,63 @@ public class WindowsDAOImpl implements WindowsDAO {
 		
 	}
 
+	@Override
+	public String getwindowsNewFeaturesByWindowsName(String name) {
+		String hql = "select dto.new_features from WindowsDTO dto where dto.name='"+name+"' ";
+		Session session =null;
+		try {
+			
+			 return (String) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				
+			}
+		return null;
+	}
+
+	@Override
+	public WindowsDTO getDetailsByWindowsName(String name) {
+		String hql = "select dto from WindowsDTO dto where dto.name='"+name+"' ";
+		Session session =null;
+		try {
+			
+			 return (WindowsDTO) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				
+			}
+		return null;
+	}
+
+	@Override
+	public Object[] getwindowsReleaseYearAndNewFeaturesByWindowsName(String name) {
+		String hql = "select dto.releaseYear,dto.new_features from WindowsDTO dto where dto.name='"+name+"' ";
+		Session session =null;
+		try {
+			
+			 return (Object[]) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				if(HibernateUtil.getSessionFactory()!=null) {
+					HibernateUtil.getSessionFactory().close();
+				}
+			}
+		return null;
+	}
+
 }

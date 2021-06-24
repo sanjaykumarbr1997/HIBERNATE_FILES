@@ -7,6 +7,7 @@ import com.xworkz.chocolate_app.chocolate.dto.ChocoloateDTO;
 import com.xworkz.chocolate_app.chocolate.service.ChocolateService;
 import com.xworkz.chocolate_app.chocolate.service.ChocolateServiceImpl;
 
+
 public class Tester {
 
 	public static void main(String[] args) {
@@ -53,6 +54,35 @@ public class Tester {
 			System.out.println("Enter correct id of chocolate");
 			ChocolateService chocService = new ChocolateServiceImpl();
 			chocService.validateAndDeleteColorByName(scanner.next(),scanner.nextInt());	
+		}
+		
+		System.out.println("Press \"Y\" to get chocolate company by chocolate name,if not  press \"N\"  ");
+		if(scanner.next().equalsIgnoreCase("Y")) {
+			System.out.println("Enter chocolate name");
+			ChocolateService chocolateService= new ChocolateServiceImpl();
+			String colu = chocolateService.validateAndGetChocolateCompanyByChocolateName(scanner.next());
+			System.out.println(colu);
+		}
+		System.out.println("Press \"Y\" to get details  by chocolate name ,if not  press \"N\"  ");
+		if(scanner.next().equalsIgnoreCase("Y")) {
+			System.out.println("Enter chocolate name");
+			ChocolateService cchocolateService= new ChocolateServiceImpl();
+			ChocoloateDTO chocolDTO  = cchocolateService.validateAndGetDetailsByChocolatename(scanner.next());
+			System.out.println(chocolDTO );
+			
+			
+		}
+		
+		System.out.println("Press \"Y\" to get  chocolate price & chocolate color by chocolate name ,if not  press \"N\"  ");
+		if(scanner.next().equalsIgnoreCase("Y")) {
+			System.out.println("Enter chocolate name");
+			ChocolateService  chhocolateService= new ChocolateServiceImpl();
+			Object obj[] = chhocolateService.validateAndGetChocolatePriceAndChocolateColorByChocolateName(scanner.next());
+			for(Object o1 :obj) {
+				System.out.println(o1);
+			}
+			
+			
 		}
 		
 		

@@ -14,4 +14,10 @@ public interface SoftDrinksService {
 
 	public void validateAndDeleteColorByName(String name, int id);
 
+	public String validateAndGetSoftdrinkColorBySoftdrinkName(String name);
+
+	public SoftDrinksDTO validateAndGetDetailsBySoftdrinkName(String name);
+
+	public Object[] validateAndGetSoftdrinkManufactureYearAndPricesBySoftdrinkName(String name);
+
 }

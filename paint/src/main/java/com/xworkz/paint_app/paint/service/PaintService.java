@@ -14,4 +14,14 @@ public interface PaintService {
 
 	public void validateAndDeleteDetailsByName(String name, int id);
 
+	public String validateAndGetPaintColorByPrice(double price);
+
+	public PaintDTO validateAndGetDetailsByName(String name);
+
+	public Object[] validateAndGetPaintPriceAndPaintColorByName(String name);
+
+	public List<Object> validateAndGetPaintPriceAndPaintColorByExpiryYear(int year);
+
+	
+
 }

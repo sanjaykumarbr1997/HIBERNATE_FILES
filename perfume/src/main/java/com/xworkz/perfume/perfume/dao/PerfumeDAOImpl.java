@@ -140,4 +140,64 @@ public class PerfumeDAOImpl implements PerfumeDAO {
 			return null;
 	}
 
+	@Override
+	public String getPerfumeFragnanceByPerfumeName(String name) {
+		String hql = "select dto.perfumeFragnance from PerfumeDTO dto where dto.perfumeName='"+name +"' ";
+		
+		try {
+			
+			return (String) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+			}catch (HibernateException e) {
+				e.printStackTrace();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				
+			}
+		return null;
+	}
+
+	@Override
+	public PerfumeDTO getDetailsByperfumeName(String name) {
+		String hql = "select dto from PerfumeDTO dto where dto.perfumeName='"+name +"' ";
+		
+		try {
+			
+			return (PerfumeDTO) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+			}catch (HibernateException e) {
+				e.printStackTrace();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				
+			}
+		return null;
+	}
+
+	@Override
+	public Object[] getperfumeColorAndPricesByPerfumeName(String name) {
+		String hql = "select dto.perfumeColor,dto.perfumePrice from PerfumeDTO dto where dto.perfumeName='"+name +"' ";
+		
+		try {
+			
+			return (Object[]) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+			}catch (HibernateException e) {
+				e.printStackTrace();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				if(HibernateUtil.getSessionFactory()!=null) {
+					HibernateUtil.getSessionFactory().close();
+				}
+				
+			}
+		return null;
+	}
+
 }

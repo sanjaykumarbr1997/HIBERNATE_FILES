@@ -16,4 +16,10 @@ public interface IplTeamService {
 
 	public List<IplTeamDTO> validateAndGetAllDetails();
 
+	public String validateAndGetIplTeamLocationByIplTeamName(String name);
+
+	public IplTeamDTO validateAndGetDetailsByIplTeamName(String name);
+
+	public Object[] validateAndGetIplTeamLocationAndNoOfPlayersByIplTeamName(String name);
+
 }

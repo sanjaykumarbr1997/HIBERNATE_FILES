@@ -67,4 +67,44 @@ public class BluetoothSpeakerServiceImpl implements BluetoothSpeakerService {
 		}
 	}
 
+
+	@Override
+	public String validateAndGetBluetoothNameByBrand(String brand) {
+		if(brand!=null) {
+			
+			return bluetoothSpeakerDAO.getBluetoothNameByBrand(brand);
+		}
+		else {
+			System.out.println("Brand cant be empty");
+		}
+		return null;
+	}
+
+
+	@Override
+	public BluetoothSpeakerDTO validateAndGetDetailsByBluetoothBrand(String brand) {
+		if(brand!=null) {
+			
+			return bluetoothSpeakerDAO.getDetailsByBluetoothBrand(brand);
+		}
+		else {
+			System.out.println("Brand cant be empty");
+		}
+		
+		return null;
+	}
+
+
+	@Override
+	public Object[] validateAndGetBluetoothRangeAndbluetoothNameByBrand(String brand) {
+		if(brand!=null) {
+			
+			return bluetoothSpeakerDAO.getBluetoothRangeAndbluetoothNameByBrand(brand);
+		}
+		else {
+			System.out.println("Brand cant be empty");
+		}
+		return null;
+	}
+
 }

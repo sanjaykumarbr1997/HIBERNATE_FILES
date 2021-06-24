@@ -110,6 +110,38 @@ public class Tester {
 			List<IplTeamDTO> buDTOs = ipService.validateAndGetAllDetails();
 			buDTOs.forEach(System.out::println);
 		}
+		
+		System.out.println("Press \"Y\" to get ipl team location by ipl team name,if not  press \"N\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			System.out.println("Enter ipl team name");
+			IplTeamService iplTeamService= new IplTeamServiceImpl();
+			String colu = iplTeamService.validateAndGetIplTeamLocationByIplTeamName(sc.next());
+			System.out.println(colu);
+		}
+		System.out.println("Press \"Y\" to get details of team  by ipl team name ,if not  press \"N\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			System.out.println("Enter ipl team name");
+			IplTeamService iiplTeamService= new IplTeamServiceImpl();
+			IplTeamDTO impllDTO  = iiplTeamService.validateAndGetDetailsByIplTeamName(sc.next());
+			System.out.println(impllDTO );
+			
+			
+		}
+		
+		System.out.println("Press \"Y\" to get  ipl team  location & no of players by ipl name ,if not  press \"N\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			System.out.println("Enter ipl team name");
+			IplTeamService  immplService= new IplTeamServiceImpl();
+			Object obj[] = immplService.validateAndGetIplTeamLocationAndNoOfPlayersByIplTeamName(sc.next());
+			for(Object o1 :obj) {
+				System.out.println(o1);
+			}
+		
+		}
+		
+		
+		
+		
 		sc.close();
 
 	}

@@ -51,4 +51,37 @@ public class SuitcaseServiceImpl implements SuitcaseService {
 		
 	}
 
+	@Override
+	public String validateAndGetSuitcaseColorBySuitcaseName(String name) {
+		if(name!=null) {
+			return suitDAO.getSuitcaseColorBySuitcaseName(name);
+		}
+		else {
+			System.out.println("Name cant be null");
+		}
+		return null;
+	}
+
+	@Override
+	public SuitcaseDTO validateAndGetDetailsBySuitcaseName(String name) {
+		if(name!=null) {
+			return suitDAO.getDetailsBySuitcaseName(name);
+		}
+		else {
+			System.out.println("Name cant be null");
+		}
+		return null;
+	}
+
+	@Override
+	public Object[] validateAndGetSuitcaseSizeAndColorBysuitcaseName(String name) {
+		if(name!=null) {
+			return suitDAO.getSuitcaseSizeAndColorBysuitcaseName(name);
+		}
+		else {
+			System.out.println("Name cant be null");
+		}
+		return null;
+	}
+
 }

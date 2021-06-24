@@ -151,4 +151,61 @@ public class IplTeamDAOImpl implements IplTeamDAO {
 			return null;
 	}
 
+	@Override
+	public String getIplTeamLocationByIplTeamName(String name) {
+		String hql ="select dto.location from IplTeamDTO dto where dto.teamName ='"+name +"' ";
+		try {
+			
+			 return (String) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				
+			}
+			return null;
+	}
+
+	@Override
+	public IplTeamDTO getDetailsByIplTeamName(String name) {
+		String hql ="select dto from IplTeamDTO dto where dto.teamName ='"+name +"' ";
+		try {
+			
+			 return (IplTeamDTO) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				
+			}
+			return null;
+	}
+
+	@Override
+	public Object[] getIplTeamLocationAndNoOfPlayersByIplTeamName(String name) {
+		String hql ="select dto.location,dto.noOfPlayers from IplTeamDTO dto where dto.teamName ='"+name +"' ";
+		try {
+			
+			 return (Object[]) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				if(HibernateUtil.getSessionFactory()!=null) {
+					HibernateUtil.getSessionFactory().close();
+				}
+				
+			}
+			return null;
+	}
+
 }

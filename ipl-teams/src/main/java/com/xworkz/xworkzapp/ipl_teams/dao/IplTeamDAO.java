@@ -15,6 +15,12 @@ public interface IplTeamDAO {
 	public void updateDetails(String name, int id, int players);
 
 	public List<IplTeamDTO> getAllDetails();
+
+	public String getIplTeamLocationByIplTeamName(String name);
+
+	public IplTeamDTO getDetailsByIplTeamName(String name);
+
+	public Object[] getIplTeamLocationAndNoOfPlayersByIplTeamName(String name);
 	
 	
 
