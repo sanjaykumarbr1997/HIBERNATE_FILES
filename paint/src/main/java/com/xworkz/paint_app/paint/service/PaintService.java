@@ -26,6 +26,14 @@ public interface PaintService {
 
 	public int validateAndDeletPriceByNameH(String name);
 
+	public int validateAndUpdateColorByNameH(String name, String color);
+
+	public int validateAndUpdateYearOfExpiryByNameH(String name, int year);
+
+	public int validateAndDeletPriceByYearH(int year);
+
+	public int validateAndDeletPriceByColorH(String color);
+
 	
 
 }

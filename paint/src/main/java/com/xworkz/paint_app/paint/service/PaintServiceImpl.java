@@ -106,7 +106,7 @@ public class PaintServiceImpl implements PaintService {
 			else {
 				System.out.println("year cant be null");
 			}
-			return (Integer) null;
+			return 0;
 	}
 
 	@Override
@@ -117,7 +117,51 @@ public class PaintServiceImpl implements PaintService {
 			else {
 				System.out.println("year cant be null");
 			}
-			return (Integer) null;
+			return 0;
+	}
+
+	@Override
+	public int validateAndUpdateColorByNameH(String name, String color) {
+		if(name!=null) {
+		return pDAO.updateColorByNameH(name,color);
+	}
+	else {
+		System.out.println("year cant be null");
+	}
+	return 0;
+	}
+
+	@Override
+	public int validateAndUpdateYearOfExpiryByNameH(String name, int year) {
+		if(name!=null) {
+			return pDAO.updateYearOfExpiryByNameH(name,year);
+		}
+		else {
+			System.out.println("year cant be null");
+		}
+		return 0;
+			}
+
+	@Override
+	public int validateAndDeletPriceByYearH(int year) {
+		if(year!=0) {
+			return pDAO.deletPriceByYearH(year);
+		}
+		else {
+			System.out.println("year cant be null");
+		}
+		return 0;
+	}
+
+	@Override
+	public int validateAndDeletPriceByColorH(String color) {
+		if(color!=null) {
+			return pDAO.deletPriceByColorH(color);
+		}
+		else {
+			System.out.println("year cant be null");
+		}
+		return 0;
 	}
 
 

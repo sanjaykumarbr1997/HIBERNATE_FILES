@@ -248,7 +248,60 @@ public class PaintDAOImpl implements PaintDAO {
 		}
 		return 0;
 	}
-
+	@Override
+	public int updateColorByNameH(String name, String color) {
+		String hql = "update PaintDTO dto set dto.color='"+ color+"' where dto.name='"+name+"'";
+		Session session =null;
+		Transaction transc=null;
+		try {
+		session=HibernateUtil.getSessionFactory().openSession();
+		transc = session.beginTransaction();
+		Query query =session.createQuery(hql);
+		int rw =query.executeUpdate();
+		transc.commit();
+		return rw;
+		
+		}catch (HibernateException e) {
+			e.printStackTrace();
+			transc.rollback();
+		}
+		finally {
+			if(session!=null) {
+				session.close();
+			}
+			if(HibernateUtil.getSessionFactory()!=null) {
+				HibernateUtil.getSessionFactory().close();
+			}
+		}
+		return 0;
+	}
+	@Override
+	public int updateYearOfExpiryByNameH(String name, int year) {
+		String hql = "update PaintDTO dto set dto.year="+ year+" where dto.name='"+name+"'";
+		Session session =null;
+		Transaction transc=null;
+		try {
+		session=HibernateUtil.getSessionFactory().openSession();
+		transc = session.beginTransaction();
+		Query query =session.createQuery(hql);
+		int rw =query.executeUpdate();
+		transc.commit();
+		return rw;
+		
+		}catch (HibernateException e) {
+			e.printStackTrace();
+			transc.rollback();
+		}
+		finally {
+			if(session!=null) {
+				session.close();
+			}
+			if(HibernateUtil.getSessionFactory()!=null) {
+				HibernateUtil.getSessionFactory().close();
+			}
+		}
+		return 0;
+	}
 	@Override
 	public int deletPriceByNameH(String name) {
 		String hql = "delete from PaintDTO dto where dto.name = '"+name+"'";
@@ -275,6 +328,64 @@ public class PaintDAOImpl implements PaintDAO {
 			}
 		}
 		return 0;	}
+
+	@Override
+	public int deletPriceByYearH(int year) {
+		String hql = "delete from PaintDTO dto where dto.year = "+year+"";
+		Session session =null;
+		Transaction transc=null;
+		try {
+		session=HibernateUtil.getSessionFactory().openSession();
+		transc = session.beginTransaction();
+		Query query =session.createQuery(hql);
+		int rw =query.executeUpdate();
+		transc.commit();
+		return rw;
+		
+		}catch (HibernateException e) {
+			e.printStackTrace();
+			transc.rollback();
+		}
+		finally {
+			if(session!=null) {
+				session.close();
+			}
+			
+		}
+		return 0;
+	}
+
+	@Override
+	public int deletPriceByColorH(String color) {
+		String hql = "delete from PaintDTO dto where dto.color = '"+color+"'";
+		Session session =null;
+		Transaction transc=null;
+		try {
+		session=HibernateUtil.getSessionFactory().openSession();
+		transc = session.beginTransaction();
+		Query query =session.createQuery(hql);
+		int rw =query.executeUpdate();
+		transc.commit();
+		return rw;
+		
+		}catch (HibernateException e) {
+			e.printStackTrace();
+			transc.rollback();
+		}
+		finally {
+			if(session!=null) {
+				session.close();
+			}
+			if(HibernateUtil.getSessionFactory()!=null) {
+				HibernateUtil.getSessionFactory().close();
+			}
+		}
+		return 0;
+	}
+
+	
+
+	
 
 		
 	

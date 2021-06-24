@@ -100,7 +100,7 @@ public class Tester {
 			
 		}
 		
-		System.out.println("H:Press \\\"Y\\\" to update paint details \\\"N\\\"  ");
+		System.out.println("H:Press \\\"Y\\\" to update paint price by name \\\"N\\\"  ");
 		if(sc.next().equalsIgnoreCase("Y")) {
 			
 				System.out.println("Enter name of paint ");
@@ -108,6 +108,30 @@ public class Tester {
 				
 				PaintService paiService = new PaintServiceImpl();
 				int rowAffected=paiService.validateAndUpdatePriceByNameH(sc.next(),sc.nextDouble());
+				System.out.println(rowAffected);
+			
+			
+		}
+		System.out.println("H:Press \\\"Y\\\" to update paint color by name \\\"N\\\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			
+				System.out.println("Enter name of paint ");
+				System.out.println("Enter new color");
+				
+				PaintService paiService = new PaintServiceImpl();
+				int rowAffected=paiService.validateAndUpdateColorByNameH(sc.next(),sc.next());
+				System.out.println(rowAffected);
+			
+			
+		}
+		System.out.println("H:Press \\\"Y\\\" to update paint year of expiry by name \\\"N\\\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			
+				System.out.println("Enter name of paint ");
+				System.out.println("Enter new expiry year");
+				
+				PaintService paiService = new PaintServiceImpl();
+				int rowAffected=paiService.validateAndUpdateYearOfExpiryByNameH(sc.next(),sc.nextInt());
 				System.out.println(rowAffected);
 			
 			
@@ -122,6 +146,27 @@ public class Tester {
 			
 			
 		}
+		System.out.println("H:Press \\\"Y\\\" to delete paint details by year \\\"N\\\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			
+				System.out.println("Enter year ");				
+				PaintService painService = new PaintServiceImpl();
+				int rowAffected=painService.validateAndDeletPriceByYearH(sc.nextInt());
+				System.out.println(rowAffected);
+			
+			
+		}
+		System.out.println("H:Press \\\"Y\\\" to delete paint details by color \\\"N\\\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			
+				System.out.println("Enter color ");				
+				PaintService painService = new PaintServiceImpl();
+				int rowAffected=painService.validateAndDeletPriceByColorH(sc.next());
+				System.out.println(rowAffected);
+			
+			
+		}
+
 		
 		
 		
