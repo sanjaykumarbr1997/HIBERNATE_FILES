@@ -20,7 +20,11 @@ public interface PaintService {
 
 	public Object[] validateAndGetPaintPriceAndPaintColorByName(String name);
 
-	public List<Object> validateAndGetPaintPriceAndPaintColorByExpiryYear(int year);
+	public List<Object[]> validateAndGetPaintPriceAndPaintColorByExpiryYear(int year);
+
+	public int validateAndUpdatePriceByNameH(String name, double price);
+
+	public int validateAndDeletPriceByNameH(String name);
 
 	
 

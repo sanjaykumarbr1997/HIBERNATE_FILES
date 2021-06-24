@@ -85,22 +85,43 @@ public class Tester {
 			
 			
 		}
-		System.out.println("Press \"Y\" to get  paint price & color details  by paint year ,if not  press \"N\"  ");
+		System.out.println("Press \"Y\" to get  paint price & color details  by paint expiry year ,if not  press \"N\"  ");
 		if(sc.next().equalsIgnoreCase("Y")) {
 			System.out.println("Enter paint expiry year");
 			PaintService paintService = new PaintServiceImpl();
-			List<Object> objec = paintService.validateAndGetPaintPriceAndPaintColorByExpiryYear(sc.nextInt());
-			System.out.println("NOW EXECUTING");
-			//System.out.println(objec.);
-			//for(Object obje:objec) {
-				//System.out.println(obje);
-				
-			//}
-			System.out.println("sto");
+			List<Object[]> objec = paintService.validateAndGetPaintPriceAndPaintColorByExpiryYear(sc.nextInt());
+			for(Object o2[] :objec) {
+				for(Object objectt:o2) {
+					System.out.print(objectt +" ");
+					
+				}
+			}
 			
 			
 		}
 		
+		System.out.println("H:Press \\\"Y\\\" to update paint details \\\"N\\\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			
+				System.out.println("Enter name of paint ");
+				System.out.println("Enter new price");
+				
+				PaintService paiService = new PaintServiceImpl();
+				int rowAffected=paiService.validateAndUpdatePriceByNameH(sc.next(),sc.nextDouble());
+				System.out.println(rowAffected);
+			
+			
+		}
+		System.out.println("H:Press \\\"Y\\\" to delete paint details by name \\\"N\\\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			
+				System.out.println("Enter name of paint ");				
+				PaintService painService = new PaintServiceImpl();
+				int rowAffected=painService.validateAndDeletPriceByNameH(sc.next());
+				System.out.println(rowAffected);
+			
+			
+		}
 		
 		
 		

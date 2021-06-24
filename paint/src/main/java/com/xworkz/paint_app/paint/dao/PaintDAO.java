@@ -20,7 +20,12 @@ public interface PaintDAO {
 
 	public Object[] getPaintPriceAndPaintColorByName(String name);
 
-	public List<Object> getPaintPriceAndPaintColorByExpiryYear(int year);
+	public List<Object[]> getPaintPriceAndPaintColorByExpiryYear(int year);
+
+	public int updatePriceByNameH(String name, double price);
+
+	public int deletPriceByNameH(String name);
+
 
 
 }
