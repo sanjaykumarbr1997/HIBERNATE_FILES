@@ -20,4 +20,20 @@ public interface ChocolateService {
 
 	public Object[] validateAndGetChocolatePriceAndChocolateColorByChocolateName(String name);
 
+	public List<Object[]> validateAndGetchocolatePriceAndchocolateColorByChocolateName(String name);
+
+	public int validateAndUpdatePriceByNameH(String name, double price);
+
+	public int validateAndUpdateColorByNameH(String naem, String color);
+
+	public int validateAndUpdateChocolateCompanyByNameH(String name, String companyName);
+
+	public int validateAndDeleteByNameH(String name);
+
+	public int validateAndDeleteByPriceH(double price);
+
+	public int validateAndDeleteByColorH(String color);
+
+
+	
 }

@@ -204,7 +204,7 @@ public class PaintDAOImpl implements PaintDAO {
 		String hql = "select dto.price,dto.color from PaintDTO dto where dto.year="+year+" ";
 		Session session = null;
 		try {
-			return (List<Object[]>) HibernateUtil.getSessionFactory().openSession().createQuery(hql).list();
+			return HibernateUtil.getSessionFactory().openSession().createQuery(hql).list();
 		}catch (HibernateException e) {
 			e.printStackTrace();
 		}
@@ -303,7 +303,7 @@ public class PaintDAOImpl implements PaintDAO {
 		return 0;
 	}
 	@Override
-	public int deletPriceByNameH(String name) {
+	public int deleteByNameH(String name) {
 		String hql = "delete from PaintDTO dto where dto.name = '"+name+"'";
 		Session session =null;
 		Transaction transc=null;
@@ -330,7 +330,7 @@ public class PaintDAOImpl implements PaintDAO {
 		return 0;	}
 
 	@Override
-	public int deletPriceByYearH(int year) {
+	public int deleteByYearH(int year) {
 		String hql = "delete from PaintDTO dto where dto.year = "+year+"";
 		Session session =null;
 		Transaction transc=null;
@@ -356,7 +356,7 @@ public class PaintDAOImpl implements PaintDAO {
 	}
 
 	@Override
-	public int deletPriceByColorH(String color) {
+	public int deleteByColorH(String color) {
 		String hql = "delete from PaintDTO dto where dto.color = '"+color+"'";
 		Session session =null;
 		Transaction transc=null;

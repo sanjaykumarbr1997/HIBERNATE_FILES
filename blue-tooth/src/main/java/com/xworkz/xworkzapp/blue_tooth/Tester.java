@@ -2,6 +2,8 @@ package com.xworkz.xworkzapp.blue_tooth;
 
 import java.util.List;
 import java.util.Scanner;
+
+
 import com.xworkz.xworkzapp.blue_tooth.dto.BluetoothSpeakerDTO;
 import com.xworkz.xworkzapp.blue_tooth.service.BluetoothSpeakerService;
 import com.xworkz.xworkzapp.blue_tooth.service.BluetoothSpeakerServiceImpl;
@@ -11,7 +13,7 @@ public class Tester {
 	public static void main(String[] args) {
 		System.out.println("Bluetooth speaker data ");
 		Scanner sc = new Scanner(System.in);
-		
+
 		
 		System.out.println("Enter no of new records to store");
 		int rec = sc.nextInt();
@@ -110,6 +112,84 @@ public class Tester {
 			
 			
 		}
+		
+		
+		System.out.println("Press \"Y\" to get  bluetooth range & name details  by bluetooth company brand ,if not  press \"N\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			System.out.println("Enter bluetooth company brand");
+			BluetoothSpeakerService blthService = new BluetoothSpeakerServiceImpl();
+			List<Object[]> objec = blthService.validateAndGetbluetoothRangeAndbluetoothNameBybluetoothCompanyName(sc.next());
+			for(Object o2[] :objec) {
+				for(Object objectt:o2) {
+					System.out.print(objectt +" ");
+					
+				}
+			}
+			
+			
+		}
+		
+		System.out.println("H:Press \"Y\" to update bluetooth name by bluetooth brand  \"N\" ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			
+				System.out.println("Enter brand of bluetooth ");
+				System.out.println("Enter new name");
+				
+				BluetoothSpeakerService blthService = new BluetoothSpeakerServiceImpl();
+				int rowAffected=blthService.validateAndUpdateNameByBrandH(sc.next(),sc.next());
+				System.out.println(rowAffected);
+			
+			
+		}
+		
+		System.out.println("H:Press \"Y\" to update bluetooth range by brand  \"N\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			
+				System.out.println("Enter bluetooth brand ");
+				System.out.println("Enter new range");
+				
+				BluetoothSpeakerService blthService = new BluetoothSpeakerServiceImpl();
+				int rowAffected=blthService.validateAndUpdateRangeByNameH(sc.next(),sc.next());
+				System.out.println(rowAffected);
+			
+			
+		}
+		
+		
+		
+		System.out.println("H:Press \"Y\" to delete bluetooth details by brand  \"N\" ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			
+				System.out.println("Enter brand of bluetooth ");				
+				BluetoothSpeakerService blthService = new BluetoothSpeakerServiceImpl();
+				int rowAffected=blthService.validateAndDeleteByBrandH(sc.next());
+				System.out.println(rowAffected);
+			
+			
+		}
+		
+		System.out.println("H:Press \"Y\" to delete bluetooth details by range  \"N\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			
+				System.out.println("Enter range ");				
+				BluetoothSpeakerService blthService = new BluetoothSpeakerServiceImpl();
+				int rowAffected=blthService.validateAndDeleteByRangeH(sc.next());
+				System.out.println(rowAffected);
+			
+			
+		}
+		
+		System.out.println("H:Press \"Y\" to delete bluetooth details by bluetooth name  \"N\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			
+				System.out.println("Enter bluetooth name ");				
+				BluetoothSpeakerService blthService = new BluetoothSpeakerServiceImpl();
+				int rowAffected=blthService.validateAndDeleteByBluetoothNameH(sc.next());
+				System.out.println(rowAffected);
+			
+			
+		}
+		
 
 	}
 

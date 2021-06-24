@@ -24,15 +24,15 @@ public interface PaintDAO {
 
 	public int updatePriceByNameH(String name, double price);
 
-	public int deletPriceByNameH(String name);
+	public int deleteByNameH(String name);
 
 	public int updateColorByNameH(String name, String color);
 
 	public int updateYearOfExpiryByNameH(String name, int year);
 
-	public int deletPriceByYearH(int year);
+	public int deleteByYearH(int year);
 
-	public int deletPriceByColorH(String color);
+	public int deleteByColorH(String color);
 
 
 

@@ -21,6 +21,18 @@ public interface BluetoothSpeakerService {
 
 	BluetoothSpeakerDTO validateAndGetDetailsByBluetoothBrand(String brand);
 
-	Object[] validateAndGetBluetoothRangeAndbluetoothNameByBrand(String next);
+	Object[] validateAndGetBluetoothRangeAndbluetoothNameByBrand(String brand);
+
+	List<Object[]> validateAndGetbluetoothRangeAndbluetoothNameBybluetoothCompanyName(String brand);
+
+	int validateAndUpdateNameByBrandH(String brand, String name);
+
+	int validateAndUpdateRangeByNameH(String brand, String range);
+
+	int validateAndDeleteByBrandH(String brand);
+
+	int validateAndDeleteByRangeH(String range);
+
+	int validateAndDeleteByBluetoothNameH(String bluetoothName);
 
 }

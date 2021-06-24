@@ -86,6 +86,82 @@ public class ChocolateServiceImpl implements ChocolateService {
 		return null;
 	}
 
+	@Override
+	public List<Object[]> validateAndGetchocolatePriceAndchocolateColorByChocolateName(String name) {
+		if(name!=null) {
+			return cDAO.getchocolatePriceAndchocolateColorByChocolateName(name);
+		}
+		else {
+			System.out.println("Name cant be null");
+		}
+		return null;
+	}
+
+	@Override
+	public int validateAndUpdatePriceByNameH(String name, double price) {
+		if(name!=null) {
+			return cDAO.updatePriceByNameH(name,price);
+		}
+		else {
+			System.out.println("Name cant be null");
+		}
+		return 0;
+	}
+
+	@Override
+	public int validateAndUpdateColorByNameH(String name, String color) {
+		if(name!=null) {
+			return cDAO.updateColorByNameH(name,color);
+		}
+		else {
+			System.out.println("Name cant be null");
+		}
+		return 0;
+	}
+
+	@Override
+	public int validateAndUpdateChocolateCompanyByNameH(String name, String companyName) {
+		if(name!=null) {
+			return cDAO.updateCompanyNameByNameH(name,companyName);
+		}
+		else {
+			System.out.println("Name cant be null");
+		}
+		return 0;
+	}
+
+	@Override
+	public int validateAndDeleteByNameH(String name) {
+		if(name!=null) {
+			return cDAO.deleteByNameH(name);
+		}
+		else {
+			System.out.println("Name cant be null");
+		}
+		return 0;
+	}
+
+	@Override
+	public int validateAndDeleteByPriceH(double price) {
+		if(price!=0) {
+			return cDAO.deleteByPriceH(price);
+		}
+		else {
+			System.out.println("Name cant be null");
+		}
+		return 0;
+	}
+
+	@Override
+	public int validateAndDeleteByColorH(String color) {
+		if(color!=null) {
+			return cDAO.deleteByColorH(color);
+		}
+		else {
+			System.out.println("Name cant be null");
+		}
+		return 0;
+	}
 	
 	
 

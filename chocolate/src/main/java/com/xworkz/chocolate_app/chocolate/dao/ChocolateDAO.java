@@ -20,4 +20,18 @@ public interface ChocolateDAO {
 
 	public Object[] getChocolatePriceAndChocolateColorByChocolateName(String name);
 
+	public List<Object[]> getchocolatePriceAndchocolateColorByChocolateName(String name);
+
+	public int updatePriceByNameH(String name,double price);
+
+	public int updateColorByNameH(String name, String color);
+
+	public int updateCompanyNameByNameH(String name, String companyName);
+
+	public int deleteByNameH(String name);
+
+	public int deleteByPriceH(double price);
+
+	public int deleteByColorH(String color);
+
 }

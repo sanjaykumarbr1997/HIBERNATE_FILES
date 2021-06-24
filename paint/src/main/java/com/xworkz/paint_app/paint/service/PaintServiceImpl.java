@@ -110,9 +110,9 @@ public class PaintServiceImpl implements PaintService {
 	}
 
 	@Override
-	public int validateAndDeletPriceByNameH(String name) {
+	public int validateAndDeleteByNameH(String name) {
 		if(name!=null) {
-			return pDAO.deletPriceByNameH(name);
+			return pDAO.deleteByNameH(name);
 			}
 			else {
 				System.out.println("year cant be null");
@@ -143,9 +143,9 @@ public class PaintServiceImpl implements PaintService {
 			}
 
 	@Override
-	public int validateAndDeletPriceByYearH(int year) {
+	public int validateAndDeleteByYearH(int year) {
 		if(year!=0) {
-			return pDAO.deletPriceByYearH(year);
+			return pDAO.deleteByYearH(year);
 		}
 		else {
 			System.out.println("year cant be null");
@@ -154,9 +154,9 @@ public class PaintServiceImpl implements PaintService {
 	}
 
 	@Override
-	public int validateAndDeletPriceByColorH(String color) {
+	public int validateAndDeleteByColorH(String color) {
 		if(color!=null) {
-			return pDAO.deletPriceByColorH(color);
+			return pDAO.deleteByColorH(color);
 		}
 		else {
 			System.out.println("year cant be null");
