@@ -21,6 +21,21 @@ public interface PerfumeService {
 	PerfumeDTO validateAndGetDetailsByperfumeName(String name);
 
 	Object[] validateAndGetperfumeColorAndPricesByPerfumeName(String name);
+
+	List<Object[]> validateAndGetperfumePriceAndperfumeColorByperfumeFragnance(String fragnance);
+
+	int validateAndUpdatePriceByNameH(String name, double price);
+
+	int validateAndUpdateColorByNameH(String name, String color);
+
+	int validateAndUpdateperfumeFragnanceByNameH(String name, String fragnance);
+
+	int validateAndDeleteByNameH(String name);
+
+	int validateAndDeleteByPriceH(double price);
+
+	int validateAndDeleteByColorH(String color);
+
 	
 	
 }

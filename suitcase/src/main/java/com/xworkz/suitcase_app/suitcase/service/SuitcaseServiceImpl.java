@@ -84,4 +84,72 @@ public class SuitcaseServiceImpl implements SuitcaseService {
 		return null;
 	}
 
+	@Override
+	public List<Object[]> validateAndGetsuitcaseNameAndsuitcaseColorBysuitcaseSize(String size) {
+		if(size!=null) {
+			return suitDAO.getsuitcaseNameAndsuitcaseColorBysuitcaseSize(size);
+		}
+		else {
+			System.out.println("size cant be null");
+		}
+		return null;
+	}
+
+	@Override
+	public int validateAndUpdateSizeByNameH(String name, String size) {
+		if(size!=null) {
+			return suitDAO.updateSizeByNameH(name,size);
+		}
+		else {
+			System.out.println("size cant be null");
+		}
+		return 0;
+	}
+
+	@Override
+	public int validateAndUpdateColorByNameH(String name, String color) {
+		if(name!=null) {
+			return suitDAO.updateColorByNameH(name,color);
+		}
+		else {
+			System.out.println("Name cant be null");
+		}
+		return 0;
+	}
+
+	@Override
+	public int validateAndDeleteByNameH(String name) {
+		if(name!=null) {
+			return suitDAO.deleteByNameH(name);
+		}
+		else {
+			System.out.println("Name cant be null");
+		}
+		return 0;
+	}
+
+	@Override
+	public int validateAndDeleteByColorH(String color) {
+		if(color!=null) {
+			return suitDAO.deleteByColorH(color);
+		}
+		else {
+			System.out.println("color cant be null");
+		}
+		return 0;
+	}
+
+	@Override
+	public int validateAndDeleteBySizeH(String size) {
+		if(size!=null) {
+			return suitDAO.deleteBySizeH(size);
+		}
+		else {
+			System.out.println("size cant be null");
+		}
+		return 0;
+	}
+
+	
+
 }

@@ -20,4 +20,19 @@ public interface SoftDrinksDAO {
 
 	public Object[] getSoftdrinkManufactureYearAndPricesBySoftdrinkName(String name);
 
+
+	public List<Object[]> getsoftdrinkPriceAndsoftdrinkColorBysoftdrinkmfgyear(int mfgYear);
+
+	public int updatePriceByNameH(String name, double price);
+
+	public int updateColorByNameH(String name, String color);
+
+	public int updateColorByNameH(String name, int mfgyear);
+
+	public int deleteColorByNameH(String name);
+
+	public int deleteColorByPriceH(double price);
+
+	public int deleteColorByColorH(String color);
+
 }

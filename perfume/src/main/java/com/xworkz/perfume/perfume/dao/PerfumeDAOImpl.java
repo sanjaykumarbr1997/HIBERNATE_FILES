@@ -7,6 +7,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import com.xworkz.perfume.perfume.dto.PerfumeDTO;
 import com.xworkz.singleton.HibernateUtil;
@@ -14,9 +15,8 @@ import com.xworkz.singleton.HibernateUtil;
 public class PerfumeDAOImpl implements PerfumeDAO {
 	SessionFactory sf=null;
 	Session session=null;
-	
+	Transaction transaction =null;
 	public void save(PerfumeDTO pDTO) {
-		Transaction transaction=null;
 		try {
 		sf = HibernateUtil.getSessionFactory();
 		System.out.println(sf);
@@ -64,7 +64,6 @@ public class PerfumeDAOImpl implements PerfumeDAO {
 	}
 
 	public void updateColorByName(int id, String name, String color) {
-		Transaction transaction=null;
 		try {
 			sf = HibernateUtil.getSessionFactory();
 		Session session = sf.openSession();
@@ -93,7 +92,6 @@ public class PerfumeDAOImpl implements PerfumeDAO {
 	}
 
 	public void deleteDetailsByName(int id, String name) {
-		Transaction transaction=null;
 		try {
 			sf = HibernateUtil.getSessionFactory();
 		session = sf.openSession();
@@ -198,6 +196,194 @@ public class PerfumeDAOImpl implements PerfumeDAO {
 				
 			}
 		return null;
+	}
+
+	@Override
+	public List<Object[]> getperfumePriceAndperfumeColorByperfumeFragnance(String fragnance) {
+		String hql = "select dto.perfumeColor,dto.perfumePrice from PerfumeDTO dto where dto.perfumeFragnance='"+fragnance +"' ";
+		
+		try {
+			
+			return HibernateUtil.getSessionFactory().openSession().createQuery(hql).list();
+			}catch (HibernateException e) {
+				e.printStackTrace();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				
+				
+			}
+		return null;
+	}
+
+	@Override
+	public int updatePriceByNameH(String name,double price) {
+		String hql = "update PerfumeDTO dto set dto.perfumePrice ="+price+" where dto.perfumeName='"+name +"' ";
+		
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery(hql);
+			int r = query.executeUpdate();
+			
+			transaction.commit();
+			return r; 
+			}catch (HibernateException e) {
+				e.printStackTrace();
+				transaction.rollback();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				if(HibernateUtil.getSessionFactory()!=null) {
+					HibernateUtil.getSessionFactory().close();
+				}
+				
+			}
+		return 0;
+	}
+
+	@Override
+	public int updateColorByNameH(String name, String color) {
+String hql = "update PerfumeDTO dto set dto.perfumeColor ='"+color+"' where dto.perfumeName='"+name +"' ";
+		
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery(hql);
+			int r = query.executeUpdate();
+			
+			transaction.commit();
+			return r; 
+			}catch (HibernateException e) {
+				e.printStackTrace();
+				transaction.rollback();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				if(HibernateUtil.getSessionFactory()!=null) {
+					HibernateUtil.getSessionFactory().close();
+				}
+				
+			}
+		return 0;
+	}
+
+	@Override
+	public int updateperfumeFragnanceByNameH(String name, String fragnance) {
+String hql = "update PerfumeDTO dto set dto.perfumeFragnance ='"+fragnance+"' where dto.perfumeName='"+name +"' ";
+		
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery(hql);
+			int r = query.executeUpdate();
+			
+			transaction.commit();
+			return r; 
+			}catch (HibernateException e) {
+				e.printStackTrace();
+				transaction.rollback();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				if(HibernateUtil.getSessionFactory()!=null) {
+					HibernateUtil.getSessionFactory().close();
+				}
+				
+			}
+		return 0;
+	}
+
+	@Override
+	public int deleteByNameH(String name) {
+String hql = "delete from PerfumeDTO dto where dto.perfumeName='"+name +"' ";
+		
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery(hql);
+			int r = query.executeUpdate();
+			
+			transaction.commit();
+			return r; 
+			}catch (HibernateException e) {
+				e.printStackTrace();
+				transaction.rollback();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				if(HibernateUtil.getSessionFactory()!=null) {
+					HibernateUtil.getSessionFactory().close();
+				}
+				
+			}
+		return 0;
+	}
+
+	@Override
+	public int deleteByPriceH(double price) {
+String hql = "delete from PerfumeDTO dto where dto.perfumePrice="+price +" ";
+		
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery(hql);
+			int r = query.executeUpdate();
+			
+			transaction.commit();
+			return r; 
+			}catch (HibernateException e) {
+				e.printStackTrace();
+				transaction.rollback();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				if(HibernateUtil.getSessionFactory()!=null) {
+					HibernateUtil.getSessionFactory().close();
+				}
+				
+			}
+		return 0;
+	}
+
+	@Override
+	public int deleteByColorH(String color) {
+String hql = "delete from PerfumeDTO dto where dto.perfumeColor='"+color +"' ";
+		
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery(hql);
+			int r = query.executeUpdate();
+			
+			transaction.commit();
+			return r; 
+			}catch (HibernateException e) {
+				e.printStackTrace();
+				transaction.rollback();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				if(HibernateUtil.getSessionFactory()!=null) {
+					HibernateUtil.getSessionFactory().close();
+				}
+				
+			}
+		return 0;
 	}
 
 }

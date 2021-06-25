@@ -86,7 +86,92 @@ public class Tester {
 		
 		}
 		
+		System.out.println("H: Press \"Y\" to get  softdrink price & color details  by softdrink mfgyear,if not  press \"N\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			System.out.println("Enter softdrink mfgyear");
+			SoftDrinksService softdrinkService = new SoftDrinksServiceImpl();
+			List<Object[]> objec = softdrinkService.validateAndGetsoftdrinkPriceAndsoftdrinkColorBysoftdrinkmfgyear(sc.nextInt());
+			for(Object o2[] :objec) {
+				for(Object objectt:o2) {
+					System.out.print(objectt +" ");
+					
+				}
+			}
+			
+			
+		}
 		
+		System.out.println("H:Press \"Y\" to update softdrink price by softdrink name  \"N\" ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			
+				System.out.println("Enter name of softdrink ");
+				System.out.println("Enter new price");
+				
+				SoftDrinksService softdrinkService = new SoftDrinksServiceImpl();
+				int rowAffected=softdrinkService.validateAndUpdatePriceByNameH(sc.next(),sc.nextDouble());
+				System.out.println(rowAffected);
+			
+			
+		}
+		
+		System.out.println("H:Press \"Y\" to update softdrink color by name  \"N\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			
+				System.out.println("Enter name of softdrink ");
+				System.out.println("Enter new color");
+				
+				SoftDrinksService softdrinkService = new SoftDrinksServiceImpl();
+				int rowAffected=softdrinkService.validateAndUpdateColorByNameH(sc.next(),sc.next());
+				System.out.println(rowAffected);
+			
+			
+		}
+		
+		System.out.println("H:Press \"Y\" to update softdrink mfgyear  by name  \"N\" ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			
+				System.out.println("Enter name of softdrink ");
+				System.out.println("Enter new mfgyear");
+				
+				SoftDrinksService softdrinkService = new SoftDrinksServiceImpl();
+				int rowAffected=softdrinkService.validateAndUpdatesoftdrinkmfgyearByNameH(sc.next(),sc.nextInt());
+				System.out.println(rowAffected);
+			
+			
+		}
+		
+		System.out.println("H:Press \"Y\" to delete softdrink details by name  \"N\" ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			
+				System.out.println("Enter name of softdrink ");				
+				SoftDrinksService softdrinkService = new SoftDrinksServiceImpl();
+				int rowAffected=softdrinkService.validateAndDeleteByNameH(sc.next());
+				System.out.println(rowAffected);
+			
+			
+		}
+		
+		System.out.println("H:Press \"Y\" to delete softdrink details by price  \"N\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			
+				System.out.println("Enter price ");				
+				SoftDrinksService softdrinkService = new SoftDrinksServiceImpl();
+				int rowAffected=softdrinkService.validateAndDeleteByPriceH(sc.nextDouble());
+				System.out.println(rowAffected);
+			
+			
+		}
+		
+		System.out.println("H:Press \"Y\" to delete softdrink details by color  \"N\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			
+				System.out.println("Enter color ");				
+				SoftDrinksService softdrinkService = new SoftDrinksServiceImpl();
+				int rowAffected=softdrinkService.validateAndDeleteByColorH(sc.next());
+				System.out.println(rowAffected);
+			
+			
+		}
 		
 		sc.close();
 

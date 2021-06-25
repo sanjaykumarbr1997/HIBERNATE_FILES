@@ -20,4 +20,18 @@ public interface SoftDrinksService {
 
 	public Object[] validateAndGetSoftdrinkManufactureYearAndPricesBySoftdrinkName(String name);
 
+	public List<Object[]> validateAndGetsoftdrinkPriceAndsoftdrinkColorBysoftdrinkmfgyear(int mfgYear);
+
+	public int validateAndUpdatePriceByNameH(String name, double price);
+
+	public int validateAndUpdateColorByNameH(String name, String color);
+
+	public int validateAndUpdatesoftdrinkmfgyearByNameH(String name, int mfgyear);
+
+	public int validateAndDeleteByNameH(String name);
+
+	public int validateAndDeleteByPriceH(double price);
+
+	public int validateAndDeleteByColorH(String color);
+
 }

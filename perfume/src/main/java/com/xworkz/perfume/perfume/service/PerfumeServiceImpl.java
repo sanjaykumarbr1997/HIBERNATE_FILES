@@ -94,4 +94,81 @@ public class PerfumeServiceImpl implements PerfumeService {
 		return null;
 	}
 
+	@Override
+	public List<Object[]> validateAndGetperfumePriceAndperfumeColorByperfumeFragnance(String fragnance) {
+		if(fragnance!=null) {
+			return pDAO.getperfumePriceAndperfumeColorByperfumeFragnance(fragnance);
+		}
+		else {
+			System.out.println("name cant be empty");
+		}
+		return null;
+	}
+
+	@Override
+	public int validateAndUpdatePriceByNameH(String name, double price) {
+		if(name!=null) {
+			return pDAO.updatePriceByNameH(name,price);
+		}
+		else {
+			System.out.println("name cant be empty");
+		}
+		return 0;
+	}
+
+	@Override
+	public int validateAndUpdateColorByNameH(String name, String color) {
+		if(name!=null) {
+			return pDAO.updateColorByNameH(name,color);
+		}
+		else {
+			System.out.println("name cant be empty");
+		}
+		return 0;
+	}
+
+	@Override
+	public int validateAndUpdateperfumeFragnanceByNameH(String name, String fragnance) {
+		if(name!=null) {
+			return pDAO.updateperfumeFragnanceByNameH(name,fragnance);
+		}
+		else {
+			System.out.println("name cant be empty");
+		}
+		return 0;
+	}
+
+	@Override
+	public int validateAndDeleteByNameH(String name) {
+		if(name!=null) {
+			return pDAO.deleteByNameH(name);
+		}
+		else {
+			System.out.println("name cant be empty");
+		}
+		return 0;
+	}
+
+	@Override
+	public int validateAndDeleteByPriceH(double price) {
+		if(price!=0) {
+			return pDAO.deleteByPriceH(price);
+		}
+		else {
+			System.out.println("price cant be 0");
+		}
+		return 0;
+	}
+
+	@Override
+	public int validateAndDeleteByColorH(String color) {
+		if(color!=null) {
+			return pDAO.deleteByColorH(color);
+		}
+		else {
+			System.out.println("color cant be empty");
+		}
+		return 0;
+	}
+
 }

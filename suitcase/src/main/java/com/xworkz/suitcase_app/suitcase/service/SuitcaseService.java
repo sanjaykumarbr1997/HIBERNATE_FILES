@@ -20,4 +20,16 @@ public interface SuitcaseService {
 
 	public Object[] validateAndGetSuitcaseSizeAndColorBysuitcaseName(String name);
 
+	public List<Object[]> validateAndGetsuitcaseNameAndsuitcaseColorBysuitcaseSize(String size);
+
+	public int validateAndUpdateSizeByNameH(String name, String size);
+
+	public int validateAndUpdateColorByNameH(String name, String color);
+
+	public int validateAndDeleteByNameH(String name);
+
+	public int validateAndDeleteByColorH(String color);
+
+	public int validateAndDeleteBySizeH(String size);
+
 }

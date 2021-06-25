@@ -20,4 +20,17 @@ public interface SuitcaseDAO {
 
 	public Object[] getSuitcaseSizeAndColorBysuitcaseName(String name);
 
+	public List<Object[]> getsuitcaseNameAndsuitcaseColorBysuitcaseSize(String size);
+
+	public int updateSizeByNameH(String name,String size);
+
+
+	public int updateColorByNameH(String name, String color);
+
+	public int deleteByNameH(String name);
+
+	public int deleteByColorH(String color);
+
+	public int deleteBySizeH(String size);
+
 }

@@ -92,7 +92,93 @@ public class Tester {
 		
 		}
 		
-
+		System.out.println("H: Press \"Y\" to get  perfume price & color details  by perfume fragnance,if not  press \"N\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			System.out.println("Enter perfume fragnance");
+			PerfumeService perfService = new PerfumeServiceImpl();
+			List<Object[]> objec = perfService.validateAndGetperfumePriceAndperfumeColorByperfumeFragnance(sc.next());
+			for(Object o2[] :objec) {
+				for(Object objectt:o2) {
+					System.out.print(objectt +" ");
+					
+				}
+			}
+			
+			
+		}
+		
+		System.out.println("H:Press \"Y\" to update perfume price by perfume name  \"N\" ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			
+				System.out.println("Enter name of perfume ");
+				System.out.println("Enter new price");
+				
+				PerfumeService perfService = new PerfumeServiceImpl();
+				int rowAffected=perfService.validateAndUpdatePriceByNameH(sc.next(),sc.nextDouble());
+				System.out.println(rowAffected);
+			
+			
+		}
+		
+		System.out.println("H:Press \"Y\" to update perfume color by name  \"N\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			
+				System.out.println("Enter name of perfume ");
+				System.out.println("Enter new color");
+				
+				PerfumeService perfService = new PerfumeServiceImpl();
+				int rowAffected=perfService.validateAndUpdateColorByNameH(sc.next(),sc.next());
+				System.out.println(rowAffected);
+			
+			
+		}
+		
+		System.out.println("H:Press \"Y\" to update perfume fragnance  by name  \"N\" ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			
+				System.out.println("Enter name of perfume ");
+				System.out.println("Enter new fragnance");
+				
+				PerfumeService perfService = new PerfumeServiceImpl();
+				int rowAffected=perfService.validateAndUpdateperfumeFragnanceByNameH(sc.next(),sc.next());
+				System.out.println(rowAffected);
+			
+			
+		}
+		
+		System.out.println("H:Press \"Y\" to delete perfume details by name  \"N\" ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			
+				System.out.println("Enter name of perfume ");				
+				PerfumeService perfuuumService = new PerfumeServiceImpl();
+				int rowAffected=perfuuumService.validateAndDeleteByNameH(sc.next());
+				System.out.println(rowAffected);
+			
+			
+		}
+		
+		System.out.println("H:Press \"Y\" to delete perfume details by price  \"N\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			
+				System.out.println("Enter price ");				
+				PerfumeService perfuuumService = new PerfumeServiceImpl();
+				int rowAffected=perfuuumService.validateAndDeleteByPriceH(sc.nextDouble());
+				System.out.println(rowAffected);
+			
+			
+		}
+		
+		System.out.println("H:Press \"Y\" to delete perfume details by color  \"N\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			
+				System.out.println("Enter color ");				
+				PerfumeService perfuuumService = new PerfumeServiceImpl();
+				int rowAffected=perfuuumService.validateAndDeleteByColorH(sc.next());
+				System.out.println(rowAffected);
+			
+			
+		}
+	
 		sc.close();
 	}
 

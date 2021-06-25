@@ -22,4 +22,18 @@ public interface PerfumeDAO {
 
 	Object[] getperfumeColorAndPricesByPerfumeName(String name);
 
+	List<Object[]> getperfumePriceAndperfumeColorByperfumeFragnance(String fragnance);
+
+	int updatePriceByNameH(String name,double price);
+
+	int updateColorByNameH(String name, String color);
+
+	int updateperfumeFragnanceByNameH(String name, String fragnance);
+
+	int deleteByNameH(String name);
+
+	int deleteByPriceH(double price);
+
+	int deleteByColorH(String color);
+
 }
