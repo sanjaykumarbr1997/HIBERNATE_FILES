@@ -22,11 +22,11 @@ public class  WindowsDTO implements Serializable{
 	@Column(name ="windows_year")
 	private int releaseYear;
 	@Column(name="windows_new_features")
-	private String new_features;
+	private String newFeatures;
 	@Override
 	public String toString() {
-		return "WindowsDTO [id=" + id + ", name=" + name + ", releaseYear=" + releaseYear + ", new_features="
-				+ new_features + "]";
+		return "WindowsDTO [id=" + id + ", name=" + name + ", releaseYear=" + releaseYear + ", newFeatures="
+				+ newFeatures + "]";
 	}
 	public int getId() {
 		return id;
@@ -46,11 +46,11 @@ public class  WindowsDTO implements Serializable{
 	public void setReleaseYear(int releaseYear) {
 		this.releaseYear = releaseYear;
 	}
-	public String getNew_features() {
-		return new_features;
+	public String getnewFeatures() {
+		return newFeatures;
 	}
-	public void setNew_features(String new_features) {
-		this.new_features = new_features;
+	public void setnewFeatures(String newFeatures) {
+		this.newFeatures = newFeatures;
 	}
 	
 	

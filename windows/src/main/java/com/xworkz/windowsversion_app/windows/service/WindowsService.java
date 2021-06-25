@@ -20,4 +20,16 @@ public interface WindowsService {
 
 	public Object[] validateAndGetwindowsReleaseYearAndNewFeaturesByWindowsName(String name);
 
+	 List<Object[]> validateAndGetwindowsNameAndwindowsNewFeaturesBywindowsReleaseYear(int relaseYear);
+
+	public int validateAndUpdateReleaseYearByNameH(String name, int releaseYear);
+
+	public int validateAndUpdateFearureByNameH(String name, String feature);
+
+	public int validateAndDeleteByNameH(String name);
+
+	public int validateAndDeleteByYearH(int year);
+
+	public int validateAndDeleteByFeatureH(String feature);
+
 }

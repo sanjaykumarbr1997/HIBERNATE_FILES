@@ -20,4 +20,16 @@ public interface WindowsDAO {
 
 	Object[] getwindowsReleaseYearAndNewFeaturesByWindowsName(String name);
 
+	List<Object[]> getwindowsNameAndwindowsNewFeaturesBywindowsReleaseYear(int releaseYear);
+
+	int updateReleaseYearByNameH(String name,int releaseYear);
+
+	int updateFearureByNameH(String name, String feature);
+
+	int deleteByNameH(String name);
+
+	int deleteByYearH(int year);
+
+	int deleteByFeatureH(String feature);
+
 }

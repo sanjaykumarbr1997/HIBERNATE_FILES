@@ -107,4 +107,67 @@ public class IplTeamServiceImpl implements IplTeamService {
 		return null;
 	}
 
+
+
+	@Override
+	public List<Object[]> validateAndGetiplTeamNameAndNoofPlayersByiplTeamLocation(String location) {
+		if(location!=null) {
+			return iplDAO.getiplTeamNameAndNoofPlayersByiplTeamLocation(location);
+		}
+		else {
+			System.out.println("location cant be empty");
+		}
+		return null;
+	}
+
+
+
+	@Override
+	public int validateAndUpdateNoOfPlayersByNameH(String name, int players) {
+		if(name!=null ) {
+			return iplDAO.updateNoOfPlayersByNameH(name,players);
+		}
+		return 0;
+	}
+
+
+
+	@Override
+	public int validateAndUpdateTeamNameByLocationH(String location, String name) {
+		if(name!=null ) {
+			return iplDAO.updateTeamNameByLocation(location,name);
+		}
+		return 0;
+	}
+
+
+
+	@Override
+	public int validateAndDeleteByNameH(String name) {
+		if(name!=null ) {
+			return iplDAO.deleteByNameH(name);
+		}
+		return 0;
+	}
+
+
+
+	@Override
+	public int validateAndDeleteByLocationH(String location) {
+		if(location!=null ) {
+			return iplDAO.deleteLocationH(location);
+		}
+		return 0;
+	}
+
+
+
+	@Override
+	public int validateAndDeleteBySizeH(int size) {
+		if(size!=0) {
+			return iplDAO.deleteBySizeH(size);
+		}
+		return 0;
+	}
+
 }

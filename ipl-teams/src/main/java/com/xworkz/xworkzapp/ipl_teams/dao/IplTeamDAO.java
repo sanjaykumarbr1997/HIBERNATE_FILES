@@ -21,6 +21,18 @@ public interface IplTeamDAO {
 	public IplTeamDTO getDetailsByIplTeamName(String name);
 
 	public Object[] getIplTeamLocationAndNoOfPlayersByIplTeamName(String name);
+
+	public List<Object[]> getiplTeamNameAndNoofPlayersByiplTeamLocation(String location);
+
+	public int updateNoOfPlayersByNameH(String name, int players);
+
+	public int updateTeamNameByLocation(String location, String name);
+
+	public int deleteByNameH(String name);
+
+	public int deleteLocationH(String location);
+
+	public int deleteBySizeH(int size);
 	
 	
 

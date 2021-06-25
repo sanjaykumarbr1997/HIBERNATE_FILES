@@ -140,6 +140,81 @@ public class Tester {
 		}
 		
 		
+		System.out.println("H: Press \"Y\" to get  iplTeam name & no of players  by iplTeam location,if not  press \"N\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			System.out.println("Enter iplTeam location");
+			IplTeamService iplTeamService = new IplTeamServiceImpl();
+			List<Object[]> objec = iplTeamService.validateAndGetiplTeamNameAndNoofPlayersByiplTeamLocation(sc.next());
+			for(Object o2[] :objec) {
+				for(Object objectt:o2) {
+					System.out.print(objectt +" ");
+					
+				}
+			}
+			
+			
+		}
+		
+		System.out.println("H:Press \"Y\" to update iplTeam no of players by iplTeam name  \"N\" ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			
+				System.out.println("Enter name of iplTeam ");
+				System.out.println("Enter new no of players");
+				
+				IplTeamService iplTeamService = new IplTeamServiceImpl();
+				int rowAffected=iplTeamService.validateAndUpdateNoOfPlayersByNameH(sc.next(),sc.nextInt());
+				System.out.println(rowAffected);
+			
+			
+		}
+		
+		System.out.println("H:Press \"Y\" to update iplTeam name by location  \"N\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			
+				System.out.println("Enter location ");
+				System.out.println("Enter team name");
+				
+				IplTeamService iplTeamService = new IplTeamServiceImpl();
+				int rowAffected=iplTeamService.validateAndUpdateTeamNameByLocationH(sc.next(),sc.next());
+				System.out.println(rowAffected);
+			
+			
+		}
+		
+		
+		
+		System.out.println("H:Press \"Y\" to delete iplTeam details by name  \"N\" ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			
+				System.out.println("Enter name of iplTeam ");				
+				IplTeamService iplTeamService = new IplTeamServiceImpl();
+				int rowAffected=iplTeamService.validateAndDeleteByNameH(sc.next());
+				System.out.println(rowAffected);
+			
+			
+		}
+		
+		System.out.println("H:Press \"Y\" to delete iplTeam details by location  \"N\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			
+				System.out.println("Enter location ");				
+				IplTeamService iplTeamService = new IplTeamServiceImpl();
+				int rowAffected=iplTeamService.validateAndDeleteByLocationH(sc.next());
+				System.out.println(rowAffected);
+			
+			
+		}
+		
+		System.out.println("H:Press \"Y\" to delete iplTeam details by team size  \"N\"  ");
+		if(sc.next().equalsIgnoreCase("Y")) {
+			
+				System.out.println("Enter size ");				
+				IplTeamService iplTeamService = new IplTeamServiceImpl();
+				int rowAffected=iplTeamService.validateAndDeleteBySizeH(sc.nextInt());
+				System.out.println(rowAffected);
+			
+			
+		}
 		
 		
 		sc.close();

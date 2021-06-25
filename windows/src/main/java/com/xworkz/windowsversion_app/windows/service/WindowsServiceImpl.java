@@ -81,4 +81,70 @@ public class WindowsServiceImpl implements WindowsService {
 		return null;
 	}
 
+	@Override
+	public List<Object[]> validateAndGetwindowsNameAndwindowsNewFeaturesBywindowsReleaseYear(int releaseYear) {
+		if(releaseYear!=0) {
+			return wDAO.getwindowsNameAndwindowsNewFeaturesBywindowsReleaseYear(releaseYear);
+		}
+		else {
+			System.out.println("Name cant be null");
+		}
+		return null;
+	}
+
+	@Override
+	public int validateAndUpdateReleaseYearByNameH(String name, int releaseYear) {
+		if(releaseYear!=0) {
+			return wDAO.updateReleaseYearByNameH(name,releaseYear);
+		}
+		else {
+			System.out.println("Name cant be null");
+		}
+		return 0;
+	}
+
+	@Override
+	public int validateAndUpdateFearureByNameH(String name, String feature) {
+		if(name!=null) {
+			return wDAO.updateFearureByNameH(name,feature);
+		}
+		else {
+			System.out.println("Name cant be null");
+		}
+		return 0;
+	}
+
+	@Override
+	public int validateAndDeleteByNameH(String name) {
+		if(name!=null) {
+			return wDAO.deleteByNameH(name);
+		}
+		else {
+			System.out.println("Name cant be null");
+		}
+		return 0;
+	}
+
+	@Override
+	public int validateAndDeleteByYearH(int year) {
+		if(year!=0) {
+			return wDAO.deleteByYearH(year);
+		}
+		else {
+			System.out.println("Name cant be null");
+		}
+		return 0;
+	}
+
+	@Override
+	public int validateAndDeleteByFeatureH(String feature) {
+		if(feature!=null) {
+			return wDAO.deleteByFeatureH(feature);
+		}
+		else {
+			System.out.println("Name cant be null");
+		}
+		return 0;
+	}
+
 }

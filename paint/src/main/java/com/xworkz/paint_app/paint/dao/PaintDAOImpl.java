@@ -122,7 +122,8 @@ public class PaintDAOImpl implements PaintDAO {
 		Session session =null;
 		try {
 			session=HibernateUtil.getSessionFactory().openSession();
-			Query qry = session.createQuery("select dto.color from PaintDTO dto where dto.price = '"+price+"' ");
+			Query qry = session.createQuery("select dto.color from PaintDTO dto where dto.price = :pri ");
+			qry.setParameter("pri", price);
 			String s =(String) qry.uniqueResult();
 			
 			return s;
@@ -149,7 +150,8 @@ public class PaintDAOImpl implements PaintDAO {
 		Session session =null;
 		try {
 			session=HibernateUtil.getSessionFactory().openSession();
-			Query qry = session.createQuery("select dto from PaintDTO dto where dto.name = '"+name+"' ");
+			Query qry = session.createQuery("select dto from PaintDTO dto where dto.name = :nam");
+			qry.setParameter("nam", name);
 			pntDTO = (PaintDTO) qry.uniqueResult();
 			
 			return pntDTO;
@@ -177,7 +179,8 @@ public class PaintDAOImpl implements PaintDAO {
 		Session session =null;
 		try {
 			session=HibernateUtil.getSessionFactory().openSession();
-			Query qry = session.createQuery("select dto.price,dto.color from PaintDTO dto where dto.name = '"+name+"' ");
+			Query qry = session.createQuery("select dto.price,dto.color from PaintDTO dto where dto.name = :na");
+			qry.setParameter("na", name);
 			ob = (Object[]) qry.uniqueResult();
 			
 			return ob;
@@ -201,10 +204,10 @@ public class PaintDAOImpl implements PaintDAO {
 
 	@Override
 	public List<Object[]> getPaintPriceAndPaintColorByExpiryYear(int year) {
-		String hql = "select dto.price,dto.color from PaintDTO dto where dto.year="+year+" ";
+		String hql = "select dto.price,dto.color from PaintDTO dto where dto.year=:yer";
 		Session session = null;
 		try {
-			return HibernateUtil.getSessionFactory().openSession().createQuery(hql).list();
+			return HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("yer", year).list();
 		}catch (HibernateException e) {
 			e.printStackTrace();
 		}
@@ -223,13 +226,15 @@ public class PaintDAOImpl implements PaintDAO {
 
 	@Override
 	public int updatePriceByNameH(String name, double price) {
-		String hql = "update PaintDTO dto set dto.price='"+ price+"' where dto.name='"+name+"'";
+		String hql = "update PaintDTO dto set dto.price=:pr where dto.name =:name";
 		Session session =null;
 		Transaction transc=null;
 		try {
 		session=HibernateUtil.getSessionFactory().openSession();
 		transc = session.beginTransaction();
 		Query query =session.createQuery(hql);
+		query.setParameter("pr", price);
+		query.setParameter("name", name);
 		int rw =query.executeUpdate();
 		transc.commit();
 		return rw;
@@ -304,13 +309,14 @@ public class PaintDAOImpl implements PaintDAO {
 	}
 	@Override
 	public int deleteByNameH(String name) {
-		String hql = "delete from PaintDTO dto where dto.name = '"+name+"'";
+		String hql = "delete from PaintDTO dto where dto.name =:name";
 		Session session =null;
 		Transaction transc=null;
 		try {
 		session=HibernateUtil.getSessionFactory().openSession();
 		transc = session.beginTransaction();
 		Query query =session.createQuery(hql);
+		query.setParameter("name", name);
 		int rw =query.executeUpdate();
 		transc.commit();
 		return rw;
@@ -331,13 +337,14 @@ public class PaintDAOImpl implements PaintDAO {
 
 	@Override
 	public int deleteByYearH(int year) {
-		String hql = "delete from PaintDTO dto where dto.year = "+year+"";
+		String hql = "delete from PaintDTO dto where dto.year = :yr";
 		Session session =null;
 		Transaction transc=null;
 		try {
 		session=HibernateUtil.getSessionFactory().openSession();
 		transc = session.beginTransaction();
 		Query query =session.createQuery(hql);
+		query.setParameter("yr", year);
 		int rw =query.executeUpdate();
 		transc.commit();
 		return rw;
@@ -357,13 +364,14 @@ public class PaintDAOImpl implements PaintDAO {
 
 	@Override
 	public int deleteByColorH(String color) {
-		String hql = "delete from PaintDTO dto where dto.color = '"+color+"'";
+		String hql = "delete from PaintDTO dto where dto.color = :colo";
 		Session session =null;
 		Transaction transc=null;
 		try {
 		session=HibernateUtil.getSessionFactory().openSession();
 		transc = session.beginTransaction();
 		Query query =session.createQuery(hql);
+		query.setParameter("colo", color);
 		int rw =query.executeUpdate();
 		transc.commit();
 		return rw;

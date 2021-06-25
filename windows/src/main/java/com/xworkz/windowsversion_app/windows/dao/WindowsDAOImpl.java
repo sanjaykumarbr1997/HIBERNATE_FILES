@@ -2,17 +2,20 @@ package com.xworkz.windowsversion_app.windows.dao;
 
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import com.xworkz.singleton.HibernateUtil;
 import com.xworkz.windowsversion_app.windows.dto.WindowsDTO;
 
 public class WindowsDAOImpl implements WindowsDAO {
-	
+	Session session =null;
+	Transaction transaction = null;
 	public void save(WindowsDTO wnDTO) {
-		Session session =null;
-		Transaction transaction = null;
+		
+		
 		try {
 		session =HibernateUtil.getSessionFactory().openSession();
 		transaction = session.beginTransaction();
@@ -31,7 +34,6 @@ public class WindowsDAOImpl implements WindowsDAO {
 	}
 
 	public List<WindowsDTO> getAllDetails() {
-		Session session =null;
 		try {
 			
 			 return HibernateUtil.getSessionFactory().openSession().createQuery("from WindowsDTO wwDTO").list();
@@ -50,16 +52,14 @@ public class WindowsDAOImpl implements WindowsDAO {
 	}
 
 	public void updateColorByName(String name, int id, int year) {
-		Session session =null;
-		Transaction trans= null;
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
-			trans = session.beginTransaction();
+			transaction = session.beginTransaction();
 			WindowsDTO ctDTO = session.get(WindowsDTO.class, id);
 			if(ctDTO.getName().equalsIgnoreCase(name)) {
 				ctDTO.setReleaseYear(year);
 				session.update(ctDTO);
-				trans.commit();
+				transaction.commit();
 				
 			}
 			else {
@@ -68,7 +68,6 @@ public class WindowsDAOImpl implements WindowsDAO {
 			
 		}catch (Exception e) {
 			e.printStackTrace();
-			trans.rollback();
 			
 		}
 		finally {
@@ -84,15 +83,13 @@ public class WindowsDAOImpl implements WindowsDAO {
 	}
 
 	public void deleteByName(String name, int id) {
-		Session session =null;
-		Transaction trans= null;
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
-			trans = session.beginTransaction();
+			transaction = session.beginTransaction();
 			WindowsDTO stDTO = session.get(WindowsDTO.class, id);
 			if(stDTO.getName().equalsIgnoreCase(name)) {
 				session.delete(stDTO);
-				trans.commit();
+				transaction.commit();
 				
 			}
 			else {
@@ -101,28 +98,24 @@ public class WindowsDAOImpl implements WindowsDAO {
 			
 		}catch (Exception e) {
 			e.printStackTrace();
-			trans.rollback();
+			transaction.rollback();
 			
 		}
 		finally {
 			if(session!=null) {
 				session.close();
 			}
-			if(HibernateUtil.getSessionFactory()!=null) {
-				HibernateUtil.getSessionFactory().close();
-			}
-		}
+					}
 		
 		
 	}
 
 	@Override
 	public String getwindowsNewFeaturesByWindowsName(String name) {
-		String hql = "select dto.new_features from WindowsDTO dto where dto.name='"+name+"' ";
-		Session session =null;
+		String hql = "select dto.newFeatures from WindowsDTO dto where dto.name=:nnn";
 		try {
 			
-			 return (String) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+			 return (String) HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("nnn", name).uniqueResult();
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -137,11 +130,10 @@ public class WindowsDAOImpl implements WindowsDAO {
 
 	@Override
 	public WindowsDTO getDetailsByWindowsName(String name) {
-		String hql = "select dto from WindowsDTO dto where dto.name='"+name+"' ";
-		Session session =null;
+		String hql = "select dto from WindowsDTO dto where dto.name=:nan";
 		try {
 			
-			 return (WindowsDTO) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+			 return (WindowsDTO) HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("nan", name).uniqueResult();
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -156,11 +148,10 @@ public class WindowsDAOImpl implements WindowsDAO {
 
 	@Override
 	public Object[] getwindowsReleaseYearAndNewFeaturesByWindowsName(String name) {
-		String hql = "select dto.releaseYear,dto.new_features from WindowsDTO dto where dto.name='"+name+"' ";
-		Session session =null;
+		String hql = "select dto.releaseYear,dto.newFeatures from WindowsDTO dto where dto.name=:nm";
 		try {
 			
-			 return (Object[]) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+			 return (Object[]) HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("nm", name).uniqueResult();
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -173,6 +164,172 @@ public class WindowsDAOImpl implements WindowsDAO {
 				}
 			}
 		return null;
+	}
+
+	@Override
+	public List<Object[]> getwindowsNameAndwindowsNewFeaturesBywindowsReleaseYear(int releaseYear) {
+String hql = "select dto.name,dto.newFeatures from WindowsDTO dto where dto.releaseYear=:ry ";
+		
+		try {
+			
+			return HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("ry", releaseYear).list();
+			}catch (HibernateException e) {
+				e.printStackTrace();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				
+				
+			}
+		return null;
+	}
+
+	@Override
+	public int updateReleaseYearByNameH(String name,int releaseYear) {
+String hql = "update WindowsDTO dto set dto.releaseYear = :ryy where dto.name=:nn ";
+		
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery(hql);
+			query.setParameter("ryy", releaseYear);
+			query.setParameter("nn", name);
+			int r = query.executeUpdate();
+			
+			transaction.commit();
+			return r; 
+			}catch (HibernateException e) {
+				e.printStackTrace();
+				transaction.rollback();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				if(HibernateUtil.getSessionFactory()!=null) {
+					HibernateUtil.getSessionFactory().close();
+				}
+				
+			}
+		return 0;
+	}
+
+	@Override
+	public int updateFearureByNameH(String name, String feature) {
+String hql = "update WindowsDTO dto set dto.newFeatures = :nf where dto.name=:nn ";
+		
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery(hql);
+			query.setParameter("nf", feature);
+			query.setParameter("nn", name);
+			int r = query.executeUpdate();
+			
+			transaction.commit();
+			return r; 
+			}catch (HibernateException e) {
+				e.printStackTrace();
+				transaction.rollback();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				
+				
+			}
+		return 0;
+	}
+
+	@Override
+	public int deleteByNameH(String name) {
+String hql = "delete from WindowsDTO dto where dto.name=:nn ";
+		
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery(hql);
+			query.setParameter("nn", name);
+			int r = query.executeUpdate();
+			
+			transaction.commit();
+			return r; 
+			}catch (HibernateException e) {
+				e.printStackTrace();
+				transaction.rollback();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				if(HibernateUtil.getSessionFactory()!=null) {
+					HibernateUtil.getSessionFactory().close();
+				}
+				
+			}
+		return 0;
+	}
+
+	@Override
+	public int deleteByYearH(int year) {
+String hql = "delete from WindowsDTO dto where dto.releaseYear=:ry ";
+		
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery(hql);
+			query.setParameter("ry", year);
+			int r = query.executeUpdate();
+			
+			transaction.commit();
+			return r; 
+			}catch (HibernateException e) {
+				e.printStackTrace();
+				transaction.rollback();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				if(HibernateUtil.getSessionFactory()!=null) {
+					HibernateUtil.getSessionFactory().close();
+				}
+				
+			}
+		return 0;
+	}
+
+	@Override
+	public int deleteByFeatureH(String feature) {
+String hql = "delete from WindowsDTO dto where dto.newFeatures=:fy ";
+		
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery(hql);
+			query.setParameter("fy", feature);
+			int r = query.executeUpdate();
+			
+			transaction.commit();
+			return r; 
+			}catch (HibernateException e) {
+				e.printStackTrace();
+				transaction.rollback();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				if(HibernateUtil.getSessionFactory()!=null) {
+					HibernateUtil.getSessionFactory().close();
+				}
+				
+			}
+		return 0;
+
 	}
 
 }

@@ -22,4 +22,17 @@ public interface IplTeamService {
 
 	public Object[] validateAndGetIplTeamLocationAndNoOfPlayersByIplTeamName(String name);
 
+	public List<Object[]> validateAndGetiplTeamNameAndNoofPlayersByiplTeamLocation(String location);
+
+	public int validateAndUpdateNoOfPlayersByNameH(String name, int noOfPlayers);
+
+	public int validateAndUpdateTeamNameByLocationH(String location, String name);
+
+	public int validateAndDeleteByNameH(String name);
+
+	public int validateAndDeleteByLocationH(String location);
+
+	public int validateAndDeleteBySizeH(int size);
+
+
 }

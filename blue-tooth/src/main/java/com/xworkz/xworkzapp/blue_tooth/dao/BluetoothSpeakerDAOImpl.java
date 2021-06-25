@@ -102,10 +102,10 @@ public class BluetoothSpeakerDAOImpl implements BluetoothSpeakerDAO {
 	@Override
 	public BluetoothSpeakerDTO getDetailsByBluetoothBrand(String brand) {
 		Session session = null;
-		String hql = "Select dto from BluetoothSpeakerDTO dto where dto.brand='"+brand+"'";
+		String hql = "Select dto from BluetoothSpeakerDTO dto where dto.brand=:brnd";
 		
 		try {
-			return (BluetoothSpeakerDTO) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+			return (BluetoothSpeakerDTO) HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("brnd", brand).uniqueResult();
 		}catch (HibernateException e) {
 			e.printStackTrace();
 		}
@@ -129,10 +129,10 @@ public class BluetoothSpeakerDAOImpl implements BluetoothSpeakerDAO {
 	@Override
 	public String getBluetoothNameByBrand(String brand) {
 		Session session =null;
-		String hql = "Select dto.bluetoothName from BluetoothSpeakerDTO dto where dto.brand='"+brand+"'";
+		String hql = "Select dto.bluetoothName from BluetoothSpeakerDTO dto where dto.brand=:brnd";
 
 		try {
-			return (String) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+			return (String) HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("brnd", brand).uniqueResult();
 		}catch (HibernateException e) {
 			e.printStackTrace();
 		}
@@ -153,10 +153,10 @@ public class BluetoothSpeakerDAOImpl implements BluetoothSpeakerDAO {
 	@Override
 	public Object[] getBluetoothRangeAndbluetoothNameByBrand(String brand) {
 		Session session =null;
-		String hql = "Select dto.range ,dto.bluetoothName from BluetoothSpeakerDTO dto where dto.brand='"+brand+"'";
+		String hql = "Select dto.range ,dto.bluetoothName from BluetoothSpeakerDTO dto where dto.brand=:brnd";
 
 		try {
-			return (Object[]) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+			return (Object[]) HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("brnd", brand).uniqueResult();
 		}catch (HibernateException e) {
 			e.printStackTrace();
 		}
@@ -176,18 +176,21 @@ public class BluetoothSpeakerDAOImpl implements BluetoothSpeakerDAO {
 
 	@Override
 	public List<Object[]> getbluetoothRangeAndbluetoothNameBybluetoothCompanyName(String brand) {
-		String hql = "select dto.range,dto.bluetoothName from BluetoothSpeakerDTO dto where dto.brand = '"+brand+"'";
-		return HibernateUtil.getSessionFactory().openSession().createQuery(hql).list();
+		String hql = "select dto.range,dto.bluetoothName from BluetoothSpeakerDTO dto where dto.brand=:brnd";
+		return HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("brnd", brand).list();
 	}
 
 	@Override
 	public int updateNameByBrandH(String brand, String name) {
 		Session session =null;
-		String hql = "update BluetoothSpeakerDTO dto set dto.bluetoothName = '"+name+"' where dto.brand='"+brand+"'";
+		String hql = "update BluetoothSpeakerDTO dto set dto.bluetoothName = :nme where dto.brand=:brnd";
 
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			Query query = session.createQuery(hql);
+			query.setParameter("brnd", brand);
+			query.setParameter("nme", name);
+
 			transaction = session.beginTransaction();
 			int rw = query.executeUpdate();
 			
@@ -205,9 +208,7 @@ public class BluetoothSpeakerDAOImpl implements BluetoothSpeakerDAO {
 			if(session!=null) {
 				session.close();
 			}
-			if(HibernateUtil.getSessionFactory()!=null) {
-				HibernateUtil.getSessionFactory().close();
-			}
+			
 		
 			
 		}
@@ -217,11 +218,14 @@ public class BluetoothSpeakerDAOImpl implements BluetoothSpeakerDAO {
 	@Override
 	public int updateRangeByNameH(String brand, String range) {
 		Session session =null;
-		String hql = "update BluetoothSpeakerDTO dto set dto.brand = '"+brand+"' where dto.range='"+range+"'";
+		String hql = "update BluetoothSpeakerDTO dto set dto.brand = :brn where dto.range=:rg";
 
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			Query query = session.createQuery(hql);
+			query.setParameter("brn", brand);
+			query.setParameter("rg", range);
+
 			transaction = session.beginTransaction();
 			int rw = query.executeUpdate();
 			
@@ -251,11 +255,12 @@ public class BluetoothSpeakerDAOImpl implements BluetoothSpeakerDAO {
 	@Override
 	public int deleteByBrandH(String brand) {
 		Session session =null;
-		String hql = "delete from BluetoothSpeakerDTO dto where dto.brand='"+brand+"'";
+		String hql = "delete from BluetoothSpeakerDTO dto where dto.brand=:br";
 
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			Query query = session.createQuery(hql);
+			query.setParameter("br", brand);
 			transaction = session.beginTransaction();
 			int rw = query.executeUpdate();
 			
@@ -285,11 +290,12 @@ public class BluetoothSpeakerDAOImpl implements BluetoothSpeakerDAO {
 	@Override
 	public int deleteByRangeH(String range) {
 		Session session =null;
-		String hql = "delete from BluetoothSpeakerDTO dto where dto.range='"+range+"'";
+		String hql = "delete from BluetoothSpeakerDTO dto where dto.range=:rng";
 
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			Query query = session.createQuery(hql);
+			query.setParameter("rng", range);
 			transaction = session.beginTransaction();
 			int rw = query.executeUpdate();
 			
@@ -320,11 +326,12 @@ public class BluetoothSpeakerDAOImpl implements BluetoothSpeakerDAO {
 	@Override
 	public int deleteByBluetoothNameH(String bluetoothName) {
 		Session session =null;
-		String hql = "delete from BluetoothSpeakerDTO dto where dto.bluetoothName='"+bluetoothName+"'";
+		String hql = "delete from BluetoothSpeakerDTO dto where dto.bluetoothName=:blt";
 
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			Query query = session.createQuery(hql);
+			query.setParameter("blt", bluetoothName);
 			transaction = session.beginTransaction();
 			int rw = query.executeUpdate();
 			

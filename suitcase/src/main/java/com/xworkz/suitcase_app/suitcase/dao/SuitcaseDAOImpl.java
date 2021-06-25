@@ -119,10 +119,11 @@ public class SuitcaseDAOImpl implements SuitcaseDAO {
 
 	@Override
 	public String getSuitcaseColorBySuitcaseName(String name) {
-		String hql = "select dto.color from SuitcaseDTO dto where dto.name = '"+name+"'";
+		String hql = "select dto.color from SuitcaseDTO dto where dto.name = :nm";
+		
 		try {
 			
-			 return (String) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+			 return (String) HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("nm", name).uniqueResult();
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -137,10 +138,10 @@ public class SuitcaseDAOImpl implements SuitcaseDAO {
 
 	@Override
 	public SuitcaseDTO getDetailsBySuitcaseName(String name) {
-		String hql = "select dto from SuitcaseDTO dto where dto.name = '"+name+"'";
+		String hql = "select dto from SuitcaseDTO dto where dto.name = :nam";
 		try {
 			
-			 return (SuitcaseDTO) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+			 return (SuitcaseDTO) HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("nam", name).uniqueResult();
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -155,10 +156,10 @@ public class SuitcaseDAOImpl implements SuitcaseDAO {
 
 	@Override
 	public Object[] getSuitcaseSizeAndColorBysuitcaseName(String name) {
-		String hql = "select dto.size,dto.color from SuitcaseDTO dto where dto.name = '"+name+"'";
+		String hql = "select dto.size,dto.color from SuitcaseDTO dto where dto.name = :name'";
 		try {
 			
-			 return (Object[]) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+			 return (Object[]) HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("name", name).uniqueResult();
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -175,11 +176,11 @@ public class SuitcaseDAOImpl implements SuitcaseDAO {
 
 	@Override
 	public List<Object[]> getsuitcaseNameAndsuitcaseColorBysuitcaseSize(String size) {
-String hql = "select dto.name,dto.color from SuitcaseDTO dto where dto.size='"+size +"' ";
+String hql = "select dto.name,dto.color from SuitcaseDTO dto where dto.size=:sz";
 		
 		try {
 			
-			return HibernateUtil.getSessionFactory().openSession().createQuery(hql).list();
+			return HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("sz", size).list();
 			}catch (HibernateException e) {
 				e.printStackTrace();
 			}
@@ -195,12 +196,14 @@ String hql = "select dto.name,dto.color from SuitcaseDTO dto where dto.size='"+s
 
 	@Override
 	public int updateSizeByNameH(String name, String size) {
-String hql = "update SuitcaseDTO dto set dto.size ='"+size+"' where dto.name='"+name +"' ";
+String hql = "update SuitcaseDTO dto set dto.size =:sz where dto.name=:nme";
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			Query query = session.createQuery(hql);
+			query.setParameter("nme", name);
+			query.setParameter("sz", size);
 			int r = query.executeUpdate();
 			
 			transaction.commit();
@@ -222,12 +225,14 @@ String hql = "update SuitcaseDTO dto set dto.size ='"+size+"' where dto.name='"+
 	}
 
 	public int updateColorByNameH(String name, String color) {
-String hql = "update SuitcaseDTO dto set dto.color ='"+color+"' where dto.name='"+name +"' ";
+String hql = "update SuitcaseDTO dto set dto.color =:clr where dto.name=:nm ";
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			Query query = session.createQuery(hql);
+			query.setParameter("nm", name);
+			query.setParameter("clr", color);
 			int r = query.executeUpdate();
 			
 			transaction.commit();
@@ -250,12 +255,13 @@ String hql = "update SuitcaseDTO dto set dto.color ='"+color+"' where dto.name='
 
 	@Override
 	public int deleteByNameH(String name) {
-String hql = "delete from SuitcaseDTO dto where dto.name='"+name +"' ";
+String hql = "delete from SuitcaseDTO dto where dto.name=:nm";
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			Query query = session.createQuery(hql);
+			query.setParameter("nm", name);
 			int r = query.executeUpdate();
 			
 			transaction.commit();
@@ -278,13 +284,15 @@ String hql = "delete from SuitcaseDTO dto where dto.name='"+name +"' ";
 
 	@Override
 	public int deleteByColorH(String color) {
-String hql = "delete from SuitcaseDTO dto where dto.color='"+color +"' ";
+String hql = "delete from SuitcaseDTO dto where dto.color=:clr";
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			Query query = session.createQuery(hql);
+			query.setParameter("clr", color);
 			int r = query.executeUpdate();
+			
 			
 			transaction.commit();
 			return r; 
@@ -306,13 +314,14 @@ String hql = "delete from SuitcaseDTO dto where dto.color='"+color +"' ";
 
 	@Override
 	public int deleteBySizeH(String size) {
-String hql = "delete from SuitcaseDTO dto where dto.size='"+size +"' ";
+String hql = "delete from SuitcaseDTO dto where dto.size=:siz ";
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			Query query = session.createQuery(hql);
 			int r = query.executeUpdate();
+			query.setParameter("siz", size);
 			
 			transaction.commit();
 			return r; 

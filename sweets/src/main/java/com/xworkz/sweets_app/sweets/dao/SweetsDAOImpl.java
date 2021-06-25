@@ -158,10 +158,10 @@ public class SweetsDAOImpl implements SweetsDAO {
 
 	@Override
 	public String getSweetsColorBySweetName(String name) {
-		String hql = "select dto.color from SweetsDTO dto where dto.name ='"+name+"'  ";
+		String hql = "select dto.color from SweetsDTO dto where dto.name =:nam";
 		try {
 			
-			return (String) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+			return (String) HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("nam", name).uniqueResult();
 			}catch (HibernateException e) {
 				e.printStackTrace();
 			}
@@ -176,10 +176,10 @@ public class SweetsDAOImpl implements SweetsDAO {
 
 	@Override
 	public SweetsDTO getDetailsBySweetName(String name) {
-		String hql = "select dto from SweetsDTO dto where dto.name ='"+name+"'  ";
+		String hql = "select dto from SweetsDTO dto where dto.name =:nm ";
 		try {
 			
-			return (SweetsDTO) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+			return (SweetsDTO) HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("nm", name).uniqueResult();
 			}catch (HibernateException e) {
 				e.printStackTrace();
 			}
@@ -194,10 +194,10 @@ public class SweetsDAOImpl implements SweetsDAO {
 
 	@Override
 	public Object[] getsweetShapeAndColorBySweetName(String name) {
-		String hql = "select dto.shape,dto.color from SweetsDTO dto where dto.name ='"+name+"'  ";
+		String hql = "select dto.shape,dto.color from SweetsDTO dto where dto.name =:name ";
 		try {
 			
-			return (Object[]) HibernateUtil.getSessionFactory().openSession().createQuery(hql).uniqueResult();
+			return (Object[]) HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("name", name).uniqueResult();
 			}catch (HibernateException e) {
 				e.printStackTrace();
 			}
@@ -214,11 +214,11 @@ public class SweetsDAOImpl implements SweetsDAO {
 
 	@Override
 	public List<Object[]> getsweetPriceAndsweetColorBysweetshape(String shape) {
-String hql = "select dto.name,dto.color from SweetsDTO dto where dto.shape='"+shape +"' ";
+String hql = "select dto.name,dto.color from SweetsDTO dto where dto.shape=:sha ";
 		
 		try {
 			
-			return HibernateUtil.getSessionFactory().openSession().createQuery(hql).list();
+			return HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("sha", shape).list();
 			}catch (HibernateException e) {
 				e.printStackTrace();
 			}
@@ -234,12 +234,14 @@ String hql = "select dto.name,dto.color from SweetsDTO dto where dto.shape='"+sh
 
 	@Override
 	public int updatePriceByNameH(String name, double price) {
-String hql = "update SweetsDTO dto set dto.price ="+price+" where dto.name='"+name +"' ";
+String hql = "update SweetsDTO dto set dto.price =:pri where dto.name=:nam ";
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			Query query = session.createQuery(hql);
+			query.setParameter("nam", name);
+			query.setParameter("pri", price);
 			int r = query.executeUpdate();
 			
 			transaction.commit();
@@ -262,12 +264,14 @@ String hql = "update SweetsDTO dto set dto.price ="+price+" where dto.name='"+na
 
 	@Override
 	public int updateColorByNameH(String name, String color) {
-String hql = "update SweetsDTO dto set dto.color ='"+color+"' where dto.name='"+name +"' ";
+String hql = "update SweetsDTO dto set dto.color =:cl where dto.name=:nm ";
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			Query query = session.createQuery(hql);
+			query.setParameter("nm",name);
+			query.setParameter("cl", color);
 			int r = query.executeUpdate();
 			
 			transaction.commit();
@@ -290,12 +294,14 @@ String hql = "update SweetsDTO dto set dto.color ='"+color+"' where dto.name='"+
 
 	@Override
 	public int updatesweetshapeByNameH(String name, String shape) {
-String hql = "update SweetsDTO dto set dto.shape ='"+shape+"' where dto.name='"+name +"' ";
+String hql = "update SweetsDTO dto set dto.shape =:sh where dto.name=:na ";
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			Query query = session.createQuery(hql);
+			query.setParameter("na", name);
+			query.setParameter("sh", shape);
 			int r = query.executeUpdate();
 			
 			transaction.commit();
@@ -318,12 +324,13 @@ String hql = "update SweetsDTO dto set dto.shape ='"+shape+"' where dto.name='"+
 
 	@Override
 	public int deleteByNameH(String name) {
-String hql = "delete from SweetsDTO dto where dto.name='"+name +"' ";
+String hql = "delete from SweetsDTO dto where dto.name=:nam ";
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			Query query = session.createQuery(hql);
+			query.setParameter("nam", name);
 			int r = query.executeUpdate();
 			
 			transaction.commit();
@@ -346,12 +353,13 @@ String hql = "delete from SweetsDTO dto where dto.name='"+name +"' ";
 
 	@Override
 	public int deleteByPriceH(double price) {
-String hql = "delete from SweetsDTO dto where dto.price="+price +" ";
+String hql = "delete from SweetsDTO dto where dto.price=:pri";
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			Query query = session.createQuery(hql);
+			query.setParameter("pri", price);
 			int r = query.executeUpdate();
 			
 			transaction.commit();
@@ -374,12 +382,13 @@ String hql = "delete from SweetsDTO dto where dto.price="+price +" ";
 
 	@Override
 	public int deleteByColorH(String color) {
-String hql = "delete from SweetsDTO dto where dto.color='"+color +"' ";
+String hql = "delete from SweetsDTO dto where dto.color=:clr ";
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			Query query = session.createQuery(hql);
+			query.setParameter("clr", color);
 			int r = query.executeUpdate();
 			
 			transaction.commit();
