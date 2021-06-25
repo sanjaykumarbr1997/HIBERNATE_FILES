@@ -22,4 +22,18 @@ public interface SweetsDAO {
 
 	public Object[] getsweetShapeAndColorBySweetName(String name);
 
+	public List<Object[]> getsweetPriceAndsweetColorBysweetshape(String shape);
+
+	public int updatePriceByNameH(String name, double price);
+
+	public int updateColorByNameH(String name, String color);
+
+	public int updatesweetshapeByNameH(String name, String shape);
+
+	public int deleteByNameH(String name);
+
+	public int deleteByPriceH(double price);
+
+	public int deleteByColorH(String color);
+
 }

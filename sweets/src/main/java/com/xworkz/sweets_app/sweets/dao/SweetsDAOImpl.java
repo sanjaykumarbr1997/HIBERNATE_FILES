@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 import com.xworkz.singleton.HibernateUtil;
 import com.xworkz.sweets_app.sweets.dto.SweetsDTO;
@@ -17,9 +18,9 @@ public class SweetsDAOImpl implements SweetsDAO {
 
 	SessionFactory sessionFactory=null;
 	Session session =null;
+	Transaction transaction =null;
 	public void save(SweetsDTO sDTO) {
 		
-		Transaction transaction =null;
 		try {
 			
 		 sessionFactory=HibernateUtil.getSessionFactory();
@@ -70,7 +71,6 @@ public class SweetsDAOImpl implements SweetsDAO {
 	}
 
 	public void updateColorByName(int id, String name, String color) {
-		Transaction transaction =null;
 		try {
 			
 		sessionFactory=HibernateUtil.getSessionFactory();
@@ -104,7 +104,6 @@ public class SweetsDAOImpl implements SweetsDAO {
 	}
 
 	public void deleteByName(int id, String name) {
-		Transaction transaction =null;
 		try {
 		sessionFactory=HibernateUtil.getSessionFactory();
 		//System.out.println((sessionFactory));
@@ -211,6 +210,194 @@ public class SweetsDAOImpl implements SweetsDAO {
 				}
 			}
 		return null;
+	}
+
+	@Override
+	public List<Object[]> getsweetPriceAndsweetColorBysweetshape(String shape) {
+String hql = "select dto.name,dto.color from SweetsDTO dto where dto.shape='"+shape +"' ";
+		
+		try {
+			
+			return HibernateUtil.getSessionFactory().openSession().createQuery(hql).list();
+			}catch (HibernateException e) {
+				e.printStackTrace();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				
+				
+			}
+		return null;
+	}
+
+	@Override
+	public int updatePriceByNameH(String name, double price) {
+String hql = "update SweetsDTO dto set dto.price ="+price+" where dto.name='"+name +"' ";
+		
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery(hql);
+			int r = query.executeUpdate();
+			
+			transaction.commit();
+			return r; 
+			}catch (HibernateException e) {
+				e.printStackTrace();
+				transaction.rollback();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				if(HibernateUtil.getSessionFactory()!=null) {
+					HibernateUtil.getSessionFactory().close();
+				}
+				
+			}
+		return 0;
+	}
+
+	@Override
+	public int updateColorByNameH(String name, String color) {
+String hql = "update SweetsDTO dto set dto.color ='"+color+"' where dto.name='"+name +"' ";
+		
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery(hql);
+			int r = query.executeUpdate();
+			
+			transaction.commit();
+			return r; 
+			}catch (HibernateException e) {
+				e.printStackTrace();
+				transaction.rollback();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				if(HibernateUtil.getSessionFactory()!=null) {
+					HibernateUtil.getSessionFactory().close();
+				}
+				
+			}
+		return 0;
+	}
+
+	@Override
+	public int updatesweetshapeByNameH(String name, String shape) {
+String hql = "update SweetsDTO dto set dto.shape ='"+shape+"' where dto.name='"+name +"' ";
+		
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery(hql);
+			int r = query.executeUpdate();
+			
+			transaction.commit();
+			return r; 
+			}catch (HibernateException e) {
+				e.printStackTrace();
+				transaction.rollback();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				if(HibernateUtil.getSessionFactory()!=null) {
+					HibernateUtil.getSessionFactory().close();
+				}
+				
+			}
+		return 0;
+	}
+
+	@Override
+	public int deleteByNameH(String name) {
+String hql = "delete from SweetsDTO dto where dto.name='"+name +"' ";
+		
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery(hql);
+			int r = query.executeUpdate();
+			
+			transaction.commit();
+			return r; 
+			}catch (HibernateException e) {
+				e.printStackTrace();
+				transaction.rollback();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				if(HibernateUtil.getSessionFactory()!=null) {
+					HibernateUtil.getSessionFactory().close();
+				}
+				
+			}
+		return 0;
+	}
+
+	@Override
+	public int deleteByPriceH(double price) {
+String hql = "delete from SweetsDTO dto where dto.price="+price +" ";
+		
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery(hql);
+			int r = query.executeUpdate();
+			
+			transaction.commit();
+			return r; 
+			}catch (HibernateException e) {
+				e.printStackTrace();
+				transaction.rollback();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				if(HibernateUtil.getSessionFactory()!=null) {
+					HibernateUtil.getSessionFactory().close();
+				}
+				
+			}
+		return 0;
+	}
+
+	@Override
+	public int deleteByColorH(String color) {
+String hql = "delete from SweetsDTO dto where dto.color='"+color +"' ";
+		
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery(hql);
+			int r = query.executeUpdate();
+			
+			transaction.commit();
+			return r; 
+			}catch (HibernateException e) {
+				e.printStackTrace();
+				transaction.rollback();
+			}
+			finally{
+				if(session!=null) {
+					session.close();
+				}
+				if(HibernateUtil.getSessionFactory()!=null) {
+					HibernateUtil.getSessionFactory().close();
+				}
+				
+			}
+		return 0;
 	}
 	
 	

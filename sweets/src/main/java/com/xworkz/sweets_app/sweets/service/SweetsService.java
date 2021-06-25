@@ -22,4 +22,18 @@ public interface SweetsService {
 
 	Object[] validateAndGetsweetsShapeAndColorBySweetName(String name);
 
+	List<Object[]> validateAndGetsweetPriceAndsweetColorBysweetshape(String shape);
+
+	int validateAndUpdatePriceByNameH(String name, double price);
+
+	int validateAndUpdateColorByNameH(String name, String color);
+
+	int validateAndUpdatesweetshapeByNameH(String name, String shape);
+
+	int validateAndDeleteByNameH(String name);
+
+	int validateAndDeleteByPriceH(double price);
+
+	int validateAndDeleteByColorH(String color);
+
 }
