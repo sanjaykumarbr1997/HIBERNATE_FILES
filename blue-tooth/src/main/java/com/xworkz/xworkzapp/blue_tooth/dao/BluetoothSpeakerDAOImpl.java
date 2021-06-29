@@ -59,9 +59,7 @@ public class BluetoothSpeakerDAOImpl implements BluetoothSpeakerDAO {
 				if(session!=null) {
 					session.close();
 				}
-				if(HibernateUtil.getSessionFactory()!=null) {
-					HibernateUtil.getSessionFactory().close();
-				}
+				
 			}
 			return null;
 		
@@ -102,10 +100,10 @@ public class BluetoothSpeakerDAOImpl implements BluetoothSpeakerDAO {
 	@Override
 	public BluetoothSpeakerDTO getDetailsByBluetoothBrand(String brand) {
 		Session session = null;
-		String hql = "Select dto from BluetoothSpeakerDTO dto where dto.brand=:brnd";
+		//String hql = "Select dto from BluetoothSpeakerDTO dto where dto.brand=:brnd";
 		
 		try {
-			return (BluetoothSpeakerDTO) HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("brnd", brand).uniqueResult();
+			return (BluetoothSpeakerDTO) HibernateUtil.getSessionFactory().openSession().getNamedQuery("getDetailsByBluetoothBrand").setParameter("brnd", brand).uniqueResult();
 		}catch (HibernateException e) {
 			e.printStackTrace();
 		}
@@ -129,10 +127,10 @@ public class BluetoothSpeakerDAOImpl implements BluetoothSpeakerDAO {
 	@Override
 	public String getBluetoothNameByBrand(String brand) {
 		Session session =null;
-		String hql = "Select dto.bluetoothName from BluetoothSpeakerDTO dto where dto.brand=:brnd";
+		//String hql = "Select dto.bluetoothName from BluetoothSpeakerDTO dto where dto.brand=:brnd";
 
 		try {
-			return (String) HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("brnd", brand).uniqueResult();
+			return (String) HibernateUtil.getSessionFactory().openSession().getNamedQuery("getBluetoothNameByBrand").setParameter("brnd", brand).uniqueResult();
 		}catch (HibernateException e) {
 			e.printStackTrace();
 		}
@@ -153,10 +151,10 @@ public class BluetoothSpeakerDAOImpl implements BluetoothSpeakerDAO {
 	@Override
 	public Object[] getBluetoothRangeAndbluetoothNameByBrand(String brand) {
 		Session session =null;
-		String hql = "Select dto.range ,dto.bluetoothName from BluetoothSpeakerDTO dto where dto.brand=:brnd";
+		//String hql = "Select dto.range ,dto.bluetoothName from BluetoothSpeakerDTO dto where dto.brand=:brnd";
 
 		try {
-			return (Object[]) HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("brnd", brand).uniqueResult();
+			return (Object[]) HibernateUtil.getSessionFactory().openSession().getNamedQuery("getBluetoothRangeAndbluetoothNameByBrand").setParameter("brnd", brand).uniqueResult();
 		}catch (HibernateException e) {
 			e.printStackTrace();
 		}
@@ -176,18 +174,18 @@ public class BluetoothSpeakerDAOImpl implements BluetoothSpeakerDAO {
 
 	@Override
 	public List<Object[]> getbluetoothRangeAndbluetoothNameBybluetoothCompanyName(String brand) {
-		String hql = "select dto.range,dto.bluetoothName from BluetoothSpeakerDTO dto where dto.brand=:brnd";
-		return HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("brnd", brand).list();
+		//String hql = "select dto.range,dto.bluetoothName from BluetoothSpeakerDTO dto where dto.brand=:brnd";
+		return HibernateUtil.getSessionFactory().openSession().getNamedQuery("getbluetoothRangeAndbluetoothNameBybluetoothCompanyName").setParameter("brnd", brand).list();
 	}
 
 	@Override
 	public int updateNameByBrandH(String brand, String name) {
 		Session session =null;
-		String hql = "update BluetoothSpeakerDTO dto set dto.bluetoothName = :nme where dto.brand=:brnd";
+		//String hql = "update BluetoothSpeakerDTO dto set dto.bluetoothName = :nme where dto.brand=:brnd";
 
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
-			Query query = session.createQuery(hql);
+			Query query = session.getNamedQuery("updateNameByBrandH");
 			query.setParameter("brnd", brand);
 			query.setParameter("nme", name);
 
@@ -218,11 +216,11 @@ public class BluetoothSpeakerDAOImpl implements BluetoothSpeakerDAO {
 	@Override
 	public int updateRangeByNameH(String brand, String range) {
 		Session session =null;
-		String hql = "update BluetoothSpeakerDTO dto set dto.brand = :brn where dto.range=:rg";
+		//String hql = "update BluetoothSpeakerDTO dto set dto.brand = :brn where dto.range=:rg";
 
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
-			Query query = session.createQuery(hql);
+			Query query = session.getNamedQuery("updateRangeByNameH");
 			query.setParameter("brn", brand);
 			query.setParameter("rg", range);
 
@@ -255,11 +253,11 @@ public class BluetoothSpeakerDAOImpl implements BluetoothSpeakerDAO {
 	@Override
 	public int deleteByBrandH(String brand) {
 		Session session =null;
-		String hql = "delete from BluetoothSpeakerDTO dto where dto.brand=:br";
+		//String hql = "delete from BluetoothSpeakerDTO dto where dto.brand=:br";
 
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
-			Query query = session.createQuery(hql);
+			Query query = session.getNamedQuery("deleteByBrandH");
 			query.setParameter("br", brand);
 			transaction = session.beginTransaction();
 			int rw = query.executeUpdate();
@@ -290,11 +288,11 @@ public class BluetoothSpeakerDAOImpl implements BluetoothSpeakerDAO {
 	@Override
 	public int deleteByRangeH(String range) {
 		Session session =null;
-		String hql = "delete from BluetoothSpeakerDTO dto where dto.range=:rng";
+		//String hql = "delete from BluetoothSpeakerDTO dto where dto.range=:rng";
 
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
-			Query query = session.createQuery(hql);
+			Query query = session.getNamedQuery("deleteByRangeH");
 			query.setParameter("rng", range);
 			transaction = session.beginTransaction();
 			int rw = query.executeUpdate();
@@ -313,9 +311,7 @@ public class BluetoothSpeakerDAOImpl implements BluetoothSpeakerDAO {
 			if(session!=null) {
 				session.close();
 			}
-			if(HibernateUtil.getSessionFactory()!=null) {
-				HibernateUtil.getSessionFactory().close();
-			}
+			
 		
 			
 		}
@@ -330,7 +326,7 @@ public class BluetoothSpeakerDAOImpl implements BluetoothSpeakerDAO {
 
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
-			Query query = session.createQuery(hql);
+			Query query = session.getNamedQuery("deleteByBluetoothNameH");
 			query.setParameter("blt", bluetoothName);
 			transaction = session.beginTransaction();
 			int rw = query.executeUpdate();

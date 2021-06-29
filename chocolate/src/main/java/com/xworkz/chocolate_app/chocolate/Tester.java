@@ -19,6 +19,8 @@ public class Tester {
 		if(scanner.next().equalsIgnoreCase("Y")) {
 			ChocoloateDTO cDTO = new ChocoloateDTO(); 
 			System.out.println("Enter the details:");
+			System.out.println("Enter chocolate id");
+			cDTO.setName(scanner.next());
 			System.out.println("Enter chocolate name");
 			cDTO.setName(scanner.next());
 			System.out.println("Enter chocolate color");
@@ -173,8 +175,6 @@ public class Tester {
 			
 			
 		}
-		
-		
 		
 
 	}

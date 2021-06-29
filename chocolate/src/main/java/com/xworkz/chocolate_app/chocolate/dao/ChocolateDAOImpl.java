@@ -18,6 +18,7 @@ public class ChocolateDAOImpl implements ChocolateDAO {
 		session =HibernateUtil.getSessionFactory().openSession();
 		transaction = session.beginTransaction();
 		session.save(cDTO);
+		//session.saveOrUpdate(cDTO);
 		transaction.commit();
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -39,7 +40,7 @@ public class ChocolateDAOImpl implements ChocolateDAO {
 		
 		try {
 		session =HibernateUtil.getSessionFactory().openSession();
-		Query query = session.createQuery("select csdto from ChocoloateDTO csdto");
+		Query query = session.getNamedQuery("getAllDetails");
 		List<ChocoloateDTO> chocoDTOs =query.list();
 		return chocoDTOs;
 		 //return HibernateUtil.getSessionFactory().openSession().createQuery("from ChocoloateDTO csdto").list();
@@ -116,9 +117,9 @@ public class ChocolateDAOImpl implements ChocolateDAO {
 	@Override
 	public String getChocolateCompanyByChocolateName(String name) {
 		Session session = null;
-		String hql = "Select dto.company from ChocoloateDTO dto where dto.name = :nm";
+		//String hql = "Select dto.company from ChocoloateDTO dto where dto.name = :nm";
 		try {
-			return (String) HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("nm", name).uniqueResult();
+			return (String) HibernateUtil.getSessionFactory().openSession().getNamedQuery("getChocolateCompanyByChocolateName").setParameter("nm", name).uniqueResult();
 		}catch (HibernateException e) {
 			e.printStackTrace();
 		}
@@ -133,9 +134,9 @@ public class ChocolateDAOImpl implements ChocolateDAO {
 	@Override
 	public ChocoloateDTO getDetailsByChocolatename(String name) {
 		Session session = null;
-		String hql = "Select dto from ChocoloateDTO dto where dto.name = :nm";
+		//String hql = "Select dto from ChocoloateDTO dto where dto.name = :nm";
 		try {
-			return (ChocoloateDTO) HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("nm", name).uniqueResult();
+			return (ChocoloateDTO) HibernateUtil.getSessionFactory().openSession().getNamedQuery("getDetailsByChocolatename").setParameter("nm", name).uniqueResult();
 		}catch (HibernateException e) {
 			e.printStackTrace();
 		}
@@ -150,9 +151,9 @@ public class ChocolateDAOImpl implements ChocolateDAO {
 	@Override
 	public Object[] getChocolatePriceAndChocolateColorByChocolateName(String name) {
 		Session session = null;
-		String hql = "Select dto.price,dto.color from ChocoloateDTO dto where dto.name = :nm";
+		//String hql = "Select dto.price,dto.color from ChocoloateDTO dto where dto.name = :nm";
 		try {
-			return (Object[]) HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("nm", name).uniqueResult();
+			return (Object[]) HibernateUtil.getSessionFactory().openSession().getNamedQuery("getChocolatePriceAndChocolateColorByChocolateName").setParameter("nm", name).uniqueResult();
 		}catch (HibernateException e) {
 			e.printStackTrace();
 		}
@@ -168,9 +169,9 @@ public class ChocolateDAOImpl implements ChocolateDAO {
 	}
 	@Override
 	public List<Object[]> getchocolatePriceAndchocolateColorByChocolateName(String name) {
-		String hql="select dto.price,dto.color from ChocoloateDTO dto where dto.company = :nm";
+		//String hql="select dto.price,dto.color from ChocoloateDTO dto where dto.company = :nm";
 		try {
-		return HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("nm", name).list();
+		return HibernateUtil.getSessionFactory().openSession().getNamedQuery("getchocolatePriceAndchocolateColorByChocolateName").setParameter("nm", name).list();
 		}catch (HibernateException e) {
 			e.printStackTrace();
 		}
@@ -186,11 +187,11 @@ public class ChocolateDAOImpl implements ChocolateDAO {
 	}
 	@Override
 	public int updatePriceByNameH(String name,double price) {
-		String hql="update ChocoloateDTO dto set dto.price=:pr  where dto.name = :nm";
+		//String hql="update ChocoloateDTO dto set dto.price=:pr  where dto.name = :nm";
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query= session.createQuery(hql);
+			Query query= session.getNamedQuery("updatePriceByNameH");
 			query.setParameter("pr", price);
 			query.setParameter("nm", name);
 			int r =query.executeUpdate();
@@ -211,11 +212,11 @@ public class ChocolateDAOImpl implements ChocolateDAO {
 	}
 	@Override
 	public int updateColorByNameH(String name, String color) {
-		String hql="update ChocoloateDTO dto set dto.color=:clr where dto.name = :nm";
+		//String hql="update ChocoloateDTO dto set dto.color=:clr where dto.name = :nm";
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query= session.createQuery(hql);
+			Query query= session.getNamedQuery("updateColorByNameH");
 			query.setParameter("clr", color);
 			query.setParameter("nm", name);
 			int r =query.executeUpdate();
@@ -236,11 +237,11 @@ public class ChocolateDAOImpl implements ChocolateDAO {
 	}
 	@Override
 	public int updateCompanyNameByNameH(String name, String companyName) {
-		String hql="update ChocoloateDTO dto set dto.company=:cmp where dto.name = :nm";
+	//	String hql="update ChocoloateDTO dto set dto.company=:cmp where dto.name = :nm";
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query= session.createQuery(hql);
+			Query query= session.getNamedQuery("updateCompanyNameByNameH");
 			query.setParameter("cmp", companyName);
 			query.setParameter("nm", name);
 			int r =query.executeUpdate();
@@ -261,11 +262,11 @@ public class ChocolateDAOImpl implements ChocolateDAO {
 	}
 	@Override
 	public int deleteByNameH(String name) {
-		String hql="delete from ChocoloateDTO dto where dto.name = :nm";
+		//String hql="delete from ChocoloateDTO dto where dto.name = :nm";
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query= session.createQuery(hql);
+			Query query= session.getNamedQuery("deleteByNameH");
 			query.setParameter("nm", name);
 			int r =query.executeUpdate();
 			transaction.commit();
@@ -285,11 +286,11 @@ public class ChocolateDAOImpl implements ChocolateDAO {
 	}
 	@Override
 	public int deleteByPriceH(double price) {
-		String hql="delete from ChocoloateDTO dto where dto.price = :pr";
+		//String hql="delete from ChocoloateDTO dto where dto.price = :pr";
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query= session.createQuery(hql);
+			Query query= session.getNamedQuery("deleteByPriceH");
 			query.setParameter("pr", price);
 			int r =query.executeUpdate();
 			transaction.commit();
@@ -308,11 +309,11 @@ public class ChocolateDAOImpl implements ChocolateDAO {
 		return 0;	}
 	@Override
 	public int deleteByColorH(String color) {
-		String hql="delete from ChocoloateDTO dto where dto.color = :clr";
+		//String hql="delete from ChocoloateDTO dto where dto.color = :clr";
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query= session.createQuery(hql);
+			Query query= session.getNamedQuery("deleteByColorH");
 			query.setParameter("clr", color);
 			int r =query.executeUpdate();
 			transaction.commit();

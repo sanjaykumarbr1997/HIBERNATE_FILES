@@ -157,7 +157,7 @@ public class IplTeamDAOImpl implements IplTeamDAO {
 		String hql ="select dto.location from IplTeamDTO dto where dto.teamName =:nme ";
 		try {
 			
-			 return (String) HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("nme", name).uniqueResult();
+			 return (String) HibernateUtil.getSessionFactory().openSession().getNamedQuery("getIplTeamLocationByIplTeamName").setParameter("nme", name).uniqueResult();
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -172,10 +172,10 @@ public class IplTeamDAOImpl implements IplTeamDAO {
 
 	@Override
 	public IplTeamDTO getDetailsByIplTeamName(String name) {
-		String hql ="select dto from IplTeamDTO dto where dto.teamName =:nme";
+		//String hql ="select dto from IplTeamDTO dto where dto.teamName =:nme";
 		try {
 			
-			 return (IplTeamDTO) HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("nme", name).uniqueResult();
+			 return (IplTeamDTO) HibernateUtil.getSessionFactory().openSession().getNamedQuery("getDetailsByIplTeamName").setParameter("nme", name).uniqueResult();
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -190,10 +190,10 @@ public class IplTeamDAOImpl implements IplTeamDAO {
 
 	@Override
 	public Object[] getIplTeamLocationAndNoOfPlayersByIplTeamName(String name) {
-		String hql ="select dto.location,dto.noOfPlayers from IplTeamDTO dto where dto.teamName =:nme";
+		//String hql ="select dto.location,dto.noOfPlayers from IplTeamDTO dto where dto.teamName =:nme";
 		try {
 			
-			 return (Object[]) HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("nme", name).uniqueResult();
+			 return (Object[]) HibernateUtil.getSessionFactory().openSession().getNamedQuery("getIplTeamLocationAndNoOfPlayersByIplTeamName").setParameter("nme", name).uniqueResult();
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -211,11 +211,11 @@ public class IplTeamDAOImpl implements IplTeamDAO {
 
 	@Override
 	public List<Object[]> getiplTeamNameAndNoofPlayersByiplTeamLocation(String location) {
-		String hql = "select dto.teamName,dto.noOfPlayers from IplTeamDTO dto where dto.location= :loc ";
+		//String hql = "select dto.teamName,dto.noOfPlayers from IplTeamDTO dto where dto.location= :loc ";
 		
 		try {
 			
-			return HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("loc", location).list();
+			return HibernateUtil.getSessionFactory().openSession().getNamedQuery("getiplTeamNameAndNoofPlayersByiplTeamLocation").setParameter("loc", location).list();
 			}catch (HibernateException e) {
 				e.printStackTrace();
 			}
@@ -231,12 +231,12 @@ public class IplTeamDAOImpl implements IplTeamDAO {
 
 	@Override
 	public int updateNoOfPlayersByNameH(String name, int players) {
-		String hql = "update IplTeamDTO dto set dto.noOfPlayers =:play where dto.teamName=:na ";
+		//String hql = "update IplTeamDTO dto set dto.noOfPlayers =:play where dto.teamName=:na ";
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery(hql);
+			Query query = session.getNamedQuery("updateNoOfPlayersByNameH");
 			query.setParameter("play", players);
 			query.setParameter("na", name);
 			int r = query.executeUpdate();
@@ -289,12 +289,12 @@ String hql = "update IplTeamDTO dto set dto.teamName =:tn where dto.location=:lc
 
 	@Override
 	public int deleteByNameH(String name) {
-String hql = "delete from IplTeamDTO dto where dto.teamName = :tn ";
+//String hql = "delete from IplTeamDTO dto where dto.teamName = :tn ";
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery(hql);
+			Query query = session.getNamedQuery("deleteByNameH");
 			query.setParameter("tn", name);
 			int r = query.executeUpdate();
 			

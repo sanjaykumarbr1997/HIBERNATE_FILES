@@ -7,9 +7,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "getAllDetails", query = "select csdto from ChocoloateDTO csdto"),
+	@NamedQuery(name = "getChocolateCompanyByChocolateName", query = "Select dto.company from ChocoloateDTO dto where dto.name = :nm"),
+	@NamedQuery(name = "getDetailsByChocolatename", query = "Select dto from ChocoloateDTO dto where dto.name = :nm"),
+	@NamedQuery(name = "getChocolatePriceAndChocolateColorByChocolateName", query = "Select dto.price,dto.color from ChocoloateDTO dto where dto.name = :nm"),
+	@NamedQuery(name = "getchocolatePriceAndchocolateColorByChocolateName", query = "select dto.price,dto.color from ChocoloateDTO dto where dto.company = :nm"),
+	@NamedQuery(name = "updatePriceByNameH", query = "update ChocoloateDTO dto set dto.price=:pr  where dto.name = :nm"),
+	@NamedQuery(name = "updateColorByNameH", query = "update ChocoloateDTO dto set dto.color=:clr where dto.name = :nm"),
+	@NamedQuery(name = "updateCompanyNameByNameH", query = "update ChocoloateDTO dto set dto.company=:cmp where dto.name = :nm"),
+	@NamedQuery(name = "deleteByNameH", query = "delete from ChocoloateDTO dto where dto.name = :nm"),
+	@NamedQuery(name = "deleteByPriceH", query = "delete from ChocoloateDTO dto where dto.price = :pr"),
+	@NamedQuery(name = "deleteByColorH", query = "delete from ChocoloateDTO dto where dto.color = :clr"),
+	
+	
+})
 @Table(name="chocolate_table")
 public class ChocoloateDTO implements Serializable{
 	

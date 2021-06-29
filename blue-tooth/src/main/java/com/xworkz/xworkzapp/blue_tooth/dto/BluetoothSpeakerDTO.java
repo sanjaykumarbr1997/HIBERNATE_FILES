@@ -5,10 +5,24 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 
 @Entity
+@NamedQueries(
+		{
+		@NamedQuery(name = "getDetailsByBluetoothBrand", query = "Select dto from BluetoothSpeakerDTO dto where dto.brand=:brnd"),
+		@NamedQuery(name = "getBluetoothNameByBrand", query = "Select dto.bluetoothName from BluetoothSpeakerDTO dto where dto.brand=:brnd"),
+		@NamedQuery(name = "getBluetoothRangeAndbluetoothNameByBrand", query = "Select dto.range ,dto.bluetoothName from BluetoothSpeakerDTO dto where dto.brand=:brnd"),
+		@NamedQuery(name = "getbluetoothRangeAndbluetoothNameBybluetoothCompanyName", query = "select dto.range,dto.bluetoothName from BluetoothSpeakerDTO dto where dto.brand=:brnd"),
+		@NamedQuery(name = "updateRangeByNameH", query = "update BluetoothSpeakerDTO dto set dto.brand = :brn where dto.range=:rg"),
+		@NamedQuery(name = "updateNameByBrandH", query = "update BluetoothSpeakerDTO dto set dto.bluetoothName = :nme where dto.brand=:brnd"),
+		@NamedQuery(name = "deleteByBrandH", query = "delete from BluetoothSpeakerDTO dto where dto.brand=:br"),
+		@NamedQuery(name = "deleteByRangeH", query = "delete from BluetoothSpeakerDTO dto where dto.range=:rng"),
+		@NamedQuery(name = "deleteByBluetoothNameH", query = "delete from BluetoothSpeakerDTO dto where dto.bluetoothName=:blt")
+		})
 @Table(name ="bluetooth_speaker")
 public class BluetoothSpeakerDTO implements Serializable{
 	
