@@ -123,10 +123,10 @@ public class SoftDrinksDAOImpl implements SoftDrinksDAO {
 
 	@Override
 	public String getSoftdrinkColorBySoftdrinkName(String name) {
-		String hql = "select dto.color from SoftDrinksDTO dto where dto.name = :nm";
+		//String hql = "select dto.color from SoftDrinksDTO dto where dto.name = :nm";
 		try {
 			
-			 return (String) HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("nm", name).uniqueResult();
+			 return (String) HibernateUtil.getSessionFactory().openSession().getNamedQuery("getSoftdrinkColorBySoftdrinkName").setParameter("nm", name).uniqueResult();
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -143,10 +143,10 @@ public class SoftDrinksDAOImpl implements SoftDrinksDAO {
 
 	@Override
 	public SoftDrinksDTO getDetailsBySoftdrinkName(String name) {
-		String hql = "select dto from SoftDrinksDTO dto where dto.name = :name ";
+		//String hql = "select dto from SoftDrinksDTO dto where dto.name = :name ";
 		try {
 			
-			 return (SoftDrinksDTO) HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("name",name).uniqueResult();
+			 return (SoftDrinksDTO) HibernateUtil.getSessionFactory().openSession().getNamedQuery("getDetailsBySoftdrinkName").setParameter("name",name).uniqueResult();
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -163,10 +163,10 @@ public class SoftDrinksDAOImpl implements SoftDrinksDAO {
 
 	@Override
 	public Object[] getSoftdrinkManufactureYearAndPricesBySoftdrinkName(String name) {
-		String hql = "select dto.mfgYear,dto.price from SoftDrinksDTO dto where dto.name = :na";
+		//String hql = "select dto.mfgYear,dto.price from SoftDrinksDTO dto where dto.name = :na";
 		try {
 			
-			 return (Object[]) HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("na", name).uniqueResult();
+			 return (Object[]) HibernateUtil.getSessionFactory().openSession().getNamedQuery("getSoftdrinkManufactureYearAndPricesBySoftdrinkName").setParameter("na", name).uniqueResult();
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -183,11 +183,11 @@ public class SoftDrinksDAOImpl implements SoftDrinksDAO {
 
 	@Override
 	public List<Object[]> getsoftdrinkPriceAndsoftdrinkColorBysoftdrinkmfgyear(int mfgYear) {
-String hql = "select dto.color,dto.price from SoftDrinksDTO dto where dto.mfgYear=:mf ";
+//String hql = "select dto.color,dto.price from SoftDrinksDTO dto where dto.mfgYear=:mf ";
 		
 		try {
 			
-			return HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("mf", mfgYear).list();
+			return HibernateUtil.getSessionFactory().openSession().getNamedQuery("getsoftdrinkPriceAndsoftdrinkColorBysoftdrinkmfgyear").setParameter("mf", mfgYear).list();
 			}catch (HibernateException e) {
 				e.printStackTrace();
 			}
@@ -203,12 +203,12 @@ String hql = "select dto.color,dto.price from SoftDrinksDTO dto where dto.mfgYea
 
 	@Override
 	public int updatePriceByNameH(String name, double price) {
-String hql = "update SoftDrinksDTO dto set dto.price =:pri where dto.name=:na";
+//String hql = "update SoftDrinksDTO dto set dto.price =:pri where dto.name=:na";
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery(hql);
+			Query query = session.getNamedQuery("updatePriceByNameH");
 			query.setParameter("na", name);
 			query.setParameter("pri", price);
 			int r = query.executeUpdate();
@@ -238,7 +238,7 @@ String hql = "update SoftDrinksDTO dto set dto.color =:clr where dto.name=:naa "
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery(hql);
+			Query query = session.getNamedQuery("updateColorByNameH");
 			query.setParameter("naa", name);
 			query.setParameter("clr", color);
 			int r = query.executeUpdate();
@@ -263,12 +263,12 @@ String hql = "update SoftDrinksDTO dto set dto.color =:clr where dto.name=:naa "
 
 	@Override
 	public int updateColorByNameH(String name, int mfgyear) {
-String hql = "update SoftDrinksDTO dto set dto.mfgYear =:mfy where dto.name=:nam ";
+//String hql = "update SoftDrinksDTO dto set dto.mfgYear =:mfy where dto.name=:nam ";
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery(hql);
+			Query query = session.getNamedQuery("updateColorByMfgYear");
 			query.setParameter("mfy", mfgyear);
 			query.setParameter("nam", name);
 			int r = query.executeUpdate();
@@ -293,12 +293,12 @@ String hql = "update SoftDrinksDTO dto set dto.mfgYear =:mfy where dto.name=:nam
 
 	@Override
 	public int deleteColorByNameH(String name) {
-String hql = "delete from SoftDrinksDTO dto where dto.name=:nam ";
+//String hql = "delete from SoftDrinksDTO dto where dto.name=:nam ";
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery(hql);
+			Query query = session.getNamedQuery("deleteColorByNameH");
 			query.setParameter("nam", name);
 			int r = query.executeUpdate();
 			
@@ -322,12 +322,12 @@ String hql = "delete from SoftDrinksDTO dto where dto.name=:nam ";
 
 	@Override
 	public int deleteColorByPriceH(double price) {
-String hql = "delete from SoftDrinksDTO dto where dto.price=:pri";
+//String hql = "delete from SoftDrinksDTO dto where dto.price=:pri";
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery(hql);
+			Query query = session.getNamedQuery("deleteColorByPriceH");
 			query.setParameter("pri", price);
 			int r = query.executeUpdate();
 			

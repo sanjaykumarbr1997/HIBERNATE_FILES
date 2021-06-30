@@ -1,9 +1,11 @@
 package com.xworkz.chocolate_app.chocolate.dao;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Order;
 import org.hibernate.query.Query;
 import com.xworkz.chocolate_app.chocolate.dto.ChocoloateDTO;
 import com.xworkz.singleton.HibernateUtil;
@@ -40,7 +42,9 @@ public class ChocolateDAOImpl implements ChocolateDAO {
 		
 		try {
 		session =HibernateUtil.getSessionFactory().openSession();
-		Query query = session.getNamedQuery("getAllDetails");
+		//Query query = session.getNamedQuery("getAllDetails");
+		Criteria query = session.createCriteria(ChocoloateDTO.class);
+		query.addOrder(Order.asc("price"));
 		List<ChocoloateDTO> chocoDTOs =query.list();
 		return chocoDTOs;
 		 //return HibernateUtil.getSessionFactory().openSession().createQuery("from ChocoloateDTO csdto").list();
@@ -134,8 +138,11 @@ public class ChocolateDAOImpl implements ChocolateDAO {
 	@Override
 	public ChocoloateDTO getDetailsByChocolatename(String name) {
 		Session session = null;
+		ChocoloateDTO cd = new ChocoloateDTO();
 		//String hql = "Select dto from ChocoloateDTO dto where dto.name = :nm";
 		try {
+			
+			
 			return (ChocoloateDTO) HibernateUtil.getSessionFactory().openSession().getNamedQuery("getDetailsByChocolatename").setParameter("nm", name).uniqueResult();
 		}catch (HibernateException e) {
 			e.printStackTrace();

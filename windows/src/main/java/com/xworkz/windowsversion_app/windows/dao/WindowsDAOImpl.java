@@ -112,10 +112,10 @@ public class WindowsDAOImpl implements WindowsDAO {
 
 	@Override
 	public String getwindowsNewFeaturesByWindowsName(String name) {
-		String hql = "select dto.newFeatures from WindowsDTO dto where dto.name=:nnn";
+		//String hql = "select dto.newFeatures from WindowsDTO dto where dto.name=:nnn";
 		try {
 			
-			 return (String) HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("nnn", name).uniqueResult();
+			 return (String) HibernateUtil.getSessionFactory().openSession().getNamedQuery("getwindowsNewFeaturesByWindowsName").setParameter("nnn", name).uniqueResult();
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -130,10 +130,10 @@ public class WindowsDAOImpl implements WindowsDAO {
 
 	@Override
 	public WindowsDTO getDetailsByWindowsName(String name) {
-		String hql = "select dto from WindowsDTO dto where dto.name=:nan";
+		//String hql = "select dto from WindowsDTO dto where dto.name=:nan";
 		try {
 			
-			 return (WindowsDTO) HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("nan", name).uniqueResult();
+			 return (WindowsDTO) HibernateUtil.getSessionFactory().openSession().getNamedQuery("getDetailsByWindowsName").setParameter("nan", name).uniqueResult();
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -148,10 +148,10 @@ public class WindowsDAOImpl implements WindowsDAO {
 
 	@Override
 	public Object[] getwindowsReleaseYearAndNewFeaturesByWindowsName(String name) {
-		String hql = "select dto.releaseYear,dto.newFeatures from WindowsDTO dto where dto.name=:nm";
+		//String hql = "select dto.releaseYear,dto.newFeatures from WindowsDTO dto where dto.name=:nm";
 		try {
 			
-			 return (Object[]) HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("nm", name).uniqueResult();
+			 return (Object[]) HibernateUtil.getSessionFactory().openSession().getNamedQuery("getwindowsReleaseYearAndNewFeaturesByWindowsName").setParameter("nm", name).uniqueResult();
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -168,11 +168,11 @@ public class WindowsDAOImpl implements WindowsDAO {
 
 	@Override
 	public List<Object[]> getwindowsNameAndwindowsNewFeaturesBywindowsReleaseYear(int releaseYear) {
-String hql = "select dto.name,dto.newFeatures from WindowsDTO dto where dto.releaseYear=:ry ";
+//String hql = "select dto.name,dto.newFeatures from WindowsDTO dto where dto.releaseYear=:ry ";
 		
 		try {
 			
-			return HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("ry", releaseYear).list();
+			return HibernateUtil.getSessionFactory().openSession().getNamedQuery("getwindowsNameAndwindowsNewFeaturesBywindowsReleaseYear").setParameter("ry", releaseYear).list();
 			}catch (HibernateException e) {
 				e.printStackTrace();
 			}
@@ -188,12 +188,12 @@ String hql = "select dto.name,dto.newFeatures from WindowsDTO dto where dto.rele
 
 	@Override
 	public int updateReleaseYearByNameH(String name,int releaseYear) {
-String hql = "update WindowsDTO dto set dto.releaseYear = :ryy where dto.name=:nn ";
+//String hql = "update WindowsDTO dto set dto.releaseYear = :ryy where dto.name=:nn ";
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery(hql);
+			Query query = session.getNamedQuery("updateReleaseYearByNameH");
 			query.setParameter("ryy", releaseYear);
 			query.setParameter("nn", name);
 			int r = query.executeUpdate();
@@ -218,12 +218,12 @@ String hql = "update WindowsDTO dto set dto.releaseYear = :ryy where dto.name=:n
 
 	@Override
 	public int updateFearureByNameH(String name, String feature) {
-String hql = "update WindowsDTO dto set dto.newFeatures = :nf where dto.name=:nn ";
+//String hql = "update WindowsDTO dto set dto.newFeatures = :nf where dto.name=:nn ";
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery(hql);
+			Query query = session.getNamedQuery("updateFearureByNameH");
 			query.setParameter("nf", feature);
 			query.setParameter("nn", name);
 			int r = query.executeUpdate();
@@ -246,12 +246,12 @@ String hql = "update WindowsDTO dto set dto.newFeatures = :nf where dto.name=:nn
 
 	@Override
 	public int deleteByNameH(String name) {
-String hql = "delete from WindowsDTO dto where dto.name=:nn ";
+//String hql = "delete from WindowsDTO dto where dto.name=:nn ";
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery(hql);
+			Query query = session.getNamedQuery("deleteByNameH");
 			query.setParameter("nn", name);
 			int r = query.executeUpdate();
 			
@@ -275,12 +275,12 @@ String hql = "delete from WindowsDTO dto where dto.name=:nn ";
 
 	@Override
 	public int deleteByYearH(int year) {
-String hql = "delete from WindowsDTO dto where dto.releaseYear=:ry ";
+//String hql = "delete from WindowsDTO dto where dto.releaseYear=:ry ";
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery(hql);
+			Query query = session.getNamedQuery("deleteByYearH");
 			query.setParameter("ry", year);
 			int r = query.executeUpdate();
 			
@@ -304,12 +304,12 @@ String hql = "delete from WindowsDTO dto where dto.releaseYear=:ry ";
 
 	@Override
 	public int deleteByFeatureH(String feature) {
-String hql = "delete from WindowsDTO dto where dto.newFeatures=:fy ";
+//String hql = "delete from WindowsDTO dto where dto.newFeatures=:fy ";
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery(hql);
+			Query query = session.getNamedQuery("deleteByFeatureH");
 			query.setParameter("fy", feature);
 			int r = query.executeUpdate();
 			

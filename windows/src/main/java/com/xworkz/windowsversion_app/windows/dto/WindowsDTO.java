@@ -7,9 +7,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "getwindowsNewFeaturesByWindowsName", query = "select dto.newFeatures from WindowsDTO dto where dto.name=:nnn"),
+	@NamedQuery(name = "getDetailsByWindowsName", query = "select dto from WindowsDTO dto where dto.name=:nan"),
+	@NamedQuery(name = "getwindowsReleaseYearAndNewFeaturesByWindowsName", query = "select dto.releaseYear,dto.newFeatures from WindowsDTO dto where dto.name=:nm"),
+	@NamedQuery(name = "getwindowsNameAndwindowsNewFeaturesBywindowsReleaseYear", query = "select dto.name,dto.newFeatures from WindowsDTO dto where dto.releaseYear=:ry "),
+	@NamedQuery(name = "updateReleaseYearByNameH", query = "update WindowsDTO dto set dto.releaseYear = :ryy where dto.name=:nn"),
+	@NamedQuery(name = "updateFearureByNameH", query = "update WindowsDTO dto set dto.newFeatures = :nf where dto.name=:nn"),
+	@NamedQuery(name = "deleteByNameH", query = "delete from WindowsDTO dto where dto.name=:nn "),
+	@NamedQuery(name = "deleteByYearH", query = "delete from WindowsDTO dto where dto.releaseYear=:ry "),
+	@NamedQuery(name = "deleteByFeatureH", query = "delete from WindowsDTO dto where dto.newFeatures=:fy")
+})
 @Table(name="windows_version_table")
 public class  WindowsDTO implements Serializable{
 	

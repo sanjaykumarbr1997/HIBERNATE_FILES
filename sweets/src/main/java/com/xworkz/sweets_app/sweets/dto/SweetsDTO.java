@@ -7,9 +7,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "getSweetsColorBySweetName", query = "select dto.color from SweetsDTO dto where dto.name =:nam"),
+	@NamedQuery(name = "getDetailsBySweetName", query = "select dto from SweetsDTO dto where dto.name =:nm"),
+	@NamedQuery(name = "getsweetShapeAndColorBySweetName", query = "select dto.shape,dto.color from SweetsDTO dto where dto.name =:name"),
+	@NamedQuery(name = "getsweetPriceAndsweetColorBysweetshape", query = "select dto.name,dto.color from SweetsDTO dto where dto.shape=:sha"),
+	@NamedQuery(name = "updatePriceByNameH", query = "update SweetsDTO dto set dto.price =:pri where dto.name=:nam"),
+	@NamedQuery(name = "updateColorByNameH", query = "update SweetsDTO dto set dto.color =:cl where dto.name=:nm "),
+	@NamedQuery(name = "updatesweetshapeByNameH", query = "update SweetsDTO dto set dto.shape =:sh where dto.name=:na"),
+	@NamedQuery(name = "deleteByNameH", query = "delete from SweetsDTO dto where dto.name=:nam "),
+	@NamedQuery(name = "deleteByPriceH", query = "delete from SweetsDTO dto where dto.price=:pri"),
+	@NamedQuery(name = "deleteByColorH", query = "delete from SweetsDTO dto where dto.color=:clr")
+})
 @Table(name = "sweet_table")
 public class SweetsDTO implements Serializable {
 	

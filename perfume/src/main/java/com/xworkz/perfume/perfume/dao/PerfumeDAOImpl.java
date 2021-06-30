@@ -140,11 +140,11 @@ public class PerfumeDAOImpl implements PerfumeDAO {
 
 	@Override
 	public String getPerfumeFragnanceByPerfumeName(String name) {
-		String hql = "select dto.perfumeFragnance from PerfumeDTO dto where dto.perfumeName=:name ";
+		//String hql = "select dto.perfumeFragnance from PerfumeDTO dto where dto.perfumeName=:name ";
 		
 		try {
 			
-			return (String) HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("name",name).uniqueResult();
+			return (String) HibernateUtil.getSessionFactory().openSession().getNamedQuery("getPerfumeFragnanceByPerfumeName").setParameter("name",name).uniqueResult();
 			}catch (HibernateException e) {
 				e.printStackTrace();
 			}
@@ -159,11 +159,11 @@ public class PerfumeDAOImpl implements PerfumeDAO {
 
 	@Override
 	public PerfumeDTO getDetailsByperfumeName(String name) {
-		String hql = "select dto from PerfumeDTO dto where dto.perfumeName=:naa";
+		//String hql = "select dto from PerfumeDTO dto where dto.perfumeName=:naa";
 		
 		try {
 			
-			return (PerfumeDTO) HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("naa", name).uniqueResult();
+			return (PerfumeDTO) HibernateUtil.getSessionFactory().openSession().getNamedQuery("getDetailsByperfumeName").setParameter("naa", name).uniqueResult();
 			}catch (HibernateException e) {
 				e.printStackTrace();
 			}
@@ -178,11 +178,11 @@ public class PerfumeDAOImpl implements PerfumeDAO {
 
 	@Override
 	public Object[] getperfumeColorAndPricesByPerfumeName(String name) {
-		String hql = "select dto.perfumeColor,dto.perfumePrice from PerfumeDTO dto where dto.perfumeName=:naa";
+		//String hql = "select dto.perfumeColor,dto.perfumePrice from PerfumeDTO dto where dto.perfumeName=:naa";
 		
 		try {
 			
-			return (Object[]) HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("naa",name).uniqueResult();
+			return (Object[]) HibernateUtil.getSessionFactory().openSession().getNamedQuery("getperfumeColorAndPricesByPerfumeName").setParameter("naa",name).uniqueResult();
 			}catch (HibernateException e) {
 				e.printStackTrace();
 			}
@@ -200,11 +200,11 @@ public class PerfumeDAOImpl implements PerfumeDAO {
 
 	@Override
 	public List<Object[]> getperfumePriceAndperfumeColorByperfumeFragnance(String fragnance) {
-		String hql = "select dto.perfumeColor,dto.perfumePrice from PerfumeDTO dto where dto.perfumeFragnance=:frag ";
+		//String hql = "select dto.perfumeColor,dto.perfumePrice from PerfumeDTO dto where dto.perfumeFragnance=:frag ";
 		
 		try {
 			
-			return HibernateUtil.getSessionFactory().openSession().createQuery(hql).setParameter("frag", fragnance).list();
+			return (List<Object[]>) HibernateUtil.getSessionFactory().openSession().getNamedQuery("getperfumePriceAndperfumeColorByperfumeFragnance").setParameter("frag", fragnance).list();
 			}catch (HibernateException e) {
 				e.printStackTrace();
 			}
@@ -220,12 +220,12 @@ public class PerfumeDAOImpl implements PerfumeDAO {
 
 	@Override
 	public int updatePriceByNameH(String name,double price) {
-		String hql = "update PerfumeDTO dto set dto.perfumePrice =:pri where dto.perfumeName=:na";
+		//String hql = "update PerfumeDTO dto set dto.perfumePrice =:pri where dto.perfumeName=:na";
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery(hql);
+			Query query = session.getNamedQuery("updatePriceByNameH");
 			query.setParameter("na", name);
 			query.setParameter("pri", price);
 			int r = query.executeUpdate();
@@ -250,12 +250,12 @@ public class PerfumeDAOImpl implements PerfumeDAO {
 
 	@Override
 	public int updateColorByNameH(String name, String color) {
-String hql = "update PerfumeDTO dto set dto.perfumeColor =:cl where dto.perfumeName=:na";
+//String hql = "update PerfumeDTO dto set dto.perfumeColor =:cl where dto.perfumeName=:na";
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery(hql);
+			Query query = session.getNamedQuery("updateColorByNameH");
 			query.setParameter("na", name);
 			query.setParameter("cl", color);
 			int r = query.executeUpdate();
@@ -280,12 +280,12 @@ String hql = "update PerfumeDTO dto set dto.perfumeColor =:cl where dto.perfumeN
 
 	@Override
 	public int updateperfumeFragnanceByNameH(String name, String fragnance) {
-String hql = "update PerfumeDTO dto set dto.perfumeFragnance =:frg where dto.perfumeName=:nam ";
+//String hql = "update PerfumeDTO dto set dto.perfumeFragnance =:frg where dto.perfumeName=:nam ";
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery(hql);
+			Query query = session.getNamedQuery("updateperfumeFragnanceByNameH");
 			query.setParameter("frg", fragnance);
 			query.setParameter("nam", name);
 			int r = query.executeUpdate();
@@ -310,12 +310,12 @@ String hql = "update PerfumeDTO dto set dto.perfumeFragnance =:frg where dto.per
 
 	@Override
 	public int deleteByNameH(String name) {
-String hql = "delete from PerfumeDTO dto where dto.perfumeName=:na";
+//String hql = "delete from PerfumeDTO dto where dto.perfumeName=:na";
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery(hql);
+			Query query = session.getNamedQuery("deleteByNameH");
 			query.setParameter("na", name);
 			int r = query.executeUpdate();
 			
@@ -339,12 +339,12 @@ String hql = "delete from PerfumeDTO dto where dto.perfumeName=:na";
 
 	@Override
 	public int deleteByPriceH(double price) {
-String hql = "delete from PerfumeDTO dto where dto.perfumePrice=:pri";
+//String hql = "delete from PerfumeDTO dto where dto.perfumePrice=:pri";
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery(hql);
+			Query query = session.getNamedQuery("deleteByPriceH");
 			query.setParameter("pri", price);
 			int r = query.executeUpdate();
 			
@@ -368,12 +368,12 @@ String hql = "delete from PerfumeDTO dto where dto.perfumePrice=:pri";
 
 	@Override
 	public int deleteByColorH(String color) {
-String hql = "delete from PerfumeDTO dto where dto.perfumeColor= :clr";
+//String hql = "delete from PerfumeDTO dto where dto.perfumeColor= :clr";
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery(hql);
+			Query query = session.getNamedQuery("deleteByColorH");
 			query.setParameter("clr", color);
 			int r = query.executeUpdate();
 			

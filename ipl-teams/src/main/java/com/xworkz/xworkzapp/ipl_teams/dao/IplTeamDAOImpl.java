@@ -154,7 +154,7 @@ public class IplTeamDAOImpl implements IplTeamDAO {
 
 	@Override
 	public String getIplTeamLocationByIplTeamName(String name) {
-		String hql ="select dto.location from IplTeamDTO dto where dto.teamName =:nme ";
+		//String hql ="select dto.location from IplTeamDTO dto where dto.teamName =:nme ";
 		try {
 			
 			 return (String) HibernateUtil.getSessionFactory().openSession().getNamedQuery("getIplTeamLocationByIplTeamName").setParameter("nme", name).uniqueResult();
@@ -262,12 +262,12 @@ public class IplTeamDAOImpl implements IplTeamDAO {
 
 	@Override
 	public int updateTeamNameByLocation(String location, String name) {
-String hql = "update IplTeamDTO dto set dto.teamName =:tn where dto.location=:lc ";
+//String hql = "update IplTeamDTO dto set dto.teamName =:tn where dto.location=:lc ";
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery(hql);
+			Query query = session.getNamedQuery("updateTeamNameByLocation");
 			query.setParameter("tn", name);
 			query.setParameter("lc", location);
 			int r = query.executeUpdate();
@@ -317,12 +317,12 @@ String hql = "update IplTeamDTO dto set dto.teamName =:tn where dto.location=:lc
 
 	@Override
 	public int deleteLocationH(String location) {
-String hql = "delete from IplTeamDTO dto where dto.location = :lcn ";
+//String hql = "delete from IplTeamDTO dto where dto.location = :lcn ";
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery(hql);
+			Query query = session.getNamedQuery("deleteLocationH");
 			query.setParameter("lcn", location);
 			int r = query.executeUpdate();
 			
@@ -346,12 +346,12 @@ String hql = "delete from IplTeamDTO dto where dto.location = :lcn ";
 
 	@Override
 	public int deleteBySizeH(int size) {
-String hql = "delete from IplTeamDTO dto where dto.noOfPlayers = :np ";
+//String hql = "delete from IplTeamDTO dto where dto.noOfPlayers = :np ";
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery(hql);
+			Query query = session.getNamedQuery("deleteBySizeH");
 			query.setParameter("np", size);
 			int r = query.executeUpdate();
 			

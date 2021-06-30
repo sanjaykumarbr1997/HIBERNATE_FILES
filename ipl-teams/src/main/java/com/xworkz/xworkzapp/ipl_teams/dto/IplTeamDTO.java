@@ -19,7 +19,10 @@ import javax.persistence.Table;
 	@NamedQuery(name = "getIplTeamLocationAndNoOfPlayersByIplTeamName", query = "select dto.location,dto.noOfPlayers from IplTeamDTO dto where dto.teamName =:nme"),
 	@NamedQuery(name = "getiplTeamNameAndNoofPlayersByiplTeamLocation", query = "select dto.teamName,dto.noOfPlayers from IplTeamDTO dto where dto.location= :loc "),
 	@NamedQuery(name = "updateNoOfPlayersByNameH", query = "update IplTeamDTO dto set dto.noOfPlayers =:play where dto.teamName=:na "),
-	@NamedQuery(name = "deleteByNameH", query = "delete from IplTeamDTO dto where dto.teamName = :tn ")
+	@NamedQuery(name = "deleteByNameH", query = "delete from IplTeamDTO dto where dto.teamName = :tn "),
+	@NamedQuery(name = "deleteLocationH", query = "delete from IplTeamDTO dto where dto.location = :lcn "),
+	@NamedQuery(name = "deleteBySizeH", query = "delete from IplTeamDTO dto where dto.noOfPlayers = :np"),
+	@NamedQuery(name = "updateTeamNameByLocation", query = "update IplTeamDTO dto set dto.teamName =:tn where dto.location=:lc")
 	
 })
 @Table(name ="ipl_team_table")

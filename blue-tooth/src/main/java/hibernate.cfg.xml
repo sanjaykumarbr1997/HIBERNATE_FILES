@@ -7,6 +7,10 @@
 		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/fbn</property>
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password">dontknow</property>
+		<property name="hibernate.hikari.connectionTimeout">20000</property>
+		<property name="hibernate.hikari.minimumIdle">10</property>
+		<property name="hibernate.hikari.maximumPoolSize">24</property>
+		<property name="hibernate.hikari.idleTimeout">300000</property>
 		<mapping  class="com.xworkz.xworkzapp.blue_tooth.dto.BluetoothSpeakerDTO"/>	
 		
 	    
