@@ -28,6 +28,7 @@ import javax.persistence.Table;
 @Table(name ="ipl_team_table")
 public class IplTeamDTO implements Serializable{
 	
+	
 	@Id
 	@Column(name ="team_id")
 	@GeneratedValue(strategy= GenerationType.AUTO)
