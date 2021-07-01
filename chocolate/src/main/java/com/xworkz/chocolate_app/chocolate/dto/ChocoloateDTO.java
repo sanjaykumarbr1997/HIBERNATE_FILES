@@ -46,6 +46,7 @@ public class ChocoloateDTO implements Serializable{
 	public String toString() {
 		return "ChocoloateDTO [id=" + id + ", name=" + name + ", color=" + color + ", price=" + price + ", company="
 				+ company + "]";
+		
 	}
 	public int getId() {
 		return id;
