@@ -20,7 +20,6 @@ import com.xworkz.whatsapp.constants.StatusPrivacy;
 
 public class WhatsAppDTO implements Serializable {
 	
-	
 	@Id
 	private int whatsApp_id;
 	private String whatsApp_status;
