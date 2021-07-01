@@ -28,9 +28,11 @@ public class SweetsDAOImpl implements SweetsDAO {
 		session = sessionFactory.openSession();
 		transaction= session.beginTransaction();
 		session.save(sDTO);
+		System.out.println(sDTO);
 		transaction.commit();
 		
 		}catch (HibernateException e) {
+			e.printStackTrace();
 			if(transaction!=null) {
 			transaction.rollback();
 			}

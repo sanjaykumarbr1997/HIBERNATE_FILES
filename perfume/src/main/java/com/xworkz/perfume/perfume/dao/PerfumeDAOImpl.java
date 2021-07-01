@@ -26,6 +26,7 @@ public class PerfumeDAOImpl implements PerfumeDAO {
 		transaction.commit();
 		
 		}catch (HibernateException e) {
+			e.printStackTrace();
 			if(transaction!=null) {
 				transaction.rollback();
 			}

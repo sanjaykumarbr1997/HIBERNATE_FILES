@@ -11,6 +11,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "getSweetsColorBySweetName", query = "select dto.color from SweetsDTO dto where dto.name =:nam"),
@@ -30,9 +32,9 @@ public class SweetsDTO implements Serializable {
 	@Id
 	@Column(name="sweet_id")
 	
-	//@GenericGenerator(name="ref" , strategy="increment")
-	//@GeneratedValue(generator ="ref")
-	@GeneratedValue(strategy= GenerationType.AUTO) //whenever auto is used there is some changes in hib.cfg.file
+	@GenericGenerator(name="ref" , strategy="increment")
+	@GeneratedValue(generator ="ref")
+	//@GeneratedValue(strategy= GenerationType.AUTO) //whenever auto is used there is some changes in hib.cfg.file
 	private int sweet_id;
 	@Column(name="sweet_name")
 	private String name;

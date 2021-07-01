@@ -12,6 +12,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @NamedQueries({
 	
@@ -32,10 +34,11 @@ public class PerfumeDTO implements Serializable {
 	
 	
 	@Id
-	
-	@GeneratedValue(strategy= GenerationType.AUTO) 
+	@GenericGenerator(name="ref" , strategy="uuid")
+	@GeneratedValue(generator ="ref")
+	//@GeneratedValue(strategy= GenerationType.AUTO) 
 	@Column(name ="perfume_id")
-	private int perfumeId;
+	private String perfumeId;
 	@Column(name ="perfume_name")
 	private String perfumeName;
 	@Column(name ="perfume_color")
@@ -49,7 +52,6 @@ public class PerfumeDTO implements Serializable {
 		System.out.println(this.getClass().getSimpleName()+"created");
 		
 	}
-	
 
 	@Override
 	public String toString() {
@@ -57,12 +59,11 @@ public class PerfumeDTO implements Serializable {
 				+ ", perfumePrice=" + perfumePrice + ", perfumeFragnance=" + perfumeFragnance + "]";
 	}
 
-
-	public int getPerfumeId() {
+	public String getPerfumeId() {
 		return perfumeId;
 	}
 
-	public void setPerfumeId(int perfumeId) {
+	public void setPerfumeId(String perfumeId) {
 		this.perfumeId = perfumeId;
 	}
 
@@ -98,6 +99,7 @@ public class PerfumeDTO implements Serializable {
 		this.perfumeFragnance = perfumeFragnance;
 	}
 	
+
 	
 	
 	
