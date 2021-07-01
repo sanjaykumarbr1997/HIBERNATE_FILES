@@ -48,6 +48,7 @@ public class PerfumeDTO implements Serializable {
 	@Column(name ="perfume_fragnance")
 	private String perfumeFragnance;
 	
+	
 	public PerfumeDTO() {
 		System.out.println(this.getClass().getSimpleName()+"created");
 		
