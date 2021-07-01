@@ -45,6 +45,7 @@ public class SweetsDTO implements Serializable {
 	@Column(name="sweet_shape")
 	private String shape;
 	
+	
 	public SweetsDTO() {
 		System.out.println(this.getClass().getSimpleName()+"created");
 	}
